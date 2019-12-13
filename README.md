@@ -1,7 +1,11 @@
-# Pompeius
+# Slutprojektet
+Välkommen till den förinställda kodbasen för slutprojektet.
+Se filen `sketch.js` för hur ni ska börja skriva er kod!
 
-Link to the onedrive excel GANTT-schema:
-https://medieinstitutet-my.sharepoint.com/:x:/g/personal/emelie_rosenlow_medieinstitutet_se/EbtlgddY4aBFl88QPh0kfZIBSEkGx6kB75fFzQ4sFv_qDA?e=oALqP9 
+## Installation
 
-Link to the word-document describing the game idea:
-https://medieinstitutet-my.sharepoint.com/:w:/g/personal/emelie_rosenlow_medieinstitutet_se/EcgoHNa40BtNhJRMo92DUicBp0dJuT40KfZhqO7WHI7x8Q?e=rdSn3o
+Kör först kommandot `npm i` för att installera nödvändiga moduler (p5, typescript, etc)
+Kör sedan kommandot `npm start` för att starta projektet och se det live i en webbläsare
+
+## TODO
+Lägg till ytterliggare information som är specifikt för ert projekt!
