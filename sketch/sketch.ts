@@ -21,10 +21,8 @@ let topOffset: number
 let bottomOffset: number
 const level: number = 3
 let pieceHeight: number
-let pictureHeight: number
 let img: p5.Image
 let speed: number
-
 function setup() {
     createCanvas(windowWidth, windowHeight)
     frameRate(60)
@@ -33,8 +31,7 @@ function setup() {
     img = loadImage('https://source.unsplash.com/350x350/?nature,water')
     topOffset = windowHeight / 4
     bottomOffset = windowHeight / 4
-    pictureHeight = Math.floor(windowHeight - (topOffset + bottomOffset))
-    pieceHeight = Math.floor(pieceHeight / level)
+    pieceHeight = Math.floor(350 / level)
     speed = width
 }
 
@@ -48,16 +45,14 @@ function setup() {
 function draw() {
     background('black')
     //image(img, dx, dy, dWidth, dHeight, sx, sy, [sWidth], [sHeight])
-    image(img, speed, topOffset, 350, pieceHeight, 0, 0)
-    image(img, speed, (topOffset + pieceHeight), 350, pieceHeight, 0, 0)
-    image(img, speed, (topOffset + pieceHeight * 2), 350, pieceHeight, 0, 0)
-
-    speed = speed +1
+    image(img, speed, topOffset, 350, pieceHeight, 0, 0, 350, pieceHeight)
+    image(img, -speed, (topOffset + pieceHeight), 350, pieceHeight, 0, pieceHeight, 350, pieceHeight)
+    image(img, speed, (topOffset + pieceHeight * 2), 350, pieceHeight, 0, pieceHeight * 2, 350, pieceHeight)
+    speed = speed + level
     //console.log(speed)
     if (speed >= width) {
         speed = 0
     }
-
 }
 
 
