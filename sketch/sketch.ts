@@ -3,6 +3,8 @@
  * This is a good place to load assets such as
  * sound files, images etc...
  */
+
+
 function preload() {
     // Tyvärr har jag inte fått till den globala typningen för
     // inladdningen av ljud men fungerar bra enligt nedan..
@@ -15,23 +17,47 @@ function preload() {
  * and save it as a global variable so it can be used
  * in the draw function below
  */
+let topOffset: number
+let bottomOffset: number
+const level: number = 3
+let pieceHeight: number
+let pictureHeight: number
+let img: p5.Image
+let speed: number
+
 function setup() {
     createCanvas(windowWidth, windowHeight)
     frameRate(60)
-    noCursor()
+    //noCursor()
     fullscreen()
+    img = loadImage('https://source.unsplash.com/350x350/?nature,water')
+    topOffset = windowHeight / 4
+    bottomOffset = windowHeight / 4
+    pictureHeight = Math.floor(windowHeight - (topOffset + bottomOffset))
+    pieceHeight = Math.floor(pieceHeight / level)
+    speed = width
 }
+
+
 
 /**
  * Built in draw function in P5
- * This is a good place to call public funcions of the object
+ * This is a good place to call public functions of the object
  * you created in the setup function above
  */
 function draw() {
     background('black')
-    fill('red')
-    stroke('white')
-    circle(width * .5, height * .5, width * 0.2)
+    //image(img, dx, dy, dWidth, dHeight, sx, sy, [sWidth], [sHeight])
+    image(img, speed, topOffset, 350, pieceHeight, 0, 0)
+    image(img, speed, (topOffset + pieceHeight), 350, pieceHeight, 0, 0)
+    image(img, speed, (topOffset + pieceHeight * 2), 350, pieceHeight, 0, 0)
+
+    speed = speed +1
+    //console.log(speed)
+    if (speed >= width) {
+        speed = 0
+    }
+
 }
 
 
