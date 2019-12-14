@@ -7,13 +7,12 @@
 
 let topOffset: number
 let bottomOffset: number
+let leftOffset: number
 
-let level: number = 3
+//let level: number = 3
 let pieceHeight: number
 let img: p5.Image
-let speed: number
-
-let noOfSegments: number
+let xPos: number
 
 // class GameFrame {
 //     private imageWidth: number
@@ -26,6 +25,30 @@ let noOfSegments: number
 // }
 
 function preload() {
+
+}
+
+class ImageProperties {
+    //image(img, dx, dy, dWidth, dHeight, sx, sy, [sWidth], [sHeight])
+    //private static img:string  = 'https://source.unsplash.com/350x350/?nature,water'
+    private static urlRoot: string = 'https://source.unsplash.com/'
+    private static imgTags: string = 'nature,water'
+    private static dWidth: number = 350
+    private static noOfSegments: number = 3
+
+
+    public static getDestinationWidth(): number {
+        return this.dWidth
+    }
+
+    public static getImgUrl(): string {
+        let imgUrl = this.urlRoot + this.dWidth + "x" + this.dWidth + "/?" + this.imgTags
+        return imgUrl
+    }
+
+    public static getNoOfSegments(): number {
+        return this.noOfSegments
+    }
 
 }
 
@@ -42,38 +65,20 @@ function setup() {
     fullscreen()
     topOffset = windowHeight / 4
     bottomOffset = windowHeight / 4
-    pieceHeight = Math.floor(350 / level)
-    speed = width
+    leftOffset = (windowWidth / 2) - (ImageProperties.getDestinationWidth() / 2)
+    pieceHeight = Math.floor(ImageProperties.getDestinationWidth() / ImageProperties.getNoOfSegments())
+    xPos = 0
     img = loadImage(ImageProperties.getImgUrl())
 }
 
 
 
-class ImageProperties {
-    //image(img, dx, dy, dWidth, dHeight, sx, sy, [sWidth], [sHeight])
-    //private static img:string  = 'https://source.unsplash.com/350x350/?nature,water'
-    private static dWidth: number  = 350
-    private static urlRoot: string = 'https://source.unsplash.com/'
-    private static imgTags: string = 'nature,water'
-
-
-    public static getDestinationWidth(): number {
-        return this.dWidth
-    }
-
-    public static getImgUrl(): string {
-        let imgUrl = this.urlRoot + this.dWidth + "x" + this.dWidth + "/?" + this.imgTags
-        return imgUrl
-    }
-
-}
-
-function keyPressed(): void {
-    if (keyCode === 32) {
-        level++
-        console.log("Mamta")
-    }
-}
+// function keyPressed(): void {
+//     if (keyCode === 32) {
+//         level++
+//         console.log("Mamta")
+//     }
+// }
 
 
 /**
@@ -83,29 +88,28 @@ function keyPressed(): void {
  */
 function draw() {
     background('black')
-    // let dx: number
-    // let dy: number
-    // let dWidth: number
-    // let dHeight: number
-    // let sx: number
-    // let sy: number
-    // let sWidth: number
-    // let sHeight: number
+    noFill()
+    stroke('red')
+    strokeWeight(4)
+    rect(leftOffset, topOffset, ImageProperties.getDestinationWidth(), ImageProperties.getDestinationWidth())
 
-    image(img, speed, topOffset, ImageProperties.getDestinationWidth(), pieceHeight, 0, 0, ImageProperties.getDestinationWidth(), pieceHeight)
-    image(img, (-speed + (width - ImageProperties.getDestinationWidth())), (topOffset + pieceHeight), ImageProperties.getDestinationWidth(), pieceHeight, 0, pieceHeight, ImageProperties.getDestinationWidth(), pieceHeight)
-    image(img, speed, (topOffset + pieceHeight * 2), ImageProperties.getDestinationWidth(), pieceHeight, 0, pieceHeight * 2, ImageProperties.getDestinationWidth(), pieceHeight)
-    speed = speed + level
-    //console.log(speed)
-    if (speed >= width) {
-        speed = 0
+    for (let i = 0; i < ImageProperties.getNoOfSegments(); i++) {
+        let newXPos: number = xPos
+        if (i % 2 === 1) {
+            newXPos = width - (xPos + ImageProperties.getDestinationWidth())
+        }
+
+        image(img, newXPos, topOffset + (pieceHeight * i),
+            ImageProperties.getDestinationWidth(), pieceHeight, 0,
+            pieceHeight * i, ImageProperties.getDestinationWidth(), pieceHeight)
     }
 
-    // if (dx[i] %2 == 0)
-    //         return true;
-    //     else
-    //         return false;
-    
+    xPos += ImageProperties.getNoOfSegments()
+    //console.log(xPos)
+    if (xPos >= width) {
+        xPos = 0
+    }
+
 }
 
 
@@ -113,5 +117,5 @@ function draw() {
  *  Built in windowResize listener function in P5
  */
 function windowResized() {
-    resizeCanvas(windowWidth, windowHeight);
+    resizeCanvas(windowWidth, windowHeight)
 }
