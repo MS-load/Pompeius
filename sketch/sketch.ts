@@ -1,29 +1,18 @@
+let topOffset: number
+let leftOffset: number
+
+let pieceHeight: number
+let img: p5.Image
+let xPos: number
+let segmentPosition: number[] = []
+
+let selectedImage: number = -1
+
 /**
  * Built in preload function in P5
  * This is a good place to load assets such as
  * sound files, images etc...
  */
-
-
-let topOffset: number
-let bottomOffset: number
-let leftOffset: number
-
-//let level: number = 3
-let pieceHeight: number
-let img: p5.Image
-let xPos: number
-
-// class GameFrame {
-//     private imageWidth: number
-//     private imageHeight: number
-
-//     constructor(imageWidth: number, imageHeight: number) {
-//         this.imageWidth = imageWidth
-//         this.imageHeight = imageHeight
-//     }
-// }
-
 function preload() {
 
 }
@@ -64,22 +53,16 @@ function setup() {
     //noCursor()
     fullscreen()
     topOffset = windowHeight / 4
-    bottomOffset = windowHeight / 4
     leftOffset = (windowWidth / 2) - (ImageProperties.getDestinationWidth() / 2)
     pieceHeight = Math.floor(ImageProperties.getDestinationWidth() / ImageProperties.getNoOfSegments())
     xPos = 0
     img = loadImage(ImageProperties.getImgUrl())
+    for (let i = 0; i < ImageProperties.getNoOfSegments(); i++) {
+        segmentPosition.push(0)
+    }
+    //console.log(segmentPosition)
+
 }
-
-
-
-// function keyPressed(): void {
-//     if (keyCode === 32) {
-//         level++
-//         console.log("Mamta")
-//     }
-// }
-
 
 /**
  * Built in draw function in P5
@@ -92,17 +75,10 @@ function draw() {
     stroke('red')
     strokeWeight(4)
     rect(leftOffset, topOffset, ImageProperties.getDestinationWidth(), ImageProperties.getDestinationWidth())
+    drawSplitImage()
+}
 
-    for (let i = 0; i < ImageProperties.getNoOfSegments(); i++) {
-        let newXPos: number = xPos
-        if (i % 2 === 1) {
-            newXPos = width - (xPos + ImageProperties.getDestinationWidth())
-        }
-
-        image(img, newXPos, topOffset + (pieceHeight * i),
-            ImageProperties.getDestinationWidth(), pieceHeight, 0,
-            pieceHeight * i, ImageProperties.getDestinationWidth(), pieceHeight)
-    }
+function drawSplitImage() {
 
     xPos += ImageProperties.getNoOfSegments()
     //console.log(xPos)
@@ -110,6 +86,49 @@ function draw() {
         xPos = 0
     }
 
+    for (let i = 0; i < ImageProperties.getNoOfSegments(); i++) {
+        // if (!(i <= selectedImage && keyCode === 32)) {
+        //     segmentPosition[i] = xPos
+        //     if (i % 2 === 1) {
+        //         segmentPosition[i] = width - (xPos + ImageProperties.getDestinationWidth())
+        //     }
+
+        // }
+        
+        if (i > selectedImage) {
+            segmentPosition[i] = xPos
+            if (i % 2 === 1) {
+                segmentPosition[i] = width - (xPos + ImageProperties.getDestinationWidth())
+            }
+
+        }
+
+        if (i === (selectedImage + 1)) {
+            stroke('hsla(160, 100%, 50%, 0.5)')
+            strokeWeight(10)
+            rect(segmentPosition[i], topOffset + (pieceHeight * i), ImageProperties.getDestinationWidth(), pieceHeight)
+        }
+
+
+        image(img, segmentPosition[i], topOffset + (pieceHeight * i),
+            ImageProperties.getDestinationWidth(), pieceHeight, 0,
+            pieceHeight * i, ImageProperties.getDestinationWidth(), pieceHeight)
+
+        //console.log(image())
+
+
+
+
+    }
+
+
+
+
+}
+
+
+function keyPressed(): void {
+    selectedImage++
 }
 
 
@@ -118,4 +137,6 @@ function draw() {
  */
 function windowResized() {
     resizeCanvas(windowWidth, windowHeight)
+    topOffset = windowHeight / 4
+    leftOffset = (windowWidth / 2) - (ImageProperties.getDestinationWidth() / 2)
 }
