@@ -4,7 +4,7 @@ let leftOffset: number
 let pieceHeight: number
 let img: p5.Image
 let xPos: number
-let segmentPosition: number[] = []
+
 
 let selectedImage: number = -1
 
@@ -24,7 +24,7 @@ class ImageProperties {
     private static imgTags: string = 'nature,water'
     private static dWidth: number = 350
     private static noOfSegments: number = 3
-
+    public static segmentPosition: number[] = []
 
     public static getDestinationWidth(): number {
         return this.dWidth
@@ -38,7 +38,6 @@ class ImageProperties {
     public static getNoOfSegments(): number {
         return this.noOfSegments
     }
-
 }
 
 /**
@@ -58,10 +57,9 @@ function setup() {
     xPos = 0
     img = loadImage(ImageProperties.getImgUrl())
     for (let i = 0; i < ImageProperties.getNoOfSegments(); i++) {
-        segmentPosition.push(0)
+        ImageProperties.segmentPosition.push(0)
     }
     //console.log(segmentPosition)
-
 }
 
 /**
@@ -87,50 +85,31 @@ function drawSplitImage() {
     }
 
     for (let i = 0; i < ImageProperties.getNoOfSegments(); i++) {
-        // if (!(i <= selectedImage && keyCode === 32)) {
-        //     segmentPosition[i] = xPos
-        //     if (i % 2 === 1) {
-        //         segmentPosition[i] = width - (xPos + ImageProperties.getDestinationWidth())
-        //     }
 
-        // }
-        
         if (i > selectedImage) {
-            segmentPosition[i] = xPos
+            ImageProperties.segmentPosition[i] = xPos
             if (i % 2 === 1) {
-                segmentPosition[i] = width - (xPos + ImageProperties.getDestinationWidth())
+                ImageProperties.segmentPosition[i] = width - (xPos + ImageProperties.getDestinationWidth())
             }
-
         }
 
         if (i === (selectedImage + 1)) {
             stroke('hsla(160, 100%, 50%, 0.5)')
             strokeWeight(10)
-            rect(segmentPosition[i], topOffset + (pieceHeight * i), ImageProperties.getDestinationWidth(), pieceHeight)
+            rect(ImageProperties.segmentPosition[i], topOffset + (pieceHeight * i),
+                ImageProperties.getDestinationWidth(), pieceHeight)
         }
 
-
-        image(img, segmentPosition[i], topOffset + (pieceHeight * i),
+        image(img, ImageProperties.segmentPosition[i], topOffset + (pieceHeight * i),
             ImageProperties.getDestinationWidth(), pieceHeight, 0,
             pieceHeight * i, ImageProperties.getDestinationWidth(), pieceHeight)
-
-        //console.log(image())
-
-
-
-
     }
-
-
-
-
 }
 
 
 function keyPressed(): void {
     selectedImage++
 }
-
 
 /**
  *  Built in windowResize listener function in P5
