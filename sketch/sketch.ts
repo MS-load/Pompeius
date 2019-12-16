@@ -8,6 +8,7 @@ let xPos: number
 
 let selectedImage: number = -1
 
+let gameFrame: GameFrame
 /**
  * Built in preload function in P5
  * This is a good place to load assets such as
@@ -40,6 +41,8 @@ function setup() {
         ImageProperties.segmentPosition.push(0)
     }
     //console.log(segmentPosition)
+    fullscreen()
+    gameFrame = new GameFrame()
 }
 
 /**
@@ -84,6 +87,8 @@ function drawSplitImage():void {
             ImageProperties.getDestinationWidth(), pieceHeight, 0,
             pieceHeight * i, ImageProperties.getDestinationWidth(), pieceHeight)
     }
+    background(50)
+    gameFrame.draw()
 }
 
 function keyPressed(): void {
