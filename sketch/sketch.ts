@@ -3,12 +3,18 @@
  * This is a good place to load assets such as
  * sound files, images etc...
  */
-function preload() {
-    // Tyvärr har jag inte fått till den globala typningen för
-    // inladdningen av ljud men fungerar bra enligt nedan..
-    // sound = (window as any).loadSound('../assets/mySound.wav');
-}
+let songBlues: p5.SoundFile;
+let songPunk: p5.SoundFile;
+let songPop: p5.SoundFile
+let songMetal: p5.SoundFile
+let musicChoice: MusicChoice
 
+function preload() {
+    songBlues = (window as any).loadSound("./blues.mp3")
+    songPunk = (window as any).loadSound("./jonny 2.1.mp3")
+    songPop = (window as any).loadSound("./poppen.mp3")
+    songMetal = (window as any).loadSound("./ELFVES AND DWARFES solo.mp3");
+}
 /**
  * Built in setup function in P5
  * This is a good place to create your first class object
@@ -16,10 +22,19 @@ function preload() {
  * in the draw function below
  */
 function setup() {
-    createCanvas(windowWidth, windowHeight)
+    createCanvas(200, 200)
     frameRate(60)
     noCursor()
     fullscreen()
+    soundFormats('mp3')
+    musicChoice = new MusicChoice()
+    musicChoice.createButtons()
+    musicChoice.mousePresser()
+    musicChoice.togglePunkPlaying()
+    musicChoice.toggleMetalPlaying()
+    musicChoice.togglePopPlaying()
+    musicChoice.toggleBluesPlaying()
+    
 }
 
 /**
