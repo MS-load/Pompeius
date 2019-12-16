@@ -19,4 +19,39 @@ class ImageProperties {
     public static getNoOfSegments(): number {
         return this.noOfSegments
     }
+
+
+    /**
+     * imageSplit
+     */
+    public imageSplit() {
+         xPos += ImageProperties.getNoOfSegments()
+    //console.log(xPos)
+    if (xPos >= width) {
+        xPos = 0    
+    }
+
+    for (let i = 0; i < ImageProperties.getNoOfSegments(); i++) {
+
+        if (i > selectedImage) {
+            ImageProperties.segmentPosition[i] = xPos
+            if (i % 2 === 1) {
+                ImageProperties.segmentPosition[i] = width - (xPos + ImageProperties.getDestinationWidth())
+            }
+        }
+
+        if (i === (selectedImage + 1)) {
+            stroke('hsla(160, 100%, 50%, 0.5)')
+            strokeWeight(10)
+            rect(ImageProperties.segmentPosition[i], topOffset + (pieceHeight * i),
+                ImageProperties.getDestinationWidth(), pieceHeight)
+        }
+
+        image(img, ImageProperties.segmentPosition[i], topOffset + (pieceHeight * i),
+            ImageProperties.getDestinationWidth(), pieceHeight, 0,
+            pieceHeight * i, ImageProperties.getDestinationWidth(), pieceHeight)
+    }
+    }
+
 }
+
