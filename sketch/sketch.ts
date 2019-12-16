@@ -17,28 +17,7 @@ function preload() {
 
 }
 
-class ImageProperties {
-    //image(img, dx, dy, dWidth, dHeight, sx, sy, [sWidth], [sHeight])
-    //private static img:string  = 'https://source.unsplash.com/350x350/?nature,water'
-    private static urlRoot: string = 'https://source.unsplash.com/'
-    private static imgTags: string = 'nature,water'
-    private static dWidth: number = 350
-    private static noOfSegments: number = 3
-    public static segmentPosition: number[] = []
 
-    public static getDestinationWidth(): number {
-        return this.dWidth
-    }
-
-    public static getImgUrl(): string {
-        let imgUrl = this.urlRoot + this.dWidth + "x" + this.dWidth + "/?" + this.imgTags
-        return imgUrl
-    }
-
-    public static getNoOfSegments(): number {
-        return this.noOfSegments
-    }
-}
 
 /**
  * Built in setup function in P5
@@ -51,6 +30,7 @@ function setup() {
     frameRate(60)
     //noCursor()
     fullscreen()
+    
     topOffset = windowHeight / 4
     leftOffset = (windowWidth / 2) - (ImageProperties.getDestinationWidth() / 2)
     pieceHeight = Math.floor(ImageProperties.getDestinationWidth() / ImageProperties.getNoOfSegments())
@@ -76,7 +56,7 @@ function draw() {
     drawSplitImage()
 }
 
-function drawSplitImage() {
+function drawSplitImage():void {
 
     xPos += ImageProperties.getNoOfSegments()
     //console.log(xPos)
@@ -106,9 +86,11 @@ function drawSplitImage() {
     }
 }
 
-
 function keyPressed(): void {
     selectedImage++
+    if (selectedImage > ImageProperties.getNoOfSegments()){
+
+    }
 }
 
 /**
