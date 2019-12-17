@@ -11,10 +11,10 @@ let songMetal: p5.SoundFile
 let musicChoice: MusicChoice
 
 function preload() {
-    songBlues = (window as any).loadSound("./blues.mp3")
-    songPunk = (window as any).loadSound("./jonny 2.1.mp3")
-    songPop = (window as any).loadSound("./poppen.mp3")
-    songMetal = (window as any).loadSound("./ELFVES AND DWARFES solo.mp3");
+    songBlues = (window as any).loadSound("./assets/music/blues.mp3")
+    songPunk = (window as any).loadSound("./assets/music/jonny 2.1.mp3")
+    songPop = (window as any).loadSound("./assets/music/poppen.mp3")
+    songMetal = (window as any).loadSound("./assets/music/ELFVES AND DWARFES solo.mp3");
 }
 /**
  * Built in setup function in P5
