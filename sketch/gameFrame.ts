@@ -1,0 +1,5 @@
+class GameFrame {
+    public draw() {
+
+    }
+}

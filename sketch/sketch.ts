@@ -1,3 +1,4 @@
+let gameFrame: GameFrame
 /**
  * Built in preload function in P5
  * This is a good place to load assets such as
@@ -24,7 +25,6 @@ function preload() {
 function setup() {
     createCanvas(200, 200)
     frameRate(60)
-    noCursor()
     fullscreen()
     soundFormats('mp3')
     musicChoice = new MusicChoice()
@@ -43,10 +43,8 @@ function setup() {
  * you created in the setup function above
  */
 function draw() {
-    background('black')
-    fill('red')
-    stroke('white')
-    circle(width * .5, height * .5, width * 0.2)
+    background(50)
+    gameFrame.draw()
 }
 
 
