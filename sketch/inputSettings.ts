@@ -26,6 +26,7 @@ class InputSettings {
         //Title
         textSize(70)
         fill('red')
+        stroke(0)
         textFont('Quintessential')
         text("Pompeius", (windowWidth / 2), 70)
 

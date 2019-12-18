@@ -12,6 +12,7 @@ let gameFrame: GameFrame
 let imageProperties: ImageProperties
 let gameSettings: GameSettings
 let inputSettings: InputSettings
+let gameStats: GameStats
 
 /**
  * Built in preload function in P5
@@ -44,6 +45,7 @@ function setup() {
     gameSettings = new GameSettings()
     inputSettings = new InputSettings()
     inputSettings.getUserName()
+    gameStats = new GameStats()
 }
 
 function setParameters() {
@@ -68,6 +70,7 @@ function draw() {
     stroke('red')
     strokeWeight(4)
     rect(leftOffset, topOffset, ImageProperties.getDestinationWidth(), ImageProperties.getDestinationWidth())
+    
     //gameFrame.draw()
     imageProperties.imageDraw()
     //changeLevel()
@@ -75,7 +78,7 @@ function draw() {
     gameFrame.draw()
     inputSettings.update()
     inputSettings.draw()
-
+    gameStats.draw()
 }
 
 function keyPressed(): void {
