@@ -10,6 +10,9 @@ let selectedImage: number = -1
 
 let gameFrame: GameFrame
 let imageProperties: ImageProperties
+let gameSettings: GameSettings
+let inputSettings: InputSettings
+
 /**
  * Built in preload function in P5
  * This is a good place to load assets such as
@@ -25,6 +28,8 @@ function preload() {
  * and save it as a global variable so it can be used
  * in the draw function below
  */
+
+
 function setup() {
     createCanvas(windowWidth, windowHeight)
     frameRate(60)
@@ -34,6 +39,11 @@ function setup() {
 
     //console.log(segmentPosition)
     imageProperties = new ImageProperties()
+   
+    gameFrame = new GameFrame()
+    gameSettings = new GameSettings()
+    inputSettings = new InputSettings()
+    inputSettings.getUserName()
 }
 
 function setParameters() {
@@ -53,7 +63,7 @@ function setParameters() {
  */
 function draw() {
 
-    background('black')
+    background(0)
     noFill()
     stroke('red')
     strokeWeight(4)
@@ -61,6 +71,11 @@ function draw() {
     //gameFrame.draw()
     imageProperties.imageDraw()
     //changeLevel()
+    
+    gameFrame.draw()
+    inputSettings.update()
+    inputSettings.draw()
+
 }
 
 function keyPressed(): void {
@@ -82,6 +97,8 @@ function changeLevel(): void {
         ImageProperties.noOfSegments++
     }
 }
+
+
 
 /**
  *  Built in windowResize listener function in P5
