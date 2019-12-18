@@ -30,7 +30,13 @@ function setup() {
     frameRate(60)
     //noCursor()
     fullscreen()
+    setParameters()
 
+    //console.log(segmentPosition)
+    imageProperties = new ImageProperties()
+}
+
+function setParameters() {
     topOffset = windowHeight / 4
     leftOffset = (windowWidth / 2) - (ImageProperties.getDestinationWidth() / 2)
     pieceHeight = Math.floor(ImageProperties.getDestinationWidth() / ImageProperties.getNoOfSegments())
@@ -39,30 +45,41 @@ function setup() {
     for (let i = 0; i < ImageProperties.getNoOfSegments(); i++) {
         ImageProperties.segmentPosition.push(0)
     }
-    //console.log(segmentPosition)
-
-    gameFrame = new GameFrame()
-    imageProperties = new ImageProperties()
 }
-
 /**
  * Built in draw function in P5
  * This is a good place to call public functions of the object
  * you created in the setup function above
  */
 function draw() {
+
     background('black')
     noFill()
     stroke('red')
     strokeWeight(4)
     rect(leftOffset, topOffset, ImageProperties.getDestinationWidth(), ImageProperties.getDestinationWidth())
-    gameFrame.draw()
-    imageProperties.imageSplit()
+    //gameFrame.draw()
+    imageProperties.imageDraw()
+    //changeLevel()
 }
 
 function keyPressed(): void {
-    selectedImage++
-    if (selectedImage > ImageProperties.getNoOfSegments()) {
+    if (keyCode === 32) {
+        selectedImage++
+        if (selectedImage >= ImageProperties.getNoOfSegments()) {
+            console.log("exceeded")
+            ImageProperties.noOfSegments++
+            selectedImage = -1
+            setParameters()
+        }
+        console.log(selectedImage)
+    }
+}
+
+function changeLevel(): void {
+    if (selectedImage >= ImageProperties.getNoOfSegments()) {
+        console.log("exceeded")
+        ImageProperties.noOfSegments++
     }
 }
 
