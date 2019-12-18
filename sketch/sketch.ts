@@ -25,14 +25,10 @@ let songMetal: p5.SoundFile
 let musicChoice: MusicChoice
 
 function preload() {
-<<<<<<< HEAD
     songBlues = (window as any).loadSound("./assets/music/blues.mp3")
     songPunk = (window as any).loadSound("./assets/music/jonny 2.1.mp3")
     songPop = (window as any).loadSound("./assets/music/poppen.mp3")
     songMetal = (window as any).loadSound("./assets/music/ELFVES AND DWARFES solo.mp3");
-=======
-
->>>>>>> baa4b023dc8ffd29cf0c4411bc71fcfe1d852b83
 }
 /**
  * Built in setup function in P5
@@ -47,7 +43,6 @@ function setup() {
     frameRate(60)
     //noCursor()
     fullscreen()
-<<<<<<< HEAD
     soundFormats('mp3')
     musicChoice = new MusicChoice()
     musicChoice.createButtons()
@@ -57,17 +52,6 @@ function setup() {
     musicChoice.togglePopPlaying()
     musicChoice.toggleBluesPlaying()
     
-=======
-    setParameters()
-
-    //console.log(segmentPosition)
-    imageProperties = new ImageProperties()
-   
-    gameFrame = new GameFrame()
-    gameSettings = new GameSettings()
-    inputSettings = new InputSettings()
-    inputSettings.getUserName()
->>>>>>> baa4b023dc8ffd29cf0c4411bc71fcfe1d852b83
 }
 
 function setParameters() {
@@ -128,12 +112,7 @@ function changeLevel(): void {
  *  Built in windowResize listener function in P5
  */
 function windowResized() {
-<<<<<<< HEAD
-    resizeCanvas(windowWidth, windowHeight);
-}
-=======
     resizeCanvas(windowWidth, windowHeight)
     topOffset = windowHeight / 4
     leftOffset = (windowWidth / 2) - (ImageProperties.getDestinationWidth() / 2)
 }
->>>>>>> baa4b023dc8ffd29cf0c4411bc71fcfe1d852b83
