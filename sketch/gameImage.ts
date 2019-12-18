@@ -15,6 +15,7 @@ class ImageProperties {
     public static getImgUrl(): string {
         let imgUrl = this.urlRoot + this.dWidth + "x" + this.dWidth + "/?" + this.imgTags
         return imgUrl
+
     }
 
     public static getNoOfSegments(): number {
