@@ -1,4 +1,7 @@
 let gameFrame: GameFrame
+let gameSettings: GameSettings
+let inputSettings: InputSettings
+
 /**
  * Built in preload function in P5
  * This is a good place to load assets such as
@@ -16,11 +19,16 @@ function preload() {
  * and save it as a global variable so it can be used
  * in the draw function below
  */
+
+
 function setup() {
     createCanvas(windowWidth, windowHeight)
-    frameRate(60)
+    frameRate(120)
     fullscreen()
     gameFrame = new GameFrame()
+    gameSettings = new GameSettings()
+    inputSettings = new InputSettings()
+    inputSettings.getUserName()
 }
 
 /**
@@ -29,9 +37,14 @@ function setup() {
  * you created in the setup function above
  */
 function draw() {
-    background(50)
+    background(0)
     gameFrame.draw()
+    inputSettings.update()
+    inputSettings.draw()
+
 }
+
+
 
 
 /**
