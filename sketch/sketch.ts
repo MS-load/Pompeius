@@ -65,18 +65,15 @@ function setParameters() {
 function draw() {
 
     background(0)
-    noFill()
-    stroke('red')
-    strokeWeight(4)
-    rect(leftOffset, topOffset, imageProperties.getDestinationWidth(), imageProperties.getDestinationWidth())
+    
     //gameFrame.draw()
-    imageProperties.imageDraw()
     //changeLevel()
     
     gameFrame.draw()
-    inputSettings.update()
-    inputSettings.draw()
-
+    gameFrame.drawGameFrame()
+    imageProperties.imageDraw()
+    //inputSettings.update()
+    //inputSettings.draw()
 }
 
 function keyPressed(): void {

@@ -31,6 +31,7 @@ class ImageProperties {
     }
 
 
+
     /**
      * Draws the image based on the number of segments and the xPosition
      */
