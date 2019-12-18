@@ -35,10 +35,10 @@ function setup() {
     frameRate(60)
     //noCursor()
     fullscreen()
-    setParameters()
-
+    
     //console.log(segmentPosition)
     imageProperties = new ImageProperties()
+    setParameters()
    
     gameFrame = new GameFrame()
     gameSettings = new GameSettings()
@@ -47,13 +47,14 @@ function setup() {
 }
 
 function setParameters() {
+    
     topOffset = windowHeight / 4
-    leftOffset = (windowWidth / 2) - (ImageProperties.getDestinationWidth() / 2)
-    pieceHeight = Math.floor(ImageProperties.getDestinationWidth() / ImageProperties.getNoOfSegments())
+    leftOffset = (windowWidth / 2) - (imageProperties.getDestinationWidth() / 2)
+    pieceHeight = Math.floor(imageProperties.getDestinationWidth() / imageProperties.getNoOfSegments())
     xPos = 0
-    img = loadImage(ImageProperties.getImgUrl())
-    for (let i = 0; i < ImageProperties.getNoOfSegments(); i++) {
-        ImageProperties.segmentPosition.push(0)
+    img = loadImage(imageProperties.getImgUrl())
+    for (let i = 0; i < imageProperties.getNoOfSegments(); i++) {
+        imageProperties.segmentPosition.push(0)
     }
 }
 /**
@@ -67,7 +68,7 @@ function draw() {
     noFill()
     stroke('red')
     strokeWeight(4)
-    rect(leftOffset, topOffset, ImageProperties.getDestinationWidth(), ImageProperties.getDestinationWidth())
+    rect(leftOffset, topOffset, imageProperties.getDestinationWidth(), imageProperties.getDestinationWidth())
     //gameFrame.draw()
     imageProperties.imageDraw()
     //changeLevel()
@@ -81,9 +82,9 @@ function draw() {
 function keyPressed(): void {
     if (keyCode === 32) {
         selectedImage++
-        if (selectedImage >= ImageProperties.getNoOfSegments()) {
+        if (selectedImage >= imageProperties.getNoOfSegments()) {
             console.log("exceeded")
-            ImageProperties.noOfSegments++
+            imageProperties.noOfSegments++
             selectedImage = -1
             setParameters()
         }
@@ -92,9 +93,10 @@ function keyPressed(): void {
 }
 
 function changeLevel(): void {
-    if (selectedImage >= ImageProperties.getNoOfSegments()) {
+    
+    if (selectedImage >= imageProperties.getNoOfSegments()) {
         console.log("exceeded")
-        ImageProperties.noOfSegments++
+        imageProperties.noOfSegments++
     }
 }
 
@@ -106,5 +108,5 @@ function changeLevel(): void {
 function windowResized() {
     resizeCanvas(windowWidth, windowHeight)
     topOffset = windowHeight / 4
-    leftOffset = (windowWidth / 2) - (ImageProperties.getDestinationWidth() / 2)
+    leftOffset = (windowWidth / 2) - (imageProperties.getDestinationWidth() / 2)
 }
