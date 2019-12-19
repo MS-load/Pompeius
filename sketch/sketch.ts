@@ -13,22 +13,23 @@ let imageProperties: ImageProperties
 let gameSettings: GameSettings
 let inputSettings: InputSettings
 
+let popp: p5.SoundFile;
+let punk: p5.SoundFile;
+let metal: p5.SoundFile
+let blues: p5.SoundFile
+let musicChoice: MusicChoice
+
+
 /**
  * Built in preload function in P5
  * This is a good place to load assets such as
  * sound files, images etc...
  */
-let songBlues: p5.SoundFile;
-let songPunk: p5.SoundFile;
-let songPop: p5.SoundFile
-let songMetal: p5.SoundFile
-let musicChoice: MusicChoice
-
 function preload() {
-    songBlues = (window as any).loadSound("./assets/music/blues.mp3")
-    songPunk = (window as any).loadSound("./assets/music/jonny 2.1.mp3")
-    songPop = (window as any).loadSound("./assets/music/poppen.mp3")
-    songMetal = (window as any).loadSound("./assets/music/ELFVES AND DWARFES solo.mp3");
+   popp = (window as any).loadSound('./assets/music/poppen.mp3')
+   punk = (window as any).loadSound('./assets/music/jonny 2.1.mp3')
+   metal = (window as any).loadSound('./assets/music/ELFVES AND DWARFES solo.mp3')
+   blues = (window as any).loadSound('./assets/music/blues.mp3')
 }
 /**
  * Built in setup function in P5
@@ -46,11 +47,11 @@ function setup() {
     soundFormats('mp3')
     musicChoice = new MusicChoice()
     musicChoice.createButtons()
-    musicChoice.mousePresser()
-    musicChoice.togglePunkPlaying()
-    musicChoice.toggleMetalPlaying()
-    musicChoice.togglePopPlaying()
-    musicChoice.toggleBluesPlaying()
+    musicChoice.selectMusic()
+    // musicChoice.togglePunkPlaying()
+    // musicChoice.toggleMetalPlaying()
+    // musicChoice.togglePopPlaying()
+    // musicChoice.toggleBluesPlaying()
     
 }
 
