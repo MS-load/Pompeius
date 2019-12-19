@@ -28,20 +28,21 @@ let musicChoice: MusicChoice
  * sound files, images etc...
  */
 function preload() {
-<<<<<<< HEAD
     imageProperties = new ImageProperties()
     setParameters()
-=======
    popp = (window as any).loadSound('./assets/music/poppen.mp3')
    punk = (window as any).loadSound('./assets/music/jonny 2.1.mp3')
    metal = (window as any).loadSound('./assets/music/ELFVES AND DWARFES solo.mp3')
    blues = (window as any).loadSound('./assets/music/blues.mp3')
+<<<<<<< HEAD
 <<<<<<< HEAD
    swoosh = (window as any).loadSound('./assets/sounds/Swoosh 3-SoundBible.com-1573211927.mp3')
    spaceClick = (window as any).loadSound('./assets/sounds/Stapler-SoundBible.com-374581609.mp3')
 =======
 >>>>>>> 6ae728c4838ff48570c1ec9f08e3f8a5d419c074
 >>>>>>> 9f18f27dcd4cb4291745f4975ae7110663db7748
+=======
+>>>>>>> master
 }
 /**
  * Built in setup function in P5
@@ -56,7 +57,6 @@ function setup() {
     frameRate(60)
     //noCursor()
     fullscreen()
-<<<<<<< HEAD
 
     //console.log(segmentPosition)
 
@@ -65,7 +65,6 @@ function setup() {
     gameSettings = new GameSettings()
     inputSettings = new InputSettings()
     inputSettings.getUserName()
-=======
     soundFormats('mp3')
     musicChoice = new MusicChoice()
     musicChoice.createSelector()
@@ -75,7 +74,6 @@ function setup() {
     // musicChoice.togglePopPlaying()
     // musicChoice.toggleBluesPlaying()
     
->>>>>>> 6ae728c4838ff48570c1ec9f08e3f8a5d419c074
 }
 
 function setParameters() {
@@ -123,7 +121,6 @@ function keyPressed(): void {
 function windowResized() {
     resizeCanvas(windowWidth, windowHeight)
     topOffset = windowHeight / 4
-<<<<<<< HEAD
     leftOffset = (windowWidth / 2) - (imageProperties.getDestinationWidth() / 2)
 }
 
@@ -147,7 +144,5 @@ function gameScore() {
     console.log(score)
 
 }
-=======
     leftOffset = (windowWidth / 2) - (ImageProperties.getDestinationWidth() / 2)
 }
->>>>>>> 6ae728c4838ff48570c1ec9f08e3f8a5d419c074
