@@ -7,6 +7,7 @@ class ImageProperties {
     private dWidth: number
     public noOfSegments: number
     public segmentPosition: number[]
+    static getDestinationWidth: any
 
     constructor() {
         this.urlRoot= 'https://source.unsplash.com/'

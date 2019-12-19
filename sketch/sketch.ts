@@ -34,15 +34,8 @@ function preload() {
    punk = (window as any).loadSound('./assets/music/jonny 2.1.mp3')
    metal = (window as any).loadSound('./assets/music/ELFVES AND DWARFES solo.mp3')
    blues = (window as any).loadSound('./assets/music/blues.mp3')
-<<<<<<< HEAD
-<<<<<<< HEAD
    swoosh = (window as any).loadSound('./assets/sounds/Swoosh 3-SoundBible.com-1573211927.mp3')
    spaceClick = (window as any).loadSound('./assets/sounds/Stapler-SoundBible.com-374581609.mp3')
-=======
->>>>>>> 6ae728c4838ff48570c1ec9f08e3f8a5d419c074
->>>>>>> 9f18f27dcd4cb4291745f4975ae7110663db7748
-=======
->>>>>>> master
 }
 /**
  * Built in setup function in P5
@@ -145,4 +138,4 @@ function gameScore() {
 
 }
     leftOffset = (windowWidth / 2) - (ImageProperties.getDestinationWidth() / 2)
-}
+
