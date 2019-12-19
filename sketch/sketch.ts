@@ -40,7 +40,7 @@ function preload() {
 
 
 function setup() {
-    createCanvas(200, 200)
+    createCanvas(windowWidth, windowHeight)
     frameRate(60)
     //noCursor()
     fullscreen()
