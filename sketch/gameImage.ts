@@ -1,26 +1,35 @@
 class ImageProperties {
     //image(img, dx, dy, dWidth, dHeight, sx, sy, [sWidth], [sHeight])
-    //private static img:string  = 'https://source.unsplash.com/350x350/?nature,water'
+    //private img:string  = 'https://source.unsplash.com/350x350/?nature,water'
 
-    private static urlRoot: string = 'https://source.unsplash.com/'
-    private static imgTags: string = 'nature,water'
-    private static dWidth: number = 350
-    public static noOfSegments: number = 3
-    public static segmentPosition: number[] = []
+    private urlRoot: string
+    private imgTags: string
+    private dWidth: number
+    public noOfSegments: number
+    public segmentPosition: number[]
 
-    public static getDestinationWidth(): number {
+    constructor() {
+        this.urlRoot= 'https://source.unsplash.com/'
+        this.imgTags = 'nature,water'
+        this.dWidth = 350
+        this.noOfSegments = 3,
+        this.segmentPosition = []
+    }
+
+    public getDestinationWidth(): number {
         return this.dWidth
     }
 
-    public static getImgUrl(): string {
+    public getImgUrl(): string {
         let imgUrl = this.urlRoot + this.dWidth + "x" + this.dWidth + "/?" + this.imgTags
         return imgUrl
 
     }
 
-    public static getNoOfSegments(): number {
+    public getNoOfSegments(): number {
         return this.noOfSegments
     }
+
 
 
     /**
@@ -31,7 +40,7 @@ class ImageProperties {
         /**
          * updates the xPosition
          */
-        xPos += ImageProperties.getNoOfSegments()
+        xPos += this.getNoOfSegments()
         //console.log(xPos)
 
 
@@ -39,15 +48,15 @@ class ImageProperties {
             xPos = 0
         }
 
-        for (let i = 0; i < ImageProperties.getNoOfSegments(); i++) {
+        for (let i = 0; i < this.getNoOfSegments(); i++) {
 
             //Updates array with the new position
             if (i > selectedImage) {
-                ImageProperties.segmentPosition[i] = xPos
+                this.segmentPosition[i] = xPos
 
                 //reverse direction for alternate images
                 if (i % 2 === 1) {
-                    ImageProperties.segmentPosition[i] = width - (xPos + ImageProperties.getDestinationWidth())
+                    this.segmentPosition[i] = width - (xPos + this.getDestinationWidth())
                 }
             }
 
@@ -55,14 +64,14 @@ class ImageProperties {
             if (i === (selectedImage + 1)) {
                 stroke('hsla(160, 100%, 50%, 0.5)')
                 strokeWeight(10)
-                rect(ImageProperties.segmentPosition[i], topOffset + (pieceHeight * i),
-                    ImageProperties.getDestinationWidth(), pieceHeight)
+                rect(this.segmentPosition[i], topOffset + (pieceHeight * i),
+                    this.getDestinationWidth(), pieceHeight)
             }
 
             //Renders the image 
-            image(img, ImageProperties.segmentPosition[i], topOffset + (pieceHeight * i),
-                ImageProperties.getDestinationWidth(), pieceHeight, 0,
-                pieceHeight * i, ImageProperties.getDestinationWidth(), pieceHeight)
+            image(img, this.segmentPosition[i], topOffset + (pieceHeight * i),
+                this.getDestinationWidth(), pieceHeight, 0,
+                pieceHeight * i, this.getDestinationWidth(), pieceHeight)
         }
     }
 }
