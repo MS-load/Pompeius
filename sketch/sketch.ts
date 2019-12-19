@@ -28,12 +28,20 @@ let musicChoice: MusicChoice
  * sound files, images etc...
  */
 function preload() {
+<<<<<<< HEAD
+    imageProperties = new ImageProperties()
+    setParameters()
+=======
    popp = (window as any).loadSound('./assets/music/poppen.mp3')
    punk = (window as any).loadSound('./assets/music/jonny 2.1.mp3')
    metal = (window as any).loadSound('./assets/music/ELFVES AND DWARFES solo.mp3')
    blues = (window as any).loadSound('./assets/music/blues.mp3')
+<<<<<<< HEAD
    swoosh = (window as any).loadSound('./assets/sounds/Swoosh 3-SoundBible.com-1573211927.mp3')
    spaceClick = (window as any).loadSound('./assets/sounds/Stapler-SoundBible.com-374581609.mp3')
+=======
+>>>>>>> 6ae728c4838ff48570c1ec9f08e3f8a5d419c074
+>>>>>>> 9f18f27dcd4cb4291745f4975ae7110663db7748
 }
 /**
  * Built in setup function in P5
@@ -48,6 +56,16 @@ function setup() {
     frameRate(60)
     //noCursor()
     fullscreen()
+<<<<<<< HEAD
+
+    //console.log(segmentPosition)
+
+
+    gameFrame = new GameFrame()
+    gameSettings = new GameSettings()
+    inputSettings = new InputSettings()
+    inputSettings.getUserName()
+=======
     soundFormats('mp3')
     musicChoice = new MusicChoice()
     musicChoice.createSelector()
@@ -57,16 +75,18 @@ function setup() {
     // musicChoice.togglePopPlaying()
     // musicChoice.toggleBluesPlaying()
     
+>>>>>>> 6ae728c4838ff48570c1ec9f08e3f8a5d419c074
 }
 
 function setParameters() {
+
     topOffset = windowHeight / 4
-    leftOffset = (windowWidth / 2) - (ImageProperties.getDestinationWidth() / 2)
-    pieceHeight = Math.floor(ImageProperties.getDestinationWidth() / ImageProperties.getNoOfSegments())
+    leftOffset = (windowWidth / 2) - (imageProperties.getDestinationWidth() / 2)
+    pieceHeight = Math.floor(imageProperties.getDestinationWidth() / imageProperties.getNoOfSegments())
     xPos = 0
-    img = loadImage(ImageProperties.getImgUrl())
-    for (let i = 0; i < ImageProperties.getNoOfSegments(); i++) {
-        ImageProperties.segmentPosition.push(0)
+    img = loadImage(imageProperties.getImgUrl())
+    for (let i = 0; i < imageProperties.getNoOfSegments(); i++) {
+        imageProperties.segmentPosition.push(0)
     }
 }
 /**
@@ -76,27 +96,20 @@ function setParameters() {
  */
 function draw() {
 
-    background(0)
-    noFill()
-    stroke('red')
-    strokeWeight(4)
-    rect(leftOffset, topOffset, ImageProperties.getDestinationWidth(), ImageProperties.getDestinationWidth())
-    //gameFrame.draw()
-    imageProperties.imageDraw()
-    //changeLevel()
-    
     gameFrame.draw()
-    inputSettings.update()
-    inputSettings.draw()
-
+    gameFrame.drawGameFrame()
+    imageProperties.imageDraw()
+    //inputSettings.update()
+    //inputSettings.draw()
 }
 
 function keyPressed(): void {
     if (keyCode === 32) {
+        gameScore()
         selectedImage++
-        if (selectedImage >= ImageProperties.getNoOfSegments()) {
+        if (selectedImage >= imageProperties.getNoOfSegments()) {
             console.log("exceeded")
-            ImageProperties.noOfSegments++
+            imageProperties.noOfSegments++
             selectedImage = -1
             setParameters()
         }
@@ -104,20 +117,37 @@ function keyPressed(): void {
     }
 }
 
-function changeLevel(): void {
-    if (selectedImage >= ImageProperties.getNoOfSegments()) {
-        console.log("exceeded")
-        ImageProperties.noOfSegments++
-    }
-}
-
-
-
 /**
  *  Built in windowResize listener function in P5
  */
 function windowResized() {
     resizeCanvas(windowWidth, windowHeight)
     topOffset = windowHeight / 4
+<<<<<<< HEAD
+    leftOffset = (windowWidth / 2) - (imageProperties.getDestinationWidth() / 2)
+}
+
+function gameScore() {
+    let score = imageProperties.segmentPosition[selectedImage + 1]
+    console.log("left:", leftOffset)
+    if (score > leftOffset - 20 && score < leftOffset + 20) {
+        let segmentScore = 1000
+        console.log("score",(selectedImage + 1), segmentScore)
+
+    }
+    else if ((score > leftOffset + 20 && score < leftOffset + 50) || (score > leftOffset - 50 && score < leftOffset -20)) {
+        let segmentScore = 500
+        console.log("score",(selectedImage + 1), segmentScore)
+    }
+    else {
+        let segmentScore = 0
+        console.log("score",(selectedImage + 1), segmentScore)
+    }
+    
+    console.log(score)
+
+}
+=======
     leftOffset = (windowWidth / 2) - (ImageProperties.getDestinationWidth() / 2)
 }
+>>>>>>> 6ae728c4838ff48570c1ec9f08e3f8a5d419c074
