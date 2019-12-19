@@ -7,10 +7,12 @@ let sel: p5.Element
 
 class MusicChoice {
 
-    public createButtons() {
-        background(200)
+    public createSelector() {
+        
         sel = createSelect()
         sel.position(10, 10)
+        sel.size(150, 50)
+        sel.style('font-size', '18px')
         sel.option('silence')
         sel.option('punk')
         sel.option('metal')

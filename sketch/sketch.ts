@@ -46,7 +46,7 @@ function setup() {
     fullscreen()
     soundFormats('mp3')
     musicChoice = new MusicChoice()
-    musicChoice.createButtons()
+    musicChoice.createSelector()
     musicChoice.selectMusic()
     // musicChoice.togglePunkPlaying()
     // musicChoice.toggleMetalPlaying()
