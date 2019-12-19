@@ -97,6 +97,7 @@ function draw() {
 function keyPressed(): void {
     if (keyCode === 32) {
         gameScore()
+        spaceClick.play()
         selectedImage++
         if (selectedImage >= imageProperties.getNoOfSegments()) {
             console.log("exceeded")
