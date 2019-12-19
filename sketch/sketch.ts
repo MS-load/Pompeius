@@ -17,6 +17,8 @@ let popp: p5.SoundFile;
 let punk: p5.SoundFile;
 let metal: p5.SoundFile
 let blues: p5.SoundFile
+let swoosh: p5.SoundFile
+let spaceClick: p5.SoundFile
 let musicChoice: MusicChoice
 
 
@@ -30,6 +32,8 @@ function preload() {
    punk = (window as any).loadSound('./assets/music/jonny 2.1.mp3')
    metal = (window as any).loadSound('./assets/music/ELFVES AND DWARFES solo.mp3')
    blues = (window as any).loadSound('./assets/music/blues.mp3')
+   swoosh = (window as any).loadSound('./assets/sounds/Swoosh 3-SoundBible.com-1573211927.mp3')
+   spaceClick = (window as any).loadSound('./assets/sounds/Stapler-SoundBible.com-374581609.mp3')
 }
 /**
  * Built in setup function in P5
