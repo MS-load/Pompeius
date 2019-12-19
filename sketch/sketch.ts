@@ -19,7 +19,8 @@ let inputSettings: InputSettings
  * sound files, images etc...
  */
 function preload() {
-
+    imageProperties = new ImageProperties()
+    setParameters()
 }
 
 /**
@@ -35,11 +36,10 @@ function setup() {
     frameRate(60)
     //noCursor()
     fullscreen()
-    
+
     //console.log(segmentPosition)
-    imageProperties = new ImageProperties()
-    setParameters()
-   
+
+
     gameFrame = new GameFrame()
     gameSettings = new GameSettings()
     inputSettings = new InputSettings()
@@ -47,7 +47,7 @@ function setup() {
 }
 
 function setParameters() {
-    
+
     topOffset = windowHeight / 4
     leftOffset = (windowWidth / 2) - (imageProperties.getDestinationWidth() / 2)
     pieceHeight = Math.floor(imageProperties.getDestinationWidth() / imageProperties.getNoOfSegments())
@@ -64,11 +64,6 @@ function setParameters() {
  */
 function draw() {
 
-    background(0)
-    
-    //gameFrame.draw()
-    //changeLevel()
-    
     gameFrame.draw()
     gameFrame.drawGameFrame()
     imageProperties.imageDraw()
@@ -78,6 +73,7 @@ function draw() {
 
 function keyPressed(): void {
     if (keyCode === 32) {
+        gameScore()
         selectedImage++
         if (selectedImage >= imageProperties.getNoOfSegments()) {
             console.log("exceeded")
@@ -89,16 +85,6 @@ function keyPressed(): void {
     }
 }
 
-function changeLevel(): void {
-    
-    if (selectedImage >= imageProperties.getNoOfSegments()) {
-        console.log("exceeded")
-        imageProperties.noOfSegments++
-    }
-}
-
-
-
 /**
  *  Built in windowResize listener function in P5
  */
@@ -106,4 +92,25 @@ function windowResized() {
     resizeCanvas(windowWidth, windowHeight)
     topOffset = windowHeight / 4
     leftOffset = (windowWidth / 2) - (imageProperties.getDestinationWidth() / 2)
+}
+
+function gameScore() {
+    let score = imageProperties.segmentPosition[selectedImage + 1]
+    console.log("left:", leftOffset)
+    if (score > leftOffset - 20 && score < leftOffset + 20) {
+        let segmentScore = 1000
+        console.log("score",(selectedImage + 1), segmentScore)
+
+    }
+    else if ((score > leftOffset + 20 && score < leftOffset + 50) || (score > leftOffset - 50 && score < leftOffset -20)) {
+        let segmentScore = 500
+        console.log("score",(selectedImage + 1), segmentScore)
+    }
+    else {
+        let segmentScore = 0
+        console.log("score",(selectedImage + 1), segmentScore)
+    }
+    
+    console.log(score)
+
 }

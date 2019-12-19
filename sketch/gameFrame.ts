@@ -2,13 +2,13 @@ class GameFrame {
 
     //Title
     public draw() {
+        background(0)
         textSize(70)
         fill('red')
         textAlign(CENTER, CENTER)
         strokeWeight(0)
         textFont('Quintessential')
         text("Pompeius", (windowWidth / 2), 70)
-
     }
 
 
