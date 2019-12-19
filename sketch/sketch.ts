@@ -26,12 +26,14 @@ let musicChoice: MusicChoice
  * sound files, images etc...
  */
 function preload() {
+    
+    popp = (window as any).loadSound('./assets/music/poppen.mp3')
+    punk = (window as any).loadSound('./assets/music/jonny 2.1.mp3')
+    metal = (window as any).loadSound('./assets/music/ELFVES AND DWARFES solo.mp3')
+    blues = (window as any).loadSound('./assets/music/blues.mp3')
+
     imageProperties = new ImageProperties()
     setParameters()
-   popp = (window as any).loadSound('./assets/music/poppen.mp3')
-   punk = (window as any).loadSound('./assets/music/jonny 2.1.mp3')
-   metal = (window as any).loadSound('./assets/music/ELFVES AND DWARFES solo.mp3')
-   blues = (window as any).loadSound('./assets/music/blues.mp3')
 }
 /**
  * Built in setup function in P5
@@ -62,7 +64,7 @@ function setup() {
     // musicChoice.toggleMetalPlaying()
     // musicChoice.togglePopPlaying()
     // musicChoice.toggleBluesPlaying()
-    
+
 }
 
 function setParameters() {
@@ -118,18 +120,18 @@ function gameScore() {
     console.log("left:", leftOffset)
     if (score > leftOffset - 20 && score < leftOffset + 20) {
         let segmentScore = 1000
-        console.log("score",(selectedImage + 1), segmentScore)
+        console.log("score", (selectedImage + 1), segmentScore)
 
     }
-    else if ((score > leftOffset + 20 && score < leftOffset + 50) || (score > leftOffset - 50 && score < leftOffset -20)) {
+    else if ((score > leftOffset + 20 && score < leftOffset + 50) || (score > leftOffset - 50 && score < leftOffset - 20)) {
         let segmentScore = 500
-        console.log("score",(selectedImage + 1), segmentScore)
+        console.log("score", (selectedImage + 1), segmentScore)
     }
     else {
         let segmentScore = 0
-        console.log("score",(selectedImage + 1), segmentScore)
+        console.log("score", (selectedImage + 1), segmentScore)
     }
-    
+
     console.log(score)
 
 }

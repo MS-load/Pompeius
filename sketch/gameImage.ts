@@ -9,11 +9,11 @@ class ImageProperties {
     public segmentPosition: number[]
 
     constructor() {
-        this.urlRoot= 'https://source.unsplash.com/'
+        this.urlRoot = 'https://source.unsplash.com/'
         this.imgTags = 'nature,water'
         this.dWidth = 350
         this.noOfSegments = 3,
-        this.segmentPosition = []
+            this.segmentPosition = []
     }
 
     public getDestinationWidth(): number {
@@ -21,7 +21,7 @@ class ImageProperties {
     }
 
     public getImgUrl(): string {
-        let imgUrl = this.urlRoot + this.dWidth + "x" + this.dWidth + "/?" + this.imgTags
+        let imgUrl = this.urlRoot + this.dWidth + "x" + this.dWidth + "/?sig=" + random(50) + this.imgTags
         return imgUrl
 
     }
@@ -40,7 +40,7 @@ class ImageProperties {
         /**
          * updates the xPosition
          */
-        xPos += this.getNoOfSegments()
+        xPos += this.getNoOfSegments()*1.5
         //console.log(xPos)
 
 
