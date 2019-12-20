@@ -43,10 +43,12 @@ class ImageProperties {
          */
         xPos += this.getNoOfSegments()
         //console.log(xPos)
+        
 
 
         if (xPos >= width) {
             xPos = 0
+            swoosh.play()
         }
 
         for (let i = 0; i < this.getNoOfSegments(); i++) {
@@ -54,6 +56,7 @@ class ImageProperties {
             //Updates array with the new position
             if (i > selectedImage) {
                 this.segmentPosition[i] = xPos
+                
 
                 //reverse direction for alternate images
                 if (i % 2 === 1) {

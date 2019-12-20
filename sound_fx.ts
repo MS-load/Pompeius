@@ -1,13 +1,17 @@
-class SoundEffects {
+// let space: any
 
-    public spaceBarSound() {
-        if (keyPressed()) {
-            spaceClick.play()
-        }
-    }
-    public swooshSound() {
-        if (imageDraw()) {
-            swoosh.play()
-        }
-    }
-}
+// class SoundEffects {
+
+//     space = keyPressed()
+
+//     public spaceBarSound() {
+//         if (space === true) {
+//             spaceClick.play()
+//         }
+//     }
+//     public swooshSound() {
+//         if (imageDraw()) {
+//             swoosh.play()
+//         }
+//     }
+// }
