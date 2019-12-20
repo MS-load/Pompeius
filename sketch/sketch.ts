@@ -20,6 +20,7 @@ let blues: p5.SoundFile
 let swoosh: p5.SoundFile
 let spaceClick: p5.SoundFile
 let musicChoice: MusicChoice
+let soundEffects: SoundEffects
 
 
 /**
@@ -62,10 +63,9 @@ function setup() {
     musicChoice = new MusicChoice()
     musicChoice.createSelector()
     musicChoice.selectMusic()
-    // musicChoice.togglePunkPlaying()
-    // musicChoice.toggleMetalPlaying()
-    // musicChoice.togglePopPlaying()
-    // musicChoice.toggleBluesPlaying()
+    soundEffects = new SoundEffects()
+    soundEffects.spaceBarSound()
+    soundEffects.swooshSound()
     
 }
 
@@ -97,7 +97,6 @@ function draw() {
 function keyPressed(): void {
     if (keyCode === 32) {
         gameScore()
-        spaceClick.play()
         selectedImage++
         if (selectedImage >= imageProperties.getNoOfSegments()) {
             console.log("exceeded")
