@@ -1,6 +1,6 @@
 class GameFrame {
 
-    private frameWidth: number =350
+    private frameWidth: number = 350
 
     public getOffset() {
         let topOffset = windowHeight / 4
@@ -11,6 +11,7 @@ class GameFrame {
     public getWidth() {
         return this.frameWidth
     }
+
     //Title
     public draw() {
         background(0)
@@ -20,14 +21,18 @@ class GameFrame {
         strokeWeight(0)
         textFont('Quintessential')
         text("Pompeius", (windowWidth / 2), 70)
+        
+        this.drawGameFrame()
+        imageFrame.imageDraw(this.getOffset())
     }
 
     //The red frame where the picture needs to be stopped
-    public drawGameFrame() {
+    private drawGameFrame() {
         noFill()
         stroke('red')
         strokeWeight(4)
         let offsets = this.getOffset()
         rect(offsets[1], offsets[0], this.frameWidth, this.frameWidth)
     }
+
 }

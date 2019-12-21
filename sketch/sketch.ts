@@ -2,7 +2,7 @@
 
 let gameFrame: GameFrame
 let imageFrame: ImageFrame
-let gameSettings: GameSettings
+
 let inputSettings: InputSettings
 
 let popp: p5.SoundFile;
@@ -45,7 +45,7 @@ function setup() {
 
 
     gameFrame = new GameFrame()
-    gameSettings = new GameSettings()
+    
     inputSettings = new InputSettings()
     inputSettings.getUserName()
     soundFormats('mp3')
@@ -67,8 +67,6 @@ function setup() {
 function draw() {
 
     gameFrame.draw()
-    gameFrame.drawGameFrame()
-    imageFrame.imageDraw(gameFrame.getOffset())
     //inputSettings.update()
     //inputSettings.draw()
 }

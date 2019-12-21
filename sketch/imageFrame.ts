@@ -1,5 +1,4 @@
 class ImageFrame {
-    //image(img, dx, dy, dWidth, dHeight, sx, sy, [sWidth], [sHeight])
     //private img:string  = 'https://source.unsplash.com/350x350/?nature,water'
 
     private urlRoot: string
@@ -32,9 +31,7 @@ class ImageFrame {
 
     public getImg(): string {
         let imgUrl = this.urlRoot + this.dWidth + "x" + this.dWidth + "/?sig=" + random(150) + this.imgTags
-
         return imgUrl
-
     }
 
     public getNoOfSegments(): number {
@@ -57,7 +54,6 @@ class ImageFrame {
         this.selectedImage = -1
     }
 
-
     /**
      * Draws the image based on the number of segments and the xPosition
      */
@@ -67,7 +63,7 @@ class ImageFrame {
          * updates the xPosition
          */
 
-        this.xPos += this.getNoOfSegments() + 2
+        this.xPos += this.getNoOfSegments()
         //console.log(xPos,this.myXPos)
 
 
@@ -79,12 +75,10 @@ class ImageFrame {
 
             //Updates array with the new position
             if (i > this.selectedImage) {
-
                 this.segmentPosition[i] = this.xPos
 
                 //reverse direction for alternate images
                 if (i % 2 === 1) {
-
                     this.segmentPosition[i] = width - (this.xPos + this.getDestinationWidth())
                 }
             }
@@ -105,9 +99,7 @@ class ImageFrame {
     }
 
     public setParameters() {
-
-        this.pieceHeight = Math.floor(this.getDestinationWidth() / this.getNoOfSegments())
-
+        this.pieceHeight = (this.getDestinationWidth() / this.getNoOfSegments())
         this.xPos = 0
         this.img = loadImage(this.getImg())
         for (let i = 0; i < this.getNoOfSegments(); i++) {
@@ -133,9 +125,7 @@ class ImageFrame {
             let segmentScore = 0
             console.log("score", (this.selectedImage + 1), segmentScore)
         }
-
         console.log(score)
-
     }
 }
 
