@@ -18,7 +18,7 @@ let musicChoice: MusicChoice
  * sound files, images etc...
  */
 function preload() {
-    
+
     popp = (window as any).loadSound('./assets/music/poppen.mp3')
     punk = (window as any).loadSound('./assets/music/jonny 2.1.mp3')
     metal = (window as any).loadSound('./assets/music/ELFVES AND DWARFES solo.mp3')
@@ -45,7 +45,7 @@ function setup() {
 
 
     gameFrame = new GameFrame()
-    
+
     inputSettings = new InputSettings()
     inputSettings.getUserName()
     soundFormats('mp3')
@@ -73,13 +73,14 @@ function draw() {
 
 function keyPressed(): void {
     if (keyCode === 32) {
-    imageFrame.gameScore(gameFrame.getOffset())
-    imageFrame.increaseSelectedImage()
-        if (imageFrame.getSelectedImage() >=imageFrame.getNoOfSegments()) {
+        imageFrame.gameScore(gameFrame.getOffset())
+        imageFrame.increaseSelectedImage()
+        
+        if (imageFrame.getSelectedImage() >= imageFrame.getNoOfSegments()) {
             console.log("exceeded")
-        imageFrame.increaseNoOfSegments()
-        imageFrame.resetSelectedImage()
-        imageFrame.setParameters()
+            imageFrame.increaseNoOfSegments()
+            imageFrame.resetSelectedImage()
+            imageFrame.setParameters()
         }
     }
 }

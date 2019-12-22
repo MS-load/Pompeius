@@ -24,6 +24,7 @@ class GameFrame {
         
         this.drawGameFrame()
         imageFrame.imageDraw(this.getOffset())
+        
     }
 
     //The red frame where the picture needs to be stopped
@@ -33,6 +34,7 @@ class GameFrame {
         strokeWeight(4)
         let offsets = this.getOffset()
         rect(offsets[1], offsets[0], this.frameWidth, this.frameWidth)
+        imageFrame.displayScore()
     }
 
 }

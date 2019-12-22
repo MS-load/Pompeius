@@ -14,6 +14,7 @@ class ImageFrame {
 
     private selectedImage: number
 
+    private segmentScore: number
 
     constructor() {
         this.urlRoot = 'https://source.unsplash.com/'
@@ -23,6 +24,7 @@ class ImageFrame {
         this.segmentPosition = []
         this.img = loadImage(this.getImg())
         this.selectedImage = -1
+        this.segmentScore = 0
     }
 
     public getDestinationWidth(): number {
@@ -30,7 +32,8 @@ class ImageFrame {
     }
 
     public getImg(): string {
-        let imgUrl = this.urlRoot + this.dWidth + "x" + this.dWidth + "/?sig=" + random(150) + this.imgTags
+        let imgUrl = this.urlRoot + this.dWidth + "x" + this.dWidth + "/?" + this.imgTags + "/sig=" + round(random(150))
+        console.log(imgUrl)
         return imgUrl
     }
 
@@ -62,6 +65,8 @@ class ImageFrame {
         /**
          * updates the xPosition
          */
+        this.pieceHeight = (this.getDestinationWidth() / this.getNoOfSegments())
+
 
         this.xPos += this.getNoOfSegments()
         //console.log(xPos,this.myXPos)
@@ -99,9 +104,8 @@ class ImageFrame {
     }
 
     public setParameters() {
-        this.pieceHeight = (this.getDestinationWidth() / this.getNoOfSegments())
-        this.xPos = 0
         this.img = loadImage(this.getImg())
+        this.xPos = 0
         for (let i = 0; i < this.getNoOfSegments(); i++) {
             this.segmentPosition.push(0)
         }
@@ -111,21 +115,26 @@ class ImageFrame {
 
     public gameScore(offsets: number[]) {
         let score = this.segmentPosition[this.selectedImage + 1]
+       
         console.log("left:", offsets[1])
         if (score > offsets[1] - 20 && score < offsets[1] + 20) {
-            let segmentScore = 1000
-            console.log("score", (this.selectedImage + 1), segmentScore)
-
+             this.segmentScore += 1000
+            console.log("score", (this.selectedImage + 1), this.segmentScore)
         }
         else if ((score > offsets[1] + 20 && score < offsets[1] + 50) || (score > offsets[1] - 50 && score < offsets[1] - 20)) {
-            let segmentScore = 500
-            console.log("score", (this.selectedImage + 1), segmentScore)
+            this.segmentScore += 500
+            console.log("score", (this.selectedImage + 1), this.segmentScore)
         }
         else {
-            let segmentScore = 0
-            console.log("score", (this.selectedImage + 1), segmentScore)
+            this.segmentScore += 0
+           console.log("score", (this.selectedImage + 1), this.segmentScore)
         }
-        console.log(score)
+    }
+
+    public displayScore() {
+        textSize(32)
+        text((this.segmentScore).toString(), 100, 100)
+        fill(0, 102, 153)
     }
 }
 
