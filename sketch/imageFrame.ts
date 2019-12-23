@@ -5,8 +5,8 @@ class ImageFrame {
     private imgTags: string
     private dWidth: number
 
-    private pieceHeight: number = 0
-    private xPos: number = 0
+    private pieceHeight: number
+    private xPos: number
     private img: p5.Image
 
     private noOfSegments: number
@@ -15,6 +15,11 @@ class ImageFrame {
     private selectedImage: number
 
     private segmentScore: number
+
+    private levelStartTime: Date
+    private lapsedSeconds: number
+
+    private level: number
 
     constructor() {
         this.urlRoot = 'https://source.unsplash.com/'
@@ -25,6 +30,11 @@ class ImageFrame {
         this.img = loadImage(this.getImg())
         this.selectedImage = -1
         this.segmentScore = 0
+        this.pieceHeight = 0
+        this.xPos = 0
+        this.levelStartTime = new Date()
+        this.lapsedSeconds = 0
+        this.level = 0
     }
 
     public getDestinationWidth(): number {
@@ -68,7 +78,7 @@ class ImageFrame {
         this.pieceHeight = (this.getDestinationWidth() / this.getNoOfSegments())
 
 
-        this.xPos += this.getNoOfSegments()
+        this.xPos += this.getNoOfSegments()*1.5
         //console.log(xPos,this.myXPos)
 
 
@@ -106,28 +116,27 @@ class ImageFrame {
     public setParameters() {
         this.img = loadImage(this.getImg())
         this.xPos = 0
-        for (let i = 0; i < this.getNoOfSegments(); i++) {
-            this.segmentPosition.push(0)
-        }
+        this.levelStartTime = new Date()
+        this.level++
     }
 
 
 
     public gameScore(offsets: number[]) {
         let score = this.segmentPosition[this.selectedImage + 1]
-       
+
         console.log("left:", offsets[1])
-        if (score > offsets[1] - 20 && score < offsets[1] + 20) {
-             this.segmentScore += 1000
+        if (score > offsets[1] - 5 && score < offsets[1] + 5) {
+            this.segmentScore += 1000
             console.log("score", (this.selectedImage + 1), this.segmentScore)
         }
-        else if ((score > offsets[1] + 20 && score < offsets[1] + 50) || (score > offsets[1] - 50 && score < offsets[1] - 20)) {
+        else if ((score > offsets[1] + 5 && score < offsets[1] + 30) || (score > offsets[1] - 30 && score < offsets[1] - 5)) {
             this.segmentScore += 500
             console.log("score", (this.selectedImage + 1), this.segmentScore)
         }
         else {
             this.segmentScore += 0
-           console.log("score", (this.selectedImage + 1), this.segmentScore)
+            console.log("score", (this.selectedImage + 1), this.segmentScore)
         }
     }
 
@@ -136,5 +145,22 @@ class ImageFrame {
         text((this.segmentScore).toString(), 100, 100)
         fill(0, 102, 153)
     }
+
+    public displayTime() {
+        let currentTime = new Date()
+        this.lapsedSeconds = floor((currentTime.getTime() - this.levelStartTime.getTime()) / 1000)
+        //console.log(lapsedSeconds)
+        textSize(32)
+        text((this.lapsedSeconds + " sec").toString(), 350, 100)
+        fill(0, 102, 153)
+    }
+
+    public displayLevel() {
+        textSize(32)
+        text(("Level:" + this.level).toString(), 500, 100)
+        fill(0, 102, 153)
+    }
+
 }
+
 

@@ -26,6 +26,7 @@ function preload() {
 
     imageFrame = new ImageFrame()
     imageFrame.setParameters()
+    
 }
 /**
  * Built in setup function in P5
@@ -40,8 +41,6 @@ function setup() {
     frameRate(60)
     //noCursor()
     fullscreen()
-
-    //console.log(segmentPosition)
 
 
     gameFrame = new GameFrame()
