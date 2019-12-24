@@ -77,8 +77,6 @@ function keyPressed(): void {
         
         if (imageFrame.getSelectedImage() >= imageFrame.getNoOfSegments()) {
             console.log("exceeded")
-            imageFrame.increaseNoOfSegments()
-            imageFrame.resetSelectedImage()
             imageFrame.setParameters()
         }
     }

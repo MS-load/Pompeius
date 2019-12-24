@@ -20,12 +20,13 @@ class ImageFrame {
     private lapsedSeconds: number
 
     private level: number
+    private lives: number
 
     constructor() {
         this.urlRoot = 'https://source.unsplash.com/'
         this.imgTags = 'cartoon'
         this.dWidth = 350
-        this.noOfSegments = 3
+        this.noOfSegments = 2
         this.segmentPosition = []
         this.img = loadImage(this.getImg())
         this.selectedImage = -1
@@ -35,6 +36,7 @@ class ImageFrame {
         this.levelStartTime = new Date()
         this.lapsedSeconds = 0
         this.level = 0
+        this.lives = 3
     }
 
     public getDestinationWidth(): number {
@@ -51,20 +53,12 @@ class ImageFrame {
         return this.noOfSegments
     }
 
-    public increaseNoOfSegments(): number {
-        return this.noOfSegments++
-    }
-
     public getSelectedImage(): number {
         return this.selectedImage
     }
 
     public increaseSelectedImage(): number {
         return this.selectedImage++
-    }
-
-    public resetSelectedImage() {
-        this.selectedImage = -1
     }
 
     /**
@@ -78,7 +72,7 @@ class ImageFrame {
         this.pieceHeight = (this.getDestinationWidth() / this.getNoOfSegments())
 
 
-        this.xPos += this.getNoOfSegments()*1.5
+        this.xPos += this.getNoOfSegments() * 1.5
         //console.log(xPos,this.myXPos)
 
 
@@ -114,33 +108,34 @@ class ImageFrame {
     }
 
     public setParameters() {
+        this.noOfSegments++
+        this.selectedImage = -1
         this.img = loadImage(this.getImg())
         this.xPos = 0
         this.levelStartTime = new Date()
         this.level++
     }
 
-
-
     public gameScore(offsets: number[]) {
         let score = this.segmentPosition[this.selectedImage + 1]
 
-        console.log("left:", offsets[1])
+        // console.log("left:", offsets[1])
         if (score > offsets[1] - 5 && score < offsets[1] + 5) {
             this.segmentScore += 1000
-            console.log("score", (this.selectedImage + 1), this.segmentScore)
+            // console.log("score", (this.selectedImage + 1), this.segmentScore)
         }
         else if ((score > offsets[1] + 5 && score < offsets[1] + 30) || (score > offsets[1] - 30 && score < offsets[1] - 5)) {
             this.segmentScore += 500
-            console.log("score", (this.selectedImage + 1), this.segmentScore)
+            // console.log("score", (this.selectedImage + 1), this.segmentScore)
         }
         else {
             this.segmentScore += 0
-            console.log("score", (this.selectedImage + 1), this.segmentScore)
+            // console.log("score", (this.selectedImage + 1), this.segmentScore)
         }
     }
 
     public displayScore() {
+
         textSize(32)
         text((this.segmentScore).toString(), 100, 100)
         fill(0, 102, 153)
@@ -149,7 +144,7 @@ class ImageFrame {
     public displayTime() {
         let currentTime = new Date()
         this.lapsedSeconds = floor((currentTime.getTime() - this.levelStartTime.getTime()) / 1000)
-        //console.log(lapsedSeconds)
+        //console.log(this.lapsedSeconds)
         textSize(32)
         text((this.lapsedSeconds + " sec").toString(), 350, 100)
         fill(0, 102, 153)
