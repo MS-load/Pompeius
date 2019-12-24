@@ -26,7 +26,7 @@ class ImageFrame {
 
     constructor() {
         this.urlRoot = 'https://source.unsplash.com/'
-        this.imgTags = 'cartoon,water'
+        this.imgTags = 'cartoon'
         this.dWidth = 350
         this.noOfSegments = 2
         this.segmentPosition = []
