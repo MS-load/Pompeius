@@ -22,9 +22,11 @@ class ImageFrame {
     private level: number
     private lives: number
 
+    private timerCount: number
+
     constructor() {
         this.urlRoot = 'https://source.unsplash.com/'
-        this.imgTags = 'cartoon'
+        this.imgTags = 'cartoon,water'
         this.dWidth = 350
         this.noOfSegments = 2
         this.segmentPosition = []
@@ -37,6 +39,7 @@ class ImageFrame {
         this.lapsedSeconds = 0
         this.level = 0
         this.lives = 3
+        this.timerCount = 0
     }
 
     public getDestinationWidth(): number {
@@ -108,17 +111,27 @@ class ImageFrame {
     }
 
     public setParameters() {
+        localStorage.setItem("score", (this.segmentScore).toString())
         this.noOfSegments++
         this.selectedImage = -1
         this.img = loadImage(this.getImg())
         this.xPos = 0
         this.levelStartTime = new Date()
         this.level++
+
+    }
+
+    public resetLevel() {
+        this.lives--
+        this.selectedImage = -1
+        this.xPos = 0
+        this.levelStartTime = new Date()
+        let score = localStorage.getItem("score") as string
+        this.segmentScore = parseInt(score)
     }
 
     public gameScore(offsets: number[]) {
         let score = this.segmentPosition[this.selectedImage + 1]
-
         // console.log("left:", offsets[1])
         if (score > offsets[1] - 5 && score < offsets[1] + 5) {
             this.segmentScore += 1000
@@ -135,7 +148,6 @@ class ImageFrame {
     }
 
     public displayScore() {
-
         textSize(32)
         text((this.segmentScore).toString(), 100, 100)
         fill(0, 102, 153)
@@ -144,15 +156,26 @@ class ImageFrame {
     public displayTime() {
         let currentTime = new Date()
         this.lapsedSeconds = floor((currentTime.getTime() - this.levelStartTime.getTime()) / 1000)
-        //console.log(this.lapsedSeconds)
+        //console.log(currentTime.getTime())
+        let maxTime = 30
+        this.timerCount = maxTime - this.lapsedSeconds
         textSize(32)
-        text((this.lapsedSeconds + " sec").toString(), 350, 100)
+        text((this.timerCount + " sec").toString(), 350, 100)
         fill(0, 102, 153)
+        if (this.timerCount === 0) {
+            this.resetLevel()
+        }
     }
 
     public displayLevel() {
         textSize(32)
         text(("Level:" + this.level).toString(), 500, 100)
+        fill(0, 102, 153)
+    }
+
+    public displayLives() {
+        textSize(32)
+        text(("Lives:" + this.lives).toString(), 800, 100)
         fill(0, 102, 153)
     }
 

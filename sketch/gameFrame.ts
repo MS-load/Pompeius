@@ -32,6 +32,7 @@ class GameFrame {
         imageFrame.displayScore()
         imageFrame.displayTime()
         imageFrame.displayLevel()
+        imageFrame.displayLives()
       
         imageFrame.imageDraw(this.getOffset())
         noFill()
