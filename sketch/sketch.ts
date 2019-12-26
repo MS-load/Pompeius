@@ -14,15 +14,26 @@ let gameSettings: GameSettings
 let inputSettings: InputSettings
 let gameStats: GameStats
 
+let popp: p5.SoundFile;
+let punk: p5.SoundFile;
+let metal: p5.SoundFile
+let blues: p5.SoundFile
+let musicChoice: MusicChoice
+
+
 /**
  * Built in preload function in P5
  * This is a good place to load assets such as
  * sound files, images etc...
  */
 function preload() {
-
+    imageProperties = new ImageProperties()
+    setParameters()
+   popp = (window as any).loadSound('./assets/music/poppen.mp3')
+   punk = (window as any).loadSound('./assets/music/jonny 2.1.mp3')
+   metal = (window as any).loadSound('./assets/music/ELFVES AND DWARFES solo.mp3')
+   blues = (window as any).loadSound('./assets/music/blues.mp3')
 }
-
 /**
  * Built in setup function in P5
  * This is a good place to create your first class object
@@ -36,26 +47,38 @@ function setup() {
     frameRate(60)
     //noCursor()
     fullscreen()
-    setParameters()
 
     //console.log(segmentPosition)
-    imageProperties = new ImageProperties()
-   
+
+
     gameFrame = new GameFrame()
     gameSettings = new GameSettings()
     inputSettings = new InputSettings()
     inputSettings.getUserName()
+<<<<<<< HEAD
     gameStats = new GameStats()
+=======
+    soundFormats('mp3')
+    musicChoice = new MusicChoice()
+    musicChoice.createSelector()
+    musicChoice.selectMusic()
+    // musicChoice.togglePunkPlaying()
+    // musicChoice.toggleMetalPlaying()
+    // musicChoice.togglePopPlaying()
+    // musicChoice.toggleBluesPlaying()
+    
+>>>>>>> 0fc7bb319dab4c05c75a9c5f0eabdee31d56901f
 }
 
 function setParameters() {
+
     topOffset = windowHeight / 4
-    leftOffset = (windowWidth / 2) - (ImageProperties.getDestinationWidth() / 2)
-    pieceHeight = Math.floor(ImageProperties.getDestinationWidth() / ImageProperties.getNoOfSegments())
+    leftOffset = (windowWidth / 2) - (imageProperties.getDestinationWidth() / 2)
+    pieceHeight = Math.floor(imageProperties.getDestinationWidth() / imageProperties.getNoOfSegments())
     xPos = 0
-    img = loadImage(ImageProperties.getImgUrl())
-    for (let i = 0; i < ImageProperties.getNoOfSegments(); i++) {
-        ImageProperties.segmentPosition.push(0)
+    img = loadImage(imageProperties.getImgUrl())
+    for (let i = 0; i < imageProperties.getNoOfSegments(); i++) {
+        imageProperties.segmentPosition.push(0)
     }
 }
 /**
@@ -65,6 +88,7 @@ function setParameters() {
  */
 function draw() {
 
+<<<<<<< HEAD
     background(0)
     noFill()
     stroke('red')
@@ -79,14 +103,22 @@ function draw() {
     inputSettings.update()
     inputSettings.draw()
     gameStats.draw()
+=======
+    gameFrame.draw()
+    gameFrame.drawGameFrame()
+    imageProperties.imageDraw()
+    //inputSettings.update()
+    //inputSettings.draw()
+>>>>>>> 0fc7bb319dab4c05c75a9c5f0eabdee31d56901f
 }
 
 function keyPressed(): void {
     if (keyCode === 32) {
+        gameScore()
         selectedImage++
-        if (selectedImage >= ImageProperties.getNoOfSegments()) {
+        if (selectedImage >= imageProperties.getNoOfSegments()) {
             console.log("exceeded")
-            ImageProperties.noOfSegments++
+            imageProperties.noOfSegments++
             selectedImage = -1
             setParameters()
         }
@@ -94,20 +126,34 @@ function keyPressed(): void {
     }
 }
 
-function changeLevel(): void {
-    if (selectedImage >= ImageProperties.getNoOfSegments()) {
-        console.log("exceeded")
-        ImageProperties.noOfSegments++
-    }
-}
-
-
-
 /**
  *  Built in windowResize listener function in P5
  */
 function windowResized() {
     resizeCanvas(windowWidth, windowHeight)
     topOffset = windowHeight / 4
+    leftOffset = (windowWidth / 2) - (imageProperties.getDestinationWidth() / 2)
+}
+
+function gameScore() {
+    let score = imageProperties.segmentPosition[selectedImage + 1]
+    console.log("left:", leftOffset)
+    if (score > leftOffset - 20 && score < leftOffset + 20) {
+        let segmentScore = 1000
+        console.log("score",(selectedImage + 1), segmentScore)
+
+    }
+    else if ((score > leftOffset + 20 && score < leftOffset + 50) || (score > leftOffset - 50 && score < leftOffset -20)) {
+        let segmentScore = 500
+        console.log("score",(selectedImage + 1), segmentScore)
+    }
+    else {
+        let segmentScore = 0
+        console.log("score",(selectedImage + 1), segmentScore)
+    }
+    
+    console.log(score)
+
+}
     leftOffset = (windowWidth / 2) - (ImageProperties.getDestinationWidth() / 2)
 }

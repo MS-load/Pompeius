@@ -23,6 +23,7 @@ class InputSettings {
     }
 
     public draw() {
+<<<<<<< HEAD
         //Title
         textSize(70)
         fill('red')
@@ -30,6 +31,9 @@ class InputSettings {
         textFont('Quintessential')
         text("Pompeius", (windowWidth / 2), 70)
 
+=======
+        
+>>>>>>> 0fc7bb319dab4c05c75a9c5f0eabdee31d56901f
         //Inputfield
         fill('white')
         rect((windowWidth - 200) / 2, 150, 200, 30)
