@@ -10,7 +10,10 @@ let popp: p5.SoundFile;
 let punk: p5.SoundFile;
 let metal: p5.SoundFile
 let blues: p5.SoundFile
+let swoosh: p5.SoundFile
+let spaceClick: p5.SoundFile
 let musicChoice: MusicChoice
+// let soundEffects: SoundEffects
 
 
 /**
@@ -19,15 +22,14 @@ let musicChoice: MusicChoice
  * sound files, images etc...
  */
 function preload() {
-
-    popp = (window as any).loadSound('./assets/music/poppen.mp3')
-    punk = (window as any).loadSound('./assets/music/jonny 2.1.mp3')
-    metal = (window as any).loadSound('./assets/music/ELFVES AND DWARFES solo.mp3')
-    blues = (window as any).loadSound('./assets/music/blues.mp3')
-
-    imageFrame = new ImageFrame()
-    imageFrame.setParameters()
-    
+    imageProperties = new ImageProperties()
+    setParameters()
+   popp = (window as any).loadSound('./assets/music/poppen.mp3')
+   punk = (window as any).loadSound('./assets/music/jonny 2.1.mp3')
+   metal = (window as any).loadSound('./assets/music/ELFVES AND DWARFES solo.mp3')
+   blues = (window as any).loadSound('./assets/music/blues.mp3')
+   swoosh = (window as any).loadSound('./assets/sounds/Swoosh 3-SoundBible.com-1573211927.mp3')
+   spaceClick = (window as any).loadSound('./assets/sounds/Stapler-SoundBible.com-374581609.mp3')
 }
 /**
  * Built in setup function in P5
@@ -52,10 +54,11 @@ function setup() {
     musicChoice = new MusicChoice()
     musicChoice.createSelector()
     musicChoice.selectMusic()
-    // musicChoice.togglePunkPlaying()
-    // musicChoice.toggleMetalPlaying()
-    // musicChoice.togglePopPlaying()
-    // musicChoice.toggleBluesPlaying()
+    // soundEffects = new SoundEffects()
+    // soundEffects.spaceBarSound()
+    // soundEffects.swooshSound()
+    
+}
 
 }
 
@@ -90,10 +93,10 @@ function draw() {
 
 function keyPressed(): void {
     if (keyCode === 32) {
-        imageFrame.gameScore(gameFrame.getOffset())
-        imageFrame.increaseSelectedImage()
-        
-        if (imageFrame.getSelectedImage() >= imageFrame.getNoOfSegments()) {
+        gameScore()
+        spaceClick.play()
+        selectedImage++
+        if (selectedImage >= imageProperties.getNoOfSegments()) {
             console.log("exceeded")
             imageFrame.setParameters()
         }
@@ -107,4 +110,7 @@ function windowResized() {
     resizeCanvas(windowWidth, windowHeight)
 }
 
+
+}
+    leftOffset = (windowWidth / 2) - (ImageProperties.getDestinationWidth() / 2)
 
