@@ -150,18 +150,18 @@ class ImageFrame {
     public displayScore() {
         textSize(32)
         text((this.segmentScore).toString(), 100, 100)
-        fill(0, 102, 153)
+        fill('red')
     }
 
     public displayTime() {
         let currentTime = new Date()
         this.lapsedSeconds = floor((currentTime.getTime() - this.levelStartTime.getTime()) / 1000)
         //console.log(currentTime.getTime())
-        let maxTime = 30
+        let maxTime = 15
         this.timerCount = maxTime - this.lapsedSeconds
         textSize(32)
         text((this.timerCount + " sec").toString(), 350, 100)
-        fill(0, 102, 153)
+        fill('red')
         if (this.timerCount === 0) {
             this.resetLevel()
         }
@@ -170,13 +170,13 @@ class ImageFrame {
     public displayLevel() {
         textSize(32)
         text(("Level:" + this.level).toString(), 500, 100)
-        fill(0, 102, 153)
+        fill('red')
     }
 
     public displayLives() {
         textSize(32)
         text(("Lives:" + this.lives).toString(), 800, 100)
-        fill(0, 102, 153)
+        fill('red')
     }
 
 }
