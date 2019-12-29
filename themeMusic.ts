@@ -2,7 +2,7 @@ let sel: p5.Element
 
 class MusicChoice {
 
-    public createSelector() {
+    createSelector() {
         
         sel = createSelect()
         sel.position(10, 10)
@@ -15,7 +15,7 @@ class MusicChoice {
         sel.option('blues')
         sel.changed(this.selectMusic)
     }
-    public selectMusic() {
+    selectMusic() {
         if (sel.value() === 'punk') {
             punk.play()
             popp.stop()

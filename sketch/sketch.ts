@@ -63,10 +63,6 @@ function setup() {
     musicChoice = new MusicChoice()
     musicChoice.createSelector()
     musicChoice.selectMusic()
-    // soundEffects = new SoundEffects()
-    // soundEffects.spaceBarSound()
-    // soundEffects.swooshSound()
-    
 }
 
 function setParameters() {
