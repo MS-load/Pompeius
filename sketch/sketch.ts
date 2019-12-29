@@ -50,11 +50,7 @@ function setup() {
     musicChoice = new MusicChoice()
     musicChoice.createSelector()
     soundEffects = new SoundEffects()
-    //musicChoice.selectMusic()
-    // musicChoice.togglePunkPlaying()
-    // musicChoice.toggleMetalPlaying()
-    // musicChoice.togglePopPlaying()
-    // musicChoice.toggleBluesPlaying()
+    
 
 
 }
