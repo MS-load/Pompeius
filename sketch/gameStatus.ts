@@ -13,7 +13,7 @@ class GameStatus {
         this.segmentScore = 0
         this.levelStartTime = new Date()
         this.lapsedSeconds = 0
-        this.level = 0
+        this.level = 1
         this.lives = 3
         this.timerCount = 0
     }
