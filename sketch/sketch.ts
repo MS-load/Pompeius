@@ -10,8 +10,10 @@ let selectedImage: number = -1
 
 let gameFrame: GameFrame
 let imageProperties: ImageProperties
+
+//meny
 let gameSettings: GameSettings
-let inputSettings: InputSettings
+let isGameRunning: Boolean
 
 let popp: p5.SoundFile;
 let punk: p5.SoundFile;
@@ -28,10 +30,10 @@ let musicChoice: MusicChoice
 function preload() {
     imageProperties = new ImageProperties()
     setParameters()
-   popp = (window as any).loadSound('./assets/music/poppen.mp3')
-   punk = (window as any).loadSound('./assets/music/jonny 2.1.mp3')
-   metal = (window as any).loadSound('./assets/music/ELFVES AND DWARFES solo.mp3')
-   blues = (window as any).loadSound('./assets/music/blues.mp3')
+    popp = (window as any).loadSound('./assets/music/poppen.mp3')
+    punk = (window as any).loadSound('./assets/music/jonny 2.1.mp3')
+    metal = (window as any).loadSound('./assets/music/ELFVES AND DWARFES solo.mp3')
+    blues = (window as any).loadSound('./assets/music/blues.mp3')
 }
 /**
  * Built in setup function in P5
@@ -47,13 +49,10 @@ function setup() {
     //noCursor()
     fullscreen()
 
-    //console.log(segmentPosition)
 
-
+    isGameRunning = false
     gameFrame = new GameFrame()
     gameSettings = new GameSettings()
-    inputSettings = new InputSettings()
-    inputSettings.getUserName()
     soundFormats('mp3')
     musicChoice = new MusicChoice()
     musicChoice.createSelector()
@@ -62,7 +61,8 @@ function setup() {
     // musicChoice.toggleMetalPlaying()
     // musicChoice.togglePopPlaying()
     // musicChoice.toggleBluesPlaying()
-    
+
+
 }
 
 function setParameters() {
@@ -83,11 +83,14 @@ function setParameters() {
  */
 function draw() {
 
-    gameFrame.draw()
-    gameFrame.drawGameFrame()
-    imageProperties.imageDraw()
-    //inputSettings.update()
-    //inputSettings.draw()
+    if (isGameRunning) {
+        gameFrame.draw()
+        gameFrame.drawGameFrame()
+        imageProperties.imageDraw()
+    } else {
+        gameFrame.draw()
+        gameSettings.draw()
+    }
 }
 
 function keyPressed(): void {
@@ -118,20 +121,24 @@ function gameScore() {
     console.log("left:", leftOffset)
     if (score > leftOffset - 20 && score < leftOffset + 20) {
         let segmentScore = 1000
-        console.log("score",(selectedImage + 1), segmentScore)
+        console.log("score", (selectedImage + 1), segmentScore)
 
     }
-    else if ((score > leftOffset + 20 && score < leftOffset + 50) || (score > leftOffset - 50 && score < leftOffset -20)) {
+    else if ((score > leftOffset + 20 && score < leftOffset + 50) || (score > leftOffset - 50 && score < leftOffset - 20)) {
         let segmentScore = 500
-        console.log("score",(selectedImage + 1), segmentScore)
+        console.log("score", (selectedImage + 1), segmentScore)
     }
     else {
         let segmentScore = 0
-        console.log("score",(selectedImage + 1), segmentScore)
+        console.log("score", (selectedImage + 1), segmentScore)
     }
-    
+
     console.log(score)
 
 }
-    leftOffset = (windowWidth / 2) - (ImageProperties.getDestinationWidth() / 2)
+leftOffset = (windowWidth / 2) - (ImageProperties.getDestinationWidth() / 2)
+
+function mousePressed() {
+    gameSettings.pressironie()
 }
+

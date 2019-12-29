@@ -3,12 +3,12 @@
 // let buttonPop: p5.Element
 // let buttonBlues: p5.Element
 
-let sel: p5.Element
+let sel: any
 
 class MusicChoice {
 
     public createSelector() {
-        
+
         sel = createSelect()
         sel.position(10, 10)
         sel.size(150, 50)
