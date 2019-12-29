@@ -46,6 +46,7 @@ function setup() {
     // musicChoice.toggleMetalPlaying()
     // musicChoice.togglePopPlaying()
     // musicChoice.toggleBluesPlaying()
+    
 }
 
 /**
