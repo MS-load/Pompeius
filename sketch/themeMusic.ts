@@ -8,7 +8,6 @@ let sel: any
 class MusicChoice {
 
     public createSelector() {
-
         sel = createSelect()
         sel.position(10, 10)
         sel.size(150, 50)
@@ -20,7 +19,8 @@ class MusicChoice {
         sel.option('blues')
         sel.changed(this.selectMusic)
     }
-    public selectMusic() {
+
+    private selectMusic() {
         if (sel.value() === 'punk') {
             punk.play()
             popp.stop()
