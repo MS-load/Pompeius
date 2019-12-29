@@ -3,13 +3,12 @@
 // let buttonPop: p5.Element
 // let buttonBlues: p5.Element
 
-let sel: p5.Element
+let sel: any
 
 class MusicChoice {
 
     public createSelector() {
-        
-        sel = createSelect()
+        sel = createSelect() 
         sel.position(10, 10)
         sel.size(150, 50)
         sel.style('font-size', '18px')
@@ -20,7 +19,8 @@ class MusicChoice {
         sel.option('blues')
         sel.changed(this.selectMusic)
     }
-    public selectMusic() {
+
+    private selectMusic() {
         if (sel.value() === 'punk') {
             punk.play()
             popp.stop()
