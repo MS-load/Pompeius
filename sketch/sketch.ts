@@ -47,12 +47,6 @@ function setup() {
     soundFormats('mp3')
     musicChoice = new MusicChoice()
     musicChoice.createSelector()
-    musicChoice.selectMusic()
-    // musicChoice.togglePunkPlaying()
-    // musicChoice.toggleMetalPlaying()
-    // musicChoice.togglePopPlaying()
-    // musicChoice.toggleBluesPlaying()
-    
 }
 
 function setParameters() {
