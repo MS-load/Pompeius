@@ -9,6 +9,8 @@ class GameStatus {
 
     private timerCount: number
 
+    public levelComplete: Boolean = false
+
     constructor() {
         this.segmentScore = 0
         this.levelStartTime = new Date()
@@ -42,11 +44,16 @@ class GameStatus {
      */
     private getTime() {
         let timeOut = false
-        let currentTime = new Date()
-        this.lapsedSeconds = floor((currentTime.getTime() - this.levelStartTime.getTime()) / 1000)
-        //console.log(currentTime.getTime())
-        let maxTime = 15
-        this.timerCount = maxTime - this.lapsedSeconds
+        if (this.levelComplete === false) {
+            let currentTime = new Date()
+            this.lapsedSeconds = floor((currentTime.getTime() - this.levelStartTime.getTime()) / 1000)
+
+            let maxTime = 15
+            this.timerCount = maxTime - this.lapsedSeconds
+
+        }
+
+
         if (this.timerCount <= 0) {
             timeOut = true
             this.updateStatus(timeOut)
@@ -54,10 +61,10 @@ class GameStatus {
         return timeOut
     }
 
-    
-/**
- * Draws the status on the page 
- */
+
+    /**
+     * Draws the status on the page 
+     */
     public drawStatus() {
         textSize(32)
         text((this.segmentScore).toString(), 100, 100)
@@ -75,6 +82,7 @@ class GameStatus {
      */
     public updateStatus(lifeLost: boolean) {
         this.levelStartTime = new Date()
+        this.levelComplete = false
         if (lifeLost === true) {
             this.lives--
             let score = localStorage.getItem("score") as string

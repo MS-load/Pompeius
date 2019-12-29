@@ -110,6 +110,7 @@ class SegmentedMedia {
         if (timeOut === false) {
             this.noOfSegments++
             this.img = loadImage(this.getImg())
+            this.levelComplete = false
         }
     }
 
@@ -118,12 +119,14 @@ class SegmentedMedia {
      * @param timeOut checks timer
      * @returns if level completed is true / false
      */
+    public levelComplete = false
     public updateSegment(timeOut:boolean):Boolean {
         let levelComplete = false
         this.selectedSegment++
-        if (this.selectedSegment >= this.noOfSegments) {
+        if (this.selectedSegment+1 >= this.noOfSegments) {
             //console.log("exceeded")
-            this.updateParameters(timeOut)
+            //this.updateParameters(timeOut)
+            //this.levelComplete = true
             levelComplete = true
         }
         return levelComplete
