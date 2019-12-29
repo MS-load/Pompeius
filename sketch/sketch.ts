@@ -17,12 +17,11 @@ let musicChoice: MusicChoice
  * sound files, images etc...
  */
 function preload() {
-
     popp = (window as any).loadSound('./assets/music/poppen.mp3')
     punk = (window as any).loadSound('./assets/music/jonny 2.1.mp3')
     metal = (window as any).loadSound('./assets/music/ELFVES AND DWARFES solo.mp3')
     blues = (window as any).loadSound('./assets/music/blues.mp3')
-   
+
 }
 
 /**
@@ -37,7 +36,11 @@ function setup() {
     //noCursor()
     fullscreen()
 
-    gamePage= new GamePage()
+
+    // isGameRunning = false
+    // gameFrame = new GameFrame()
+    // gameSettings = new GameSettings()
+    gamePage = new GamePage()
 
     inputSettings = new InputSettings()
     inputSettings.getUserName()
@@ -49,7 +52,8 @@ function setup() {
     // musicChoice.toggleMetalPlaying()
     // musicChoice.togglePopPlaying()
     // musicChoice.toggleBluesPlaying()
-    
+
+
 }
 
 /**
@@ -58,6 +62,15 @@ function setup() {
  * you created in the setup function above
  */
 function draw() {
+
+    // if (isGameRunning) {
+    //     gameFrame.draw()
+    //     gameFrame.drawGameFrame()
+    //     imageProperties.imageDraw()
+    // } else {
+    //     gameFrame.draw()
+    //     gameSettings.draw()
+    // }
     gamePage.drawContent()
     //inputSettings.update()
     //inputSettings.draw()
@@ -72,6 +85,12 @@ function keyPressed(): void {
  */
 function windowResized() {
     resizeCanvas(windowWidth, windowHeight)
+}
+
+
+
+function mousePressed() {
+    // gameSettings.pressironie()
 }
 
 

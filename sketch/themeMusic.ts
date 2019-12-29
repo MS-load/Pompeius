@@ -8,7 +8,7 @@ let sel: any
 class MusicChoice {
 
     public createSelector() {
-        sel = createSelect() 
+        sel = createSelect()
         sel.position(10, 10)
         sel.size(150, 50)
         sel.style('font-size', '18px')
