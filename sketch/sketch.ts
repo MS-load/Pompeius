@@ -35,8 +35,6 @@ function setup() {
 
 
     // isGameRunning = false
-    // gameFrame = new GameFrame()
-    // gameSettings = new GameSettings()
     gamePage = new GamePage()
 
     inputSettings = new InputSettings()
