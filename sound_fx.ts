@@ -10,5 +10,15 @@ class SoundEffects {
             swoosh.play()    
     }
 
-    
+    booooSound() {
+            boooo.play()
+    }
+
+    tadaaSound() {
+            tadaa.play()    
+    }
+
+    yaaayySound() {
+            yaaayy.play()
+    }
 }

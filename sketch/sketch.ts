@@ -7,6 +7,9 @@ let metal: p5.SoundFile
 let blues: p5.SoundFile
 let swoosh: p5.SoundFile
 let spaceClick: p5.SoundFile
+let boooo: p5.SoundFile
+let tadaa: p5.SoundFile
+let yaaayy: p5.SoundFile
 let musicChoice: MusicChoice
 let soundEffects: SoundEffects
 
@@ -23,6 +26,9 @@ function preload() {
     blues = (window as any).loadSound('./assets/music/blues.mp3')
     spaceClick = (window as any).loadSound('./assets/sounds/Stapler-SoundBible.com-374581609.mp3')
     swoosh = (window as any).loadSound('./assets/sounds/Swoosh 3-SoundBible.com-1573211927.mp3')
+    boooo = (window as any).loadSound('./assets/sounds/boooo.mp3')
+    tadaa = (window as any).loadSound('./assets/sounds/tadaa.mp3')
+    yaaayy = (window as any).loadSound('./assets/sounds/yaaayy.mp3')
 
 }
 
