@@ -64,7 +64,7 @@ class SegmentedMedia {
      * @param offsets the offsets set for the game
      */
     private drawMovingImage(offsets: number[]) {
-        
+
         this.pieceHeight = (this.frameWidth / this.noOfSegments)
 
         //updates the x-position
@@ -87,10 +87,12 @@ class SegmentedMedia {
 
             //Draws a rectangle around the selected Image
             if (i === (this.selectedSegment + 1)) {
+                fill('hsla(160, 100%, 50%, 0.5)')
                 stroke('hsla(160, 100%, 50%, 0.5)')
                 strokeWeight(10)
                 rect(this.segmentPosition[i], offsets[0] + (this.pieceHeight * i),
                     this.frameWidth, this.pieceHeight)
+                
             }
 
             //Renders the image 
@@ -107,10 +109,10 @@ class SegmentedMedia {
     public updateParameters(timeOut: Boolean) {
         this.selectedSegment = -1
         this.xPos = 0
+
         if (timeOut === false) {
-            this.noOfSegments++
             this.img = loadImage(this.getImg())
-            this.levelComplete = false
+            this.noOfSegments++
         }
     }
 
@@ -119,14 +121,11 @@ class SegmentedMedia {
      * @param timeOut checks timer
      * @returns if level completed is true / false
      */
-    public levelComplete = false
-    public updateSegment(timeOut:boolean):Boolean {
+
+    public updateSegment(): Boolean {
         let levelComplete = false
         this.selectedSegment++
-        if (this.selectedSegment+1 >= this.noOfSegments) {
-            //console.log("exceeded")
-            //this.updateParameters(timeOut)
-            //this.levelComplete = true
+        if (this.selectedSegment + 1 >= this.noOfSegments) {
             levelComplete = true
         }
         return levelComplete

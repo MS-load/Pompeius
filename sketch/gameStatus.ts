@@ -9,7 +9,7 @@ class GameStatus {
 
     private timerCount: number
 
-    public levelComplete: Boolean = false
+    public levelComplete: Boolean
 
     constructor() {
         this.segmentScore = 0
@@ -18,6 +18,7 @@ class GameStatus {
         this.level = 1
         this.lives = 3
         this.timerCount = 0
+        this.levelComplete = false
     }
 
 
@@ -42,17 +43,17 @@ class GameStatus {
     /**
      * timer for the game
      */
-    private getTime() {
+    private getTime():boolean {
         let timeOut = false
         if (this.levelComplete === false) {
-            let currentTime = new Date()
+
+            const currentTime = new Date()
             this.lapsedSeconds = floor((currentTime.getTime() - this.levelStartTime.getTime()) / 1000)
 
-            let maxTime = 15
+            const maxTime = 8
             this.timerCount = maxTime - this.lapsedSeconds
 
         }
-
 
         if (this.timerCount <= 0) {
             timeOut = true
@@ -65,7 +66,7 @@ class GameStatus {
     /**
      * Draws the status on the page 
      */
-    public drawStatus() {
+    public drawStatus():boolean {
         textSize(32)
         text((this.segmentScore).toString(), 100, 100)
         text((this.timerCount + " sec").toString(), 350, 100)
@@ -73,7 +74,10 @@ class GameStatus {
         text(("Lives:" + this.lives).toString(), 800, 100)
         fill('red')
         let timeOut = this.getTime()
-        return timeOut
+        if(this.levelComplete === true){
+            text(("Press Space to continue"), windowWidth*0.5, windowHeight*0.90)
+        }
+       return timeOut
     }
 
     /**
