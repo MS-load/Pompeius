@@ -1,5 +1,4 @@
 class Page {
-
     /**
      * Draws the backdrop for the Game
      */
@@ -24,7 +23,7 @@ class GamePage extends Page {
         super()
         this.segmentedMedia = new SegmentedMedia()
         this.gameStatus = new GameStatus()
-        this.menuButton = new Button((windowWidth / 2 - 50), 600, 100, 50, 10, 'Quit', 'blue')
+        this.menuButton = new Button((windowWidth / 2 - 50), (windowHeight * 0.90), 100, 50, 10, 'Quit', 'blue')
     }
 
     /**
@@ -35,18 +34,19 @@ class GamePage extends Page {
 
         let timeOut = this.gameStatus.drawStatus()
         if (timeOut === true) {
-            console.log(timeOut)
-            this.segmentedMedia.updateParameters(true)
+            this.segmentedMedia.updateParameters(timeOut)
         }
+
         textSize(20)
         fill('white')
         textFont('arial')
         this.menuButton.draw()
-        this.segmentedMedia.draw()
 
-        if (timeOut === true) {
-            this.segmentedMedia.updateParameters(timeOut)
-        }
+        this.segmentedMedia.draw()
+    }
+
+    public isGameOver():boolean {
+        return  this.gameStatus.checkGameStatus()
     }
 
     /**
@@ -58,8 +58,8 @@ class GamePage extends Page {
                 this.gameStatus.updateStatus(false)
                 this.segmentedMedia.updateParameters(false)
             }
-
             else {
+                console.log("check")
                 const offset = this.segmentedMedia.getOffset()
                 const selectedSegmentPosition = this.segmentedMedia.getSelectedSegmentPosition()
 

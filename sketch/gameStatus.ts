@@ -9,7 +9,9 @@ class GameStatus {
 
     private timerCount: number
 
-    public levelComplete: Boolean
+    public levelComplete: boolean
+
+    private gameOver: boolean
 
     constructor() {
         this.segmentScore = 0
@@ -19,9 +21,12 @@ class GameStatus {
         this.lives = 3
         this.timerCount = 0
         this.levelComplete = false
+        this.gameOver = false
     }
 
-
+    public checkGameStatus():boolean{
+       return this.gameOver
+    }
     /**
      * sets the gameScore
      * @param offsets gets the offset from the page
@@ -43,7 +48,7 @@ class GameStatus {
     /**
      * timer for the game
      */
-    private getTime():boolean {
+    private getTime(): boolean {
         let timeOut = false
         if (this.levelComplete === false) {
 
@@ -66,7 +71,7 @@ class GameStatus {
     /**
      * Draws the status on the page 
      */
-    public drawStatus():boolean {
+    public drawStatus(): boolean {
         textSize(32)
         text((this.segmentScore).toString(), 100, 100)
         text((this.timerCount + " sec").toString(), 350, 100)
@@ -74,10 +79,10 @@ class GameStatus {
         text(("Lives:" + this.lives).toString(), 800, 100)
         fill('red')
         let timeOut = this.getTime()
-        if(this.levelComplete === true){
-            text(("Press Space to continue"), windowWidth*0.5, windowHeight*0.90)
+        if (this.levelComplete === true) {
+            text(("Press Space to continue"), windowWidth * 0.5, windowHeight * 0.90)
         }
-       return timeOut
+        return timeOut
     }
 
     /**
@@ -88,13 +93,20 @@ class GameStatus {
         this.levelStartTime = new Date()
         this.levelComplete = false
         if (lifeLost === true) {
-            this.lives--
-            let score = localStorage.getItem("score") as string
-            this.segmentScore = parseInt(score)
+            if (this.lives > 0) {
+                this.lives--
+                let score = localStorage.getItem("score") as string
+                this.segmentScore = parseInt(score)
+            }
+            else {
+                this.gameOver = true
+            }
         }
         else {
             localStorage.setItem("score", (this.segmentScore).toString())
-            this.level++
+            if (this.level <= 20) { this.level++ }
+            else{ this.gameOver = true}
         }
+        console.log(this.gameOver)
     }
 }

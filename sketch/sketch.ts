@@ -1,13 +1,11 @@
 let inputSettings: InputSettings
-let gamePage: GamePage
+let gameSettings: GameSettings
+let musicChoice: MusicChoice
 
-let popp: p5.SoundFile;
-let punk: p5.SoundFile;
+let popp: p5.SoundFile
+let punk: p5.SoundFile
 let metal: p5.SoundFile
 let blues: p5.SoundFile
-let musicChoice: MusicChoice
-let isGameRunning: boolean
-let gameSettings: GameSettings
 
 
 /**
@@ -20,7 +18,6 @@ function preload() {
     punk = (window as any).loadSound('./assets/music/jonny 2.1.mp3')
     metal = (window as any).loadSound('./assets/music/ELFVES AND DWARFES solo.mp3')
     blues = (window as any).loadSound('./assets/music/blues.mp3')
-
 }
 
 /**
@@ -35,23 +32,19 @@ function setup() {
     //noCursor()
     fullscreen()
 
-
-    isGameRunning = false
     gameSettings = new GameSettings()
-    gamePage = new GamePage()
-
     inputSettings = new InputSettings()
-    inputSettings.getUserName()
-    soundFormats('mp3')
     musicChoice = new MusicChoice()
+
+    inputSettings.getUserName()
+
+    soundFormats('mp3')
     musicChoice.createSelector()
     //musicChoice.selectMusic()
     // musicChoice.togglePunkPlaying()
     // musicChoice.toggleMetalPlaying()
     // musicChoice.togglePopPlaying()
     // musicChoice.toggleBluesPlaying()
-
-
 }
 
 /**
@@ -60,19 +53,11 @@ function setup() {
  * you created in the setup function above
  */
 function draw() {
-
-    if (isGameRunning) {
-        gamePage.drawContent()
-
-    } else {
-        gameSettings.draw()
-    }
-    //inputSettings.update()
-    //inputSettings.draw()
+    gameSettings.draw()
 }
 
 function keyPressed(): void {
-    gamePage.eventHandler()
+        gameSettings.eventHandler()
 }
 
 /**
@@ -81,8 +66,6 @@ function keyPressed(): void {
 function windowResized() {
     resizeCanvas(windowWidth, windowHeight)
 }
-
-
 
 function mousePressed() {
     gameSettings.pressironie()
