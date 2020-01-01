@@ -12,6 +12,8 @@ let tadaa: p5.SoundFile
 let yaaayy: p5.SoundFile
 let musicChoice: MusicChoice
 let soundEffects: SoundEffects
+let isGameRunning: boolean
+let gameSettings: GameSettings
 
 
 /**
@@ -45,9 +47,8 @@ function setup() {
     fullscreen()
 
 
-    // isGameRunning = false
-    // gameFrame = new GameFrame()
-    // gameSettings = new GameSettings()
+    isGameRunning = false
+    gameSettings = new GameSettings()
     gamePage = new GamePage()
 
     inputSettings = new InputSettings()
@@ -68,15 +69,12 @@ function setup() {
  */
 function draw() {
 
-    // if (isGameRunning) {
-    //     gameFrame.draw()
-    //     gameFrame.drawGameFrame()
-    //     imageProperties.imageDraw()
-    // } else {
-    //     gameFrame.draw()
-    //     gameSettings.draw()
-    // }
-    gamePage.drawContent()
+    if (isGameRunning) {
+        gamePage.drawContent()
+
+    } else {
+        gameSettings.draw()
+    }
     //inputSettings.update()
     //inputSettings.draw()
 }
@@ -96,7 +94,8 @@ function windowResized() {
 
 
 function mousePressed() {
-    // gameSettings.pressironie()
+    gameSettings.pressironie()
 }
+
 
 
