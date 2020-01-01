@@ -20,15 +20,11 @@ class GamePage extends Page {
     private gameStatus: GameStatus
     public menuButton: Button
 
-
-
     constructor() {
         super()
         this.segmentedMedia = new SegmentedMedia()
         this.gameStatus = new GameStatus()
         this.menuButton = new Button((windowWidth / 2 - 50), 600, 100, 50, 10, 'Quit', 'blue')
-
-
     }
 
     /**

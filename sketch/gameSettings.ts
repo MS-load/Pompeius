@@ -8,7 +8,6 @@ class GameSettings {
         this.inputSettings = new InputSettings()
         this.startButton = new Button((windowWidth / 2 - 100), 600, 100, 50, 10, 'Start game', 'green')
         this.resetButton = new Button((windowWidth / 2 + 10), 600, 100, 50, 10, 'Reset game', 'red')
-
     }
 
     public draw() {
