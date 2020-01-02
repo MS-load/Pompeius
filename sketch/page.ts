@@ -1,5 +1,4 @@
 class Page {
-
     /**
      * Draws the backdrop for the Game
      */
@@ -20,8 +19,6 @@ class GamePage extends Page {
     private gameStatus: GameStatus
     public quitButton: Button
 
-
-
     constructor() {
         super()
         this.segmentedMedia = new SegmentedMedia()
@@ -37,11 +34,10 @@ class GamePage extends Page {
     public drawContent() {
         super.draw()
         let timeOut = this.gameStatus.drawStatus()
-        console.log('player: ' + playerSettings.getMyName())
         if (timeOut === true) {
-            console.log(timeOut)
-            this.segmentedMedia.updateParameters(true)
+            this.segmentedMedia.updateParameters(timeOut)
         }
+
         textSize(20)
         fill('white')
         textFont('arial')
@@ -51,20 +47,32 @@ class GamePage extends Page {
         this.segmentedMedia.draw()
     }
 
+    public isGameOver(): boolean {
+        return this.gameStatus.checkGameStatus()
+    }
+
     /**
      * Handles user interaction 
      */
     public eventHandler() {
         if (keyCode === 32) {
-            const offset = this.segmentedMedia.getOffset()
-            const selectedSegmentPosition = this.segmentedMedia.getSelectedSegmentPosition()
-            const levelCompleted = this.segmentedMedia.updateSegment(false)
-
-            this.gameStatus.setGameScore(offset, selectedSegmentPosition)
-            if (levelCompleted === true) {
+            if (this.gameStatus.levelComplete === true) {
                 this.gameStatus.updateStatus(false)
+                this.segmentedMedia.updateParameters(false)
+            }
+            else {
+                console.log("check")
+                const offset = this.segmentedMedia.getOffset()
+                const selectedSegmentPosition = this.segmentedMedia.getSelectedSegmentPosition()
+
+                let segmentsCovered = this.segmentedMedia.updateSegment()
+
+                this.gameStatus.setGameScore(offset, selectedSegmentPosition)
+
+                if (segmentsCovered === true) {
+                    this.gameStatus.levelComplete = true
+                }
             }
         }
     }
-
 }
