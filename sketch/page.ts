@@ -18,7 +18,7 @@ class GamePage extends Page {
 
     private segmentedMedia: SegmentedMedia
     private gameStatus: GameStatus
-    public menuButton: Button
+    public quitButton: Button
 
 
 
@@ -26,7 +26,7 @@ class GamePage extends Page {
         super()
         this.segmentedMedia = new SegmentedMedia()
         this.gameStatus = new GameStatus()
-        this.menuButton = new Button((windowWidth / 2 - 50), 600, 100, 50, 10, 'Quit', 'blue')
+        this.quitButton = new Button((windowWidth / 2 - 50), 600, 100, 50, 10, 'Quit', 'blue')
 
 
     }
@@ -36,8 +36,8 @@ class GamePage extends Page {
      */
     public drawContent() {
         super.draw()
-
         let timeOut = this.gameStatus.drawStatus()
+        console.log('player: ' + playerSettings.getMyName())
         if (timeOut === true) {
             console.log(timeOut)
             this.segmentedMedia.updateParameters(true)
@@ -45,7 +45,9 @@ class GamePage extends Page {
         textSize(20)
         fill('white')
         textFont('arial')
-        this.menuButton.draw()
+        textSize(30)
+        text(playerSettings.getMyName(), (windowWidth / 1.2), (windowHeight / 7))
+        this.quitButton.draw()
         this.segmentedMedia.draw()
     }
 

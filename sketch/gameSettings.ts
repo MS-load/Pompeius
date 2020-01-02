@@ -2,10 +2,10 @@ class GameSettings {
 
     private startButton: Button
     private resetButton: Button
-    private inputSettings: InputSettings
+    private playerSettings: PlayerSettings
 
     constructor() {
-        this.inputSettings = new InputSettings()
+        this.playerSettings = new PlayerSettings()
         this.startButton = new Button((windowWidth / 2 - 100), 600, 100, 50, 10, 'Start game', 'green')
         this.resetButton = new Button((windowWidth / 2 + 10), 600, 100, 50, 10, 'Reset game', 'red')
 
@@ -22,8 +22,8 @@ class GameSettings {
         text("Pompeius", (windowWidth / 2), 70)
 
         //Inputfield
-        this.inputSettings.draw()
-        this.inputSettings.update()
+        this.playerSettings.draw()
+        this.playerSettings.update()
 
         //Start button and Reset button
         this.startButton.draw()
@@ -38,10 +38,10 @@ class GameSettings {
             // This is for the reset button
         } else if (this.isThisPressed(this.resetButton) && !isGameRunning) {
             localStorage.removeItem("myName")
-            this.inputSettings.setMyName("")
+            this.playerSettings.setMyName("")
 
-            // This is for the menu button
-        } else if (this.isThisPressed(gamePage.menuButton) && isGameRunning) {
+            // This is for the quit button
+        } else if (this.isThisPressed(gamePage.quitButton) && isGameRunning) {
             isGameRunning = false
         }
 

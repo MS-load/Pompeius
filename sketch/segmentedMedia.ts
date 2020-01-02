@@ -64,7 +64,7 @@ class SegmentedMedia {
      * @param offsets the offsets set for the game
      */
     private drawMovingImage(offsets: number[]) {
-        
+
         this.pieceHeight = (this.frameWidth / this.noOfSegments)
 
         //updates the x-position
@@ -118,7 +118,7 @@ class SegmentedMedia {
      * @param timeOut checks timer
      * @returns if level completed is true / false
      */
-    public updateSegment(timeOut:boolean):Boolean {
+    public updateSegment(timeOut: boolean): Boolean {
         let levelComplete = false
         this.selectedSegment++
         if (this.selectedSegment >= this.noOfSegments) {

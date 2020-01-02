@@ -1,4 +1,4 @@
-let inputSettings: InputSettings
+let playerSettings: PlayerSettings
 let gamePage: GamePage
 
 let popp: p5.SoundFile;
@@ -40,8 +40,8 @@ function setup() {
     gameSettings = new GameSettings()
     gamePage = new GamePage()
 
-    inputSettings = new InputSettings()
-    inputSettings.getUserName()
+    playerSettings = new PlayerSettings()
+    playerSettings.getUserName()
     soundFormats('mp3')
     musicChoice = new MusicChoice()
     musicChoice.createSelector()
@@ -67,8 +67,7 @@ function draw() {
     } else {
         gameSettings.draw()
     }
-    //inputSettings.update()
-    //inputSettings.draw()
+
 }
 
 function keyPressed(): void {
