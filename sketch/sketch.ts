@@ -1,8 +1,8 @@
 let inputSettings: InputSettings
-let gamePage: GamePage
 
-let popp: p5.SoundFile;
-let punk: p5.SoundFile;
+
+let popp: p5.SoundFile
+let punk: p5.SoundFile
 let metal: p5.SoundFile
 let blues: p5.SoundFile
 let swoosh: p5.SoundFile
@@ -46,15 +46,13 @@ function setup() {
     //noCursor()
     fullscreen()
 
-
-    isGameRunning = false
     gameSettings = new GameSettings()
-    gamePage = new GamePage()
-
     inputSettings = new InputSettings()
-    inputSettings.getUserName()
-    soundFormats('mp3')
     musicChoice = new MusicChoice()
+
+    inputSettings.getUserName()
+
+    soundFormats('mp3')
     musicChoice.createSelector()
     soundEffects = new SoundEffects()
     
@@ -68,19 +66,11 @@ function setup() {
  * you created in the setup function above
  */
 function draw() {
-
-    if (isGameRunning) {
-        gamePage.drawContent()
-
-    } else {
-        gameSettings.draw()
-    }
-    //inputSettings.update()
-    //inputSettings.draw()
+    gameSettings.draw()
 }
 
 function keyPressed(): void {
-    gamePage.eventHandler()
+        gameSettings.eventHandler()
     soundEffects.spaceBarSound()
 }
 
@@ -90,8 +80,6 @@ function keyPressed(): void {
 function windowResized() {
     resizeCanvas(windowWidth, windowHeight)
 }
-
-
 
 function mousePressed() {
     gameSettings.pressironie()

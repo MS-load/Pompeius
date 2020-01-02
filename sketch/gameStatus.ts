@@ -9,6 +9,10 @@ class GameStatus {
 
     private timerCount: number
 
+    public levelComplete: boolean
+
+    private gameOver: boolean
+
     constructor() {
         this.segmentScore = 0
         this.levelStartTime = new Date()
@@ -16,9 +20,13 @@ class GameStatus {
         this.level = 1
         this.lives = 3
         this.timerCount = 0
+        this.levelComplete = false
+        this.gameOver = false
     }
 
-
+    public checkGameStatus():boolean{
+       return this.gameOver
+    }
     /**
      * sets the gameScore
      * @param offsets gets the offset from the page
@@ -43,13 +51,18 @@ class GameStatus {
     /**
      * timer for the game
      */
-    private getTime() {
+    private getTime(): boolean {
         let timeOut = false
-        let currentTime = new Date()
-        this.lapsedSeconds = floor((currentTime.getTime() - this.levelStartTime.getTime()) / 1000)
-        //console.log(currentTime.getTime())
-        let maxTime = 15
-        this.timerCount = maxTime - this.lapsedSeconds
+        if (this.levelComplete === false) {
+
+            const currentTime = new Date()
+            this.lapsedSeconds = floor((currentTime.getTime() - this.levelStartTime.getTime()) / 1000)
+
+            const maxTime = 8
+            this.timerCount = maxTime - this.lapsedSeconds
+
+        }
+
         if (this.timerCount <= 0) {
             timeOut = true
             this.updateStatus(timeOut)
@@ -57,11 +70,11 @@ class GameStatus {
         return timeOut
     }
 
-    
-/**
- * Draws the status on the page 
- */
-    public drawStatus() {
+
+    /**
+     * Draws the status on the page 
+     */
+    public drawStatus(): boolean {
         textSize(32)
         text((this.segmentScore).toString(), 100, 100)
         text((this.timerCount + " sec").toString(), 350, 100)
@@ -69,6 +82,9 @@ class GameStatus {
         text(("Lives:" + this.lives).toString(), 800, 100)
         fill('red')
         let timeOut = this.getTime()
+        if (this.levelComplete === true) {
+            text(("Press Space to continue"), windowWidth * 0.5, windowHeight * 0.90)
+        }
         return timeOut
     }
 
@@ -78,14 +94,22 @@ class GameStatus {
      */
     public updateStatus(lifeLost: boolean) {
         this.levelStartTime = new Date()
+        this.levelComplete = false
         if (lifeLost === true) {
-            this.lives--
-            let score = localStorage.getItem("score") as string
-            this.segmentScore = parseInt(score)
+            if (this.lives > 0) {
+                this.lives--
+                let score = localStorage.getItem("score") as string
+                this.segmentScore = parseInt(score)
+            }
+            else {
+                this.gameOver = true
+            }
         }
         else {
             localStorage.setItem("score", (this.segmentScore).toString())
-            this.level++
+            if (this.level <= 20) { this.level++ }
+            else{ this.gameOver = true}
         }
+        console.log(this.gameOver)
     }
 }
