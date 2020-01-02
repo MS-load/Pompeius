@@ -8,8 +8,8 @@ class GameSettings {
 
     constructor() {
         this.inputSettings = new InputSettings()
-        this.startButton = new Button((windowWidth / 2 - 100), 600, 100, 50, 10, 'Start game', 'green')
-        this.resetButton = new Button((windowWidth / 2 + 10), 600, 100, 50, 10, 'Reset game', 'red')
+        this.startButton = new Button(-100, 600, 100, 50, 10, 'Start game', 'green')
+        this.resetButton = new Button(10, 600, 100, 50, 10, 'Reset game', 'red')
         this.gamePage = new GamePage()
         this.isGameRunning = false
     }
@@ -29,8 +29,8 @@ class GameSettings {
         this.inputSettings.update()
 
         //Start button and Reset button
-        this.startButton.draw()
-        this.resetButton.draw()
+        this.startButton.draw(width / 2)
+        this.resetButton.draw(width / 2)
     }
 
 
