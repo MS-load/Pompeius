@@ -23,7 +23,7 @@ class GamePage extends Page {
         super()
         this.segmentedMedia = new SegmentedMedia()
         this.gameStatus = new GameStatus()
-        this.menuButton = new Button((windowWidth / 2 - 50), (windowHeight * 0.90), 100, 50, 10, 'Quit', 'blue')
+        this.menuButton = new Button(-50, (windowHeight * 0.90), 100, 50, 10, 'Quit', 'blue')
     }
 
     /**
@@ -40,7 +40,7 @@ class GamePage extends Page {
         textSize(20)
         fill('white')
         textFont('arial')
-        this.menuButton.draw()
+        this.menuButton.draw(width / 2)
 
         this.segmentedMedia.draw()
     }
