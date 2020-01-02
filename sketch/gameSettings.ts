@@ -3,15 +3,18 @@ class GameSettings {
     private startButton: Button
     private resetButton: Button
     private inputSettings: InputSettings
+    private isGameRunning: boolean
+    private gamePage: GamePage
 
     constructor() {
         this.inputSettings = new InputSettings()
         this.startButton = new Button((windowWidth / 2 - 100), 600, 100, 50, 10, 'Start game', 'green')
         this.resetButton = new Button((windowWidth / 2 + 10), 600, 100, 50, 10, 'Reset game', 'red')
-
+        this.gamePage = new GamePage()
+        this.isGameRunning = false
     }
 
-    public draw() {
+    private drawHomePage() {
 
         background(0)
         textSize(70)
@@ -30,19 +33,35 @@ class GameSettings {
         this.resetButton.draw()
     }
 
+
+    public draw() {
+        let gameOver = this.gamePage.isGameOver()
+        if (this.isGameRunning && !gameOver) {
+            this.gamePage.drawContent()
+        } else {
+            this.drawHomePage()
+        }
+    }
+
+    public eventHandler() {
+        if (this.isGameRunning) {
+            this.gamePage.eventHandler()
+        }
+    }
+
     public pressironie() {
         //This if is for the start button
-        if (this.isThisPressed(this.startButton) && !isGameRunning) {
-            isGameRunning = true
-
+        if (this.isThisPressed(this.startButton) && !this.isGameRunning) {
+            this.isGameRunning = true
+            this.gamePage = new GamePage()
             // This is for the reset button
-        } else if (this.isThisPressed(this.resetButton) && !isGameRunning) {
+        } else if (this.isThisPressed(this.resetButton) && !this.isGameRunning) {
             localStorage.removeItem("myName")
             this.inputSettings.setMyName("")
 
             // This is for the menu button
-        } else if (this.isThisPressed(gamePage.menuButton) && isGameRunning) {
-            isGameRunning = false
+        } else if (this.isThisPressed(this.gamePage.menuButton) && this.isGameRunning) {
+            this.isGameRunning = false
         }
 
     }
