@@ -36,12 +36,15 @@ class GameStatus {
         let score = selectedSegmentPosition
         if (score > offsets[1] - 5 && score < offsets[1] + 5) {
             this.segmentScore += 1000
+            soundEffects.tadaaSound()
         }
         else if ((score > offsets[1] + 5 && score < offsets[1] + 30) || (score > offsets[1] - 30 && score < offsets[1] - 5)) {
             this.segmentScore += 500
+            soundEffects.yaaayySound()
         }
         else {
             this.segmentScore += 0
+            soundEffects.booooSound()
         }
     }
 

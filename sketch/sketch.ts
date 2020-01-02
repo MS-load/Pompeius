@@ -1,11 +1,19 @@
 let inputSettings: InputSettings
-let gameSettings: GameSettings
-let musicChoice: MusicChoice
+
 
 let popp: p5.SoundFile
 let punk: p5.SoundFile
 let metal: p5.SoundFile
 let blues: p5.SoundFile
+let swoosh: p5.SoundFile
+let spaceClick: p5.SoundFile
+let boooo: p5.SoundFile
+let tadaa: p5.SoundFile
+let yaaayy: p5.SoundFile
+let musicChoice: MusicChoice
+let soundEffects: SoundEffects
+let isGameRunning: boolean
+let gameSettings: GameSettings
 
 
 /**
@@ -18,6 +26,12 @@ function preload() {
     punk = (window as any).loadSound('./assets/music/jonny 2.1.mp3')
     metal = (window as any).loadSound('./assets/music/ELFVES AND DWARFES solo.mp3')
     blues = (window as any).loadSound('./assets/music/blues.mp3')
+    spaceClick = (window as any).loadSound('./assets/sounds/Stapler-SoundBible.com-374581609.mp3')
+    swoosh = (window as any).loadSound('./assets/sounds/Swoosh 3-SoundBible.com-1573211927.mp3')
+    boooo = (window as any).loadSound('./assets/sounds/boooo.mp3')
+    tadaa = (window as any).loadSound('./assets/sounds/tadaa.mp3')
+    yaaayy = (window as any).loadSound('./assets/sounds/yaaayy.mp3')
+
 }
 
 /**
@@ -40,11 +54,10 @@ function setup() {
 
     soundFormats('mp3')
     musicChoice.createSelector()
-    //musicChoice.selectMusic()
-    // musicChoice.togglePunkPlaying()
-    // musicChoice.toggleMetalPlaying()
-    // musicChoice.togglePopPlaying()
-    // musicChoice.toggleBluesPlaying()
+    soundEffects = new SoundEffects()
+    
+
+
 }
 
 /**
@@ -58,6 +71,7 @@ function draw() {
 
 function keyPressed(): void {
         gameSettings.eventHandler()
+    soundEffects.spaceBarSound()
 }
 
 /**
