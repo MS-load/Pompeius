@@ -75,15 +75,16 @@ class GameStatus {
      * Draws the status on the page 
      */
     public drawStatus(): boolean {
-        textSize(32)
-        text((this.segmentScore).toString(), 100, 100)
-        text((this.timerCount + " sec").toString(), 350, 100)
-        text(("Level:" + this.level).toString(), 500, 100)
-        text(("Lives:" + this.lives).toString(), 800, 100)
-        fill('red')
+        textSize(25)
+        fill('white')
+        text(("Score: " + this.segmentScore).toString(), 100, 100)
+        text(("Time Left: " + this.timerCount + " sec").toString(), 350, 100)
+        text(("Level: " + this.level).toString(), 500, 100)
+        text(("Lives: " + this.lives).toString(), 800, 100)
+        
         let timeOut = this.getTime()
         if (this.levelComplete === true) {
-            text(("Press Space to continue"), windowWidth * 0.5, windowHeight * 0.90)
+            text(("Press Space to continue"), windowWidth * 0.5, windowHeight * 0.85)
         }
         return timeOut
     }

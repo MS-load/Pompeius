@@ -1,3 +1,4 @@
+//maybe change class name
 class GameSettings {
 
     private startButton: Button
@@ -26,13 +27,17 @@ class GameSettings {
 
 
     public draw() {
-            background(0)
-            textSize(70)
-            fill('red')
-            textAlign(CENTER, CENTER)
-            strokeWeight(0)
-            textFont('Quintessential')
-            text("Pompeius", (windowWidth / 2), 70)
+
+        background(0)
+        textSize(50)
+        fill('red')
+        textAlign(CENTER, CENTER)
+        strokeWeight(0)
+        textFont('Quintessential')
+        text("Pompeius", (width / 2), (height / 9.5))
+        textSize(18)
+        textFont('Arial')
+        text(("Pick your music"),(width*0.06),(height*0.04))
 
         let gameOver = this.gamePage.isGameOver()
         if (this.isGameRunning && !gameOver) {

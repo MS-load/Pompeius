@@ -17,9 +17,12 @@ class MusicChoice {
     }
     
     public createSelector() {
-        this.sel.position(10, 10)
-        this.sel.size(150, 50)
+        this.sel.position((20),(40))
+        this.sel.size(150, 40)
         this.sel.style('font-size', '18px')
+        this.sel.style('background-color', 'black')
+        this.sel.style('color', 'red')
+        this.sel.style('border', 'none')
 
         this.sel.option('silence')
         this.sel.option('punk')
