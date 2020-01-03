@@ -10,7 +10,7 @@ class GameSettings {
         this.playerSettings = new PlayerSettings()
         this.startButton = new Button((windowWidth / 2 - 100), 600, 100, 50, 10, 'Start game', 'green')
         this.resetButton = new Button((windowWidth / 2 + 10), 600, 100, 50, 10, 'Reset game', 'red')
-        this.gamePage = new GamePage()
+        this.gamePage = new GamePage
         this.isGameRunning = false
     }
 
@@ -49,7 +49,14 @@ class GameSettings {
         }
     }
 
+    private checkGameOver() {
+        if (this.gamePage.isGameOver()) {
+            this.isGameRunning = false
+        }
+    }
+
     public pressironie() {
+        this.checkGameOver()
         //This if is for the start button
         if (this.isThisPressed(this.startButton) && !this.isGameRunning) {
             this.isGameRunning = true
@@ -60,8 +67,8 @@ class GameSettings {
             this.playerSettings.setMyName("")
 
             // This is for the quit button
-        } else if (this.isThisPressed(this.gamePage.quitButton) && isGameRunning) {
-            isGameRunning = false
+        } else if (this.isThisPressed(this.gamePage.quitButton) && this.isGameRunning) {
+            this.isGameRunning = false
         }
 
     }

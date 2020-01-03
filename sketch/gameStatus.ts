@@ -18,14 +18,14 @@ class GameStatus {
         this.levelStartTime = new Date()
         this.lapsedSeconds = 0
         this.level = 1
-        this.lives = 3
+        this.lives = 1 //TODO: byt till 3
         this.timerCount = 0
         this.levelComplete = false
         this.gameOver = false
     }
 
-    public checkGameStatus():boolean{
-       return this.gameOver
+    public checkGameStatus(): boolean {
+        return this.gameOver
     }
     /**
      * sets the gameScore
@@ -108,7 +108,7 @@ class GameStatus {
         else {
             localStorage.setItem("score", (this.segmentScore).toString())
             if (this.level <= 20) { this.level++ }
-            else{ this.gameOver = true}
+            else { this.gameOver = true }
         }
         console.log(this.gameOver)
     }
