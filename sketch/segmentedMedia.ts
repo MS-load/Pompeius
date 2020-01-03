@@ -71,7 +71,6 @@ class SegmentedMedia {
         this.xPos += this.noOfSegments * 1.5
         if (this.xPos >= width) {
             this.xPos = 0
-            soundEffects.swooshSound()
         }
 
         for (let i = 0; i < this.noOfSegments; i++) {

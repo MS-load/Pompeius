@@ -54,11 +54,11 @@ class GameStatus {
     private getTime(): boolean {
         let timeOut = false
         if (this.levelComplete === false) {
-
+            
             const currentTime = new Date()
             this.lapsedSeconds = floor((currentTime.getTime() - this.levelStartTime.getTime()) / 1000)
 
-            const maxTime = 8
+            const maxTime = 20
             this.timerCount = maxTime - this.lapsedSeconds
 
         }
@@ -96,7 +96,7 @@ class GameStatus {
         this.levelStartTime = new Date()
         this.levelComplete = false
         if (lifeLost === true) {
-            if (this.lives > 0) {
+            if (this.lives > 1) {
                 this.lives--
                 let score = localStorage.getItem("score") as string
                 this.segmentScore = parseInt(score)
@@ -107,7 +107,7 @@ class GameStatus {
         }
         else {
             localStorage.setItem("score", (this.segmentScore).toString())
-            if (this.level <= 20) { this.level++ }
+            if (this.level < 15) { this.level++ }
             else{ this.gameOver = true}
         }
         console.log(this.gameOver)

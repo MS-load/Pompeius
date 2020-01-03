@@ -6,13 +6,14 @@
 type ExtendedElement = p5.Element & {
     option: (value: string) => void
     changed: (callback: () => void) => void
+    value: () => string
 }
 
 class MusicChoice {
-    private sel: ExtendedElement
+    private sel: any
 
     constructor() {
-        this.sel = createSelect() as ExtendedElement
+        this.sel = createSelect()
     }
     
     public createSelector() {

@@ -1,36 +1,21 @@
-class Page {
-    /**
-     * Draws the backdrop for the Game
-     */
-    public draw() {
-        background(0)
-        textSize(70)
-        fill('red')
-        textAlign(CENTER, CENTER)
-        strokeWeight(0)
-        textFont('Quintessential')
-        text("Pompeius", (windowWidth / 2), 70)
-    }
-}
-
-class GamePage extends Page {
+class GamePage{
 
     private segmentedMedia: SegmentedMedia
     private gameStatus: GameStatus
+
     public menuButton: Button
 
     constructor() {
-        super()
         this.segmentedMedia = new SegmentedMedia()
         this.gameStatus = new GameStatus()
         this.menuButton = new Button(-50, (windowHeight * 0.90), 100, 50, 10, 'Quit', 'blue')
+        
     }
 
     /**
      * Draws the content seen on the Page
      */
     public drawContent() {
-        super.draw()
 
         let timeOut = this.gameStatus.drawStatus()
         if (timeOut === true) {
@@ -54,6 +39,7 @@ class GamePage extends Page {
      */
     public eventHandler() {
         if (keyCode === 32) {
+            soundEffects.spaceBarSound()
             if (this.gameStatus.levelComplete === true) {
                 this.gameStatus.updateStatus(false)
                 this.segmentedMedia.updateParameters(false)

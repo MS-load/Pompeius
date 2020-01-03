@@ -15,15 +15,6 @@ class GameSettings {
     }
 
     private drawHomePage() {
-
-        background(0)
-        textSize(70)
-        fill('red')
-        textAlign(CENTER, CENTER)
-        strokeWeight(0)
-        textFont('Quintessential')
-        text("Pompeius", (windowWidth / 2), 70)
-
         //Inputfield
         this.inputSettings.draw()
         this.inputSettings.update()
@@ -35,6 +26,14 @@ class GameSettings {
 
 
     public draw() {
+            background(0)
+            textSize(70)
+            fill('red')
+            textAlign(CENTER, CENTER)
+            strokeWeight(0)
+            textFont('Quintessential')
+            text("Pompeius", (windowWidth / 2), 70)
+
         let gameOver = this.gamePage.isGameOver()
         if (this.isGameRunning && !gameOver) {
             this.gamePage.drawContent()
