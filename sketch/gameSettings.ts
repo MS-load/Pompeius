@@ -29,8 +29,8 @@ class GameSettings {
         this.playerSettings.update()
 
         //Start button and Reset button
-        this.startButton.draw()
-        this.resetButton.draw()
+        this.startButton.draw(/*width / 2*/)
+        this.resetButton.draw(/*width / 2*/)
     }
 
 

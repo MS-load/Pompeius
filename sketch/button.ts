@@ -1,4 +1,5 @@
 class Button {
+    // private originX: number
     private x: number
     private y: number
     private width: number
@@ -15,21 +16,23 @@ class Button {
         this.corners = corners
         this.text = text
         this.fillColor = fillColor
+        this.originX = 0
     }
 
-    public draw() {
+    public draw(/*originX: number*/) {
+        // this.originX = originX
         push()
         fill(this.fillColor)
-        rect(this.x, this.y, this.width, this.height, this.corners)
+        rect(/*originX + */this.x, this.y, this.width, this.height, this.corners)
         fill('white')
-        text(this.text, this.x, this.y, this.width, this.height)
+        text(this.text, /*originX +*/ this.x, this.y, this.width, this.height)
         pop()
     }
 
 
     // Beroende på instans av knapp kommer dessa värden vara olika, beroende på vilka värden jag gett dem. 
     public getX() {
-        return this.x
+        return this.x /*+ this.originX*/
     }
 
     public getY() {
