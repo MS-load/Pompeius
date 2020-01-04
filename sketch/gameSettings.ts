@@ -5,20 +5,24 @@ class GameSettings {
     private resetButton: Button
     private quitButton: Button
     private pauseButton: Button
+    private resumeButton: Button
     private inputSettings: InputSettings
     private isGameRunning: boolean
+    private isGamePaused: boolean
     private gamePage: GamePage
 
     constructor() {
         this.inputSettings = new InputSettings()
 
-        this.startButton = new Button(-100, 600, 100, 50, 10, 'Start game', 'green')
-        this.resetButton = new Button(10, 600, 100, 50, 10, 'Reset game', 'red')
-        this.quitButton = new Button(-100, 600, 100, 50, 10, 'Quit', 'blue')
-        this.pauseButton = new Button(10, 600, 100, 50, 10, 'Pause', 'yellow')
-         
+        this.startButton = new Button(-100, (height * 0.85), 100, 50, 10, 'Start game', 'green')
+        this.resetButton = new Button(10, (height * 0.85), 100, 50, 10, 'Reset game', 'red')
+        this.resumeButton = new Button(120, (height * 0.85), 100, 50, 10, 'Resume game', 'purple')
+        this.quitButton = new Button(-100, (height * 0.9), 100, 25, 10, 'Quit', 'blue')
+        this.pauseButton = new Button(10, (height * 0.9), 100, 25, 10, 'Pause', 'purple')
+
         this.gamePage = new GamePage()
         this.isGameRunning = false
+        this.isGamePaused = false
     }
 
     private drawHomePage() {
@@ -29,12 +33,16 @@ class GameSettings {
         //Start button and Reset button
         this.startButton.draw(width / 2)
         this.resetButton.draw(width / 2)
+        if (this.isGamePaused) {
+            this.resumeButton.draw(width / 2)
+        }
     }
 
-    private drawGamePage(){
+    private drawGamePage() {
         //Quit button and Pause button
         this.quitButton.draw(width / 2)
         this.pauseButton.draw(width / 2)
+
 
         this.gamePage.drawContent()
     }
@@ -42,7 +50,7 @@ class GameSettings {
     public draw() {
 
         background(0)
-        textSize(50)
+        textSize(60)
         fill('red')
         textAlign(CENTER, CENTER)
         strokeWeight(0)
@@ -50,7 +58,7 @@ class GameSettings {
         text("Pompeius", (width / 2), (height / 9.5))
         textSize(18)
         textFont('Arial')
-        text(("Pick your music"),90,25)
+        text(("Pick your music"), 90, 25)
 
         let gameOver = this.gamePage.isGameOver()
         if (this.isGameRunning && !gameOver) {
@@ -76,9 +84,19 @@ class GameSettings {
             localStorage.removeItem("myName")
             this.inputSettings.setMyName("")
 
-            // This is for the menu button
+            // This is for the quit button
         } else if (this.isThisPressed(this.quitButton) && this.isGameRunning) {
             this.isGameRunning = false
+            this.isGamePaused = false
+        }
+        // This is for the pause button
+        else if (this.isThisPressed(this.pauseButton) && this.isGameRunning) {
+            this.isGameRunning = false
+            this.isGamePaused = true
+        }
+        // This is for the pause button
+        else if (this.isThisPressed(this.resumeButton) && !this.isGameRunning) {
+            this.isGameRunning = true
         }
 
     }

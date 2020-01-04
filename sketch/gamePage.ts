@@ -35,7 +35,7 @@ class GamePage{
                 this.segmentedMedia.updateParameters(false)
             }
             else {
-                console.log("check")
+                //console.log("check")
                 const offset = this.segmentedMedia.getOffset()
                 const selectedSegmentPosition = this.segmentedMedia.getSelectedSegmentPosition()
 

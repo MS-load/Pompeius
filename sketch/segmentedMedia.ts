@@ -92,7 +92,6 @@ class SegmentedMedia {
                 strokeWeight(10)
                 rect(this.segmentPosition[i], offsets[0] + (this.pieceHeight * i),
                     this.frameWidth, this.pieceHeight)
-
             }
 
             //Renders the image 
@@ -121,7 +120,6 @@ class SegmentedMedia {
      * @param timeOut checks timer
      * @returns if level completed is true / false
      */
-
     public updateSegment(): Boolean {
         let levelComplete = false
         this.selectedSegment++

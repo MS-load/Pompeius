@@ -34,17 +34,22 @@ class GameStatus {
      */
     public setGameScore(offsets: number[], selectedSegmentPosition: number) {
         let score = selectedSegmentPosition
-        if (score > offsets[1] - 5 && score < offsets[1] + 5) {
+        console.log(score)
+        if (score > (offsets[1] - 5) && score < (offsets[1] + 5)) {
             this.segmentScore += 1000
+            console.log(1000)
             soundEffects.tadaaSound()
         }
-        else if ((score > offsets[1] + 5 && score < offsets[1] + 30) || (score > offsets[1] - 30 && score < offsets[1] - 5)) {
+        else if ((score > (offsets[1] + 5) && score < (offsets[1] + 30)) || (score > (offsets[1] - 30) && score < (offsets[1] - 5))) {
+
             this.segmentScore += 500
+            console.log(500)
             soundEffects.yaaayySound()
         }
         else {
             this.segmentScore += 0
             soundEffects.booooSound()
+            console.log(0)
         }
     }
 
@@ -76,16 +81,17 @@ class GameStatus {
     public drawStatus(): boolean {
         textSize(20)
         fill('white')
-        
-        text(("Score:" + this.segmentScore).toString(), width/3, height*0.2)
-        text(("Time Left: " + this.timerCount + " sec").toString(), width/5,height*0.2)
-        text(("Level: " + this.level).toString(), width*0.4, height*0.2)
-        
+
+        text(("Score:" + this.segmentScore).toString(),  width*0.4, height*0.2)
+        text(("Level: " + this.level).toString(), width*0.5, height*0.2)
         text(("Lives: " + this.lives).toString(), width*0.6, height*0.2)
         
         let timeOut = this.getTime()
         if (this.levelComplete === true) {
             text(("Press Space to continue"), windowWidth * 0.5, windowHeight * 0.85)
+        }
+        else{
+            text(("Time Remaining: " + this.timerCount + " sec").toString(), windowWidth * 0.5, windowHeight * 0.85)
         }
         return timeOut
     }
