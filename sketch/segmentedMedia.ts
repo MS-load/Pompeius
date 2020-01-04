@@ -34,8 +34,8 @@ class SegmentedMedia {
      * Sets the basic offsets used for the game
      */
     public getOffset() {
-        let topOffset = windowHeight / 4
-        let leftOffset = (windowWidth / 2) - (this.frameWidth / 2)
+        let topOffset = height / 4
+        let leftOffset = (width / 2) - (this.frameWidth / 2)
         return [topOffset, leftOffset]
     }
 
@@ -92,7 +92,7 @@ class SegmentedMedia {
                 strokeWeight(10)
                 rect(this.segmentPosition[i], offsets[0] + (this.pieceHeight * i),
                     this.frameWidth, this.pieceHeight)
-                
+
             }
 
             //Renders the image 

@@ -3,14 +3,20 @@ class GameSettings {
 
     private startButton: Button
     private resetButton: Button
+    private quitButton: Button
+    private pauseButton: Button
     private inputSettings: InputSettings
     private isGameRunning: boolean
     private gamePage: GamePage
 
     constructor() {
         this.inputSettings = new InputSettings()
+
         this.startButton = new Button(-100, 600, 100, 50, 10, 'Start game', 'green')
         this.resetButton = new Button(10, 600, 100, 50, 10, 'Reset game', 'red')
+        this.quitButton = new Button(-100, 600, 100, 50, 10, 'Quit', 'blue')
+        this.pauseButton = new Button(10, 600, 100, 50, 10, 'Pause', 'yellow')
+         
         this.gamePage = new GamePage()
         this.isGameRunning = false
     }
@@ -25,6 +31,13 @@ class GameSettings {
         this.resetButton.draw(width / 2)
     }
 
+    private drawGamePage(){
+        //Quit button and Pause button
+        this.quitButton.draw(width / 2)
+        this.pauseButton.draw(width / 2)
+
+        this.gamePage.drawContent()
+    }
 
     public draw() {
 
@@ -37,11 +50,11 @@ class GameSettings {
         text("Pompeius", (width / 2), (height / 9.5))
         textSize(18)
         textFont('Arial')
-        text(("Pick your music"),(width*0.06),(height*0.04))
+        text(("Pick your music"),90,25)
 
         let gameOver = this.gamePage.isGameOver()
         if (this.isGameRunning && !gameOver) {
-            this.gamePage.drawContent()
+            this.drawGamePage()
         } else {
             this.drawHomePage()
         }
@@ -64,7 +77,7 @@ class GameSettings {
             this.inputSettings.setMyName("")
 
             // This is for the menu button
-        } else if (this.isThisPressed(this.gamePage.menuButton) && this.isGameRunning) {
+        } else if (this.isThisPressed(this.quitButton) && this.isGameRunning) {
             this.isGameRunning = false
         }
 

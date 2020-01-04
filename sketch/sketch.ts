@@ -20,6 +20,7 @@ function preload() {
     punk = (window as any).loadSound('./assets/music/jonny 2.1.mp3')
     metal = (window as any).loadSound('./assets/music/ELFVES AND DWARFES solo.mp3')
     blues = (window as any).loadSound('./assets/music/blues.mp3')
+    soundFormats('mp3')
     soundEffects = new SoundEffects
 }
 
@@ -32,16 +33,14 @@ function preload() {
 function setup() {
     createCanvas(windowWidth, windowHeight)
     frameRate(60)
-    //noCursor()
     fullscreen()
 
     gameSettings = new GameSettings()
     inputSettings = new InputSettings()
-    musicChoice = new MusicChoice()
 
     inputSettings.getUserName()
 
-    soundFormats('mp3')
+    musicChoice = new MusicChoice()
     musicChoice.createSelector()
 }
 

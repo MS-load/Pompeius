@@ -60,7 +60,6 @@ class GameStatus {
 
             const maxTime = 20
             this.timerCount = maxTime - this.lapsedSeconds
-
         }
 
         if (this.timerCount <= 0) {
@@ -75,12 +74,14 @@ class GameStatus {
      * Draws the status on the page 
      */
     public drawStatus(): boolean {
-        textSize(25)
+        textSize(20)
         fill('white')
-        text(("Score: " + this.segmentScore).toString(), 100, 100)
-        text(("Time Left: " + this.timerCount + " sec").toString(), 350, 100)
-        text(("Level: " + this.level).toString(), 500, 100)
-        text(("Lives: " + this.lives).toString(), 800, 100)
+        
+        text(("Score:" + this.segmentScore).toString(), width/3, height*0.2)
+        text(("Time Left: " + this.timerCount + " sec").toString(), width/5,height*0.2)
+        text(("Level: " + this.level).toString(), width*0.4, height*0.2)
+        
+        text(("Lives: " + this.lives).toString(), width*0.6, height*0.2)
         
         let timeOut = this.getTime()
         if (this.levelComplete === true) {
