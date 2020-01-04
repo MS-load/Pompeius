@@ -42,8 +42,6 @@ class GameSettings {
         //Quit button and Pause button
         this.quitButton.draw(width / 2)
         this.pauseButton.draw(width / 2)
-
-
         this.gamePage.drawContent()
     }
 
@@ -64,6 +62,7 @@ class GameSettings {
         if (this.isGameRunning && !gameOver) {
             this.drawGamePage()
         } else {
+            this.isGameRunning = false
             this.drawHomePage()
         }
     }
@@ -76,6 +75,7 @@ class GameSettings {
 
     public pressironie() {
         //This if is for the start button
+        console.log(this.isGameRunning)
         if (this.isThisPressed(this.startButton) && !this.isGameRunning) {
             this.isGameRunning = true
             this.gamePage = new GamePage()
