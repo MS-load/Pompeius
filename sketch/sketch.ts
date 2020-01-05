@@ -1,4 +1,4 @@
-let inputSettings: InputSettings
+let playerSettings: PlayerSettings
 
 let popp: p5.SoundFile
 let punk: p5.SoundFile
@@ -36,9 +36,10 @@ function setup() {
     fullscreen()
 
     gameSettings = new GameSettings()
-    inputSettings = new InputSettings()
+    playerSettings = new PlayerSettings()
+    musicChoice = new MusicChoice()
 
-    inputSettings.getUserName()
+    // playerSettings.getUserName()
 
     musicChoice = new MusicChoice()
     musicChoice.createSelector()
@@ -55,7 +56,7 @@ function draw() {
 
 function keyPressed(): void {
     gameSettings.eventHandler()
-    
+
 }
 
 /**
