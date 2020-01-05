@@ -1,13 +1,28 @@
-let sel: p5.Element
+// let buttonPunk: p5.Element
+// let buttonMetal: p5.Element
+// let buttonPop: p5.Element
+// let buttonBlues: p5.Element
 
+type ExtendedElement = p5.Element & {
+    option: (value: string) => void
+    changed: (callback: () => void) => void
+    value: () => string
+}
+let sel: ExtendedElement
 class MusicChoice {
 
+    constructor() {
+       sel = createSelect() as ExtendedElement
+    }
+
     public createSelector() {
-        
-        sel = createSelect()
-        sel.position(10, 10)
-        sel.size(150, 50)
+        sel.position((20), (40))
+        sel.size(100, 40)
         sel.style('font-size', '18px')
+        sel.style('background-color', 'black')
+        sel.style('color', 'red')
+        sel.style('border', 'none')
+
         sel.option('silence')
         sel.option('punk')
         sel.option('metal')
@@ -15,7 +30,8 @@ class MusicChoice {
         sel.option('blues')
         sel.changed(this.selectMusic)
     }
-    public selectMusic() {
+
+    private selectMusic() {
         if (sel.value() === 'punk') {
             punk.play()
             popp.stop()

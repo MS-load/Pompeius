@@ -3,13 +3,16 @@ class InputSettings {
     private myName: string = ''
     private prevKey?: string | null
 
+    constructor() {
+        this.getUserName()
+    }
+
     public update() {
         this.handleUserInput()
     }
 
     public getUserName() {
         let userName = localStorage.getItem('myName')
-        console.log(userName)
         if (userName !== null) {
 
             this.myName = userName
@@ -23,7 +26,7 @@ class InputSettings {
     }
 
     public draw() {
-<<<<<<< HEAD
+
         //Title
         textSize(70)
         fill('red')
@@ -31,14 +34,10 @@ class InputSettings {
         textFont('Quintessential')
         text("Pompeius", (windowWidth / 2), 70)
 
-=======
-        
->>>>>>> 0fc7bb319dab4c05c75a9c5f0eabdee31d56901f
+
         //Inputfield
         fill('white')
         rect((windowWidth - 200) / 2, 150, 200, 30)
-        fill('white')
-        rect((windowWidth - 200) / 2, 200, 200, 30)
 
 
         //Nameinput
@@ -62,7 +61,6 @@ class InputSettings {
     private addCharacterToText() {
         if (key === 'Backspace') {
             this.myName = this.myName.substring(0, this.myName.length - 1)
-
         } else if (key === 'Shift') {
             this.myName = this.myName
         } else if (key === 'Enter') {
@@ -70,9 +68,13 @@ class InputSettings {
         } else {
             this.myName += key;
         }
-
         localStorage.setItem('myName', this.myName)
+        this.getUserName()
 
+    }
+
+    public setMyName(newName: string) {
+        this.myName = newName
     }
 
 }
