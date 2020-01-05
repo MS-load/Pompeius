@@ -23,8 +23,7 @@ class GamePage extends Page {
         super()
         this.segmentedMedia = new SegmentedMedia()
         this.gameStatus = new GameStatus()
-        this.quitButton = new Button((windowWidth / 2 - 50), 600, 100, 50, 10, 'Quit', 'blue')
-
+        this.quitButton = new Button(-50, 600, 100, 50, 10, 'Quit', 'blue')
 
     }
 
@@ -43,7 +42,7 @@ class GamePage extends Page {
         textFont('arial')
         textSize(30)
         text(playerSettings.getMyName(), (windowWidth / 1.2), (windowHeight / 7))
-        this.quitButton.draw()
+        this.quitButton.draw(width / 2)
         this.segmentedMedia.draw()
     }
 

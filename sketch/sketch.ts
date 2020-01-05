@@ -50,7 +50,7 @@ function setup() {
     playerSettings = new PlayerSettings()
     musicChoice = new MusicChoice()
 
-    playerSettings.getUserName()
+    // playerSettings.getUserName()
 
     soundFormats('mp3')
     musicChoice.createSelector()

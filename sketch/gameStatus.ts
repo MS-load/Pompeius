@@ -13,6 +13,7 @@ class GameStatus {
 
     private gameOver: boolean
 
+
     constructor() {
         this.segmentScore = 0
         this.levelStartTime = new Date()
@@ -112,4 +113,12 @@ class GameStatus {
         }
         console.log(this.gameOver)
     }
+
+    // public setUserScore(newScore: string) {
+    //     this.newScore = localStorage.getItem('score') as string
+    // }
+
+    // public getUserScore() {
+    //     return localStorage.getItem('score')
+    // }
 }
