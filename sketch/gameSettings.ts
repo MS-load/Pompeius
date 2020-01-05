@@ -5,7 +5,6 @@ class GameSettings {
     private playerSettings: PlayerSettings
     private isGameRunning: boolean
     private gamePage: GamePage
-    // private gameStatus: GameStatus
 
     constructor() {
         this.playerSettings = new PlayerSettings()
@@ -13,7 +12,8 @@ class GameSettings {
         this.resetButton = new Button(+ 10, 600, 100, 50, 10, 'Reset game', 'red')
         this.gamePage = new GamePage
         this.isGameRunning = false
-        // this.gameStatus = new GameStatus
+
+        console.log("Settings")
     }
 
     private drawHomePage() {
@@ -35,7 +35,12 @@ class GameSettings {
         this.resetButton.draw(width / 2)
 
         fill('white')
-        text('Your score: ' + localStorage.getItem('score') as string, (windowWidth / 2), (windowHeight / 2))
+        // if (localStorage.getItem('score') !== null) {
+        //     text('Your score: ' + localStorage.getItem('score'), (windowWidth / 2), (windowHeight / 2))
+        // }
+
+
+        text('Your score: ' + this.gamePage.exposeScore(), (windowWidth / 2), (windowHeight / 2))
 
 
     }
@@ -66,14 +71,17 @@ class GameSettings {
         this.checkGameOver()
         //This if is for the start button
         if (this.isThisPressed(this.startButton) && !this.isGameRunning) {
+
             this.isGameRunning = true
             this.gamePage = new GamePage()
+
             // This is for the reset button
         } else if (this.isThisPressed(this.resetButton) && !this.isGameRunning) {
             localStorage.removeItem("myName")
             this.playerSettings.setMyName("")
             localStorage.removeItem('score')
             // this.gameStatus.setUserScore("")
+            // window.location.reload(true)
 
 
             // This is for the quit button

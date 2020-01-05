@@ -59,7 +59,7 @@ class GameStatus {
             const currentTime = new Date()
             this.lapsedSeconds = floor((currentTime.getTime() - this.levelStartTime.getTime()) / 1000)
 
-            const maxTime = 8
+            const maxTime = 20
             this.timerCount = maxTime - this.lapsedSeconds
 
         }
@@ -114,11 +114,8 @@ class GameStatus {
         console.log(this.gameOver)
     }
 
-    // public setUserScore(newScore: string) {
-    //     this.newScore = localStorage.getItem('score') as string
-    // }
+    public getSegmentScore() {
+        return this.segmentScore
+    }
 
-    // public getUserScore() {
-    //     return localStorage.getItem('score')
-    // }
 }

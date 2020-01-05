@@ -19,12 +19,14 @@ class GamePage extends Page {
     private gameStatus: GameStatus
     public quitButton: Button
 
+
     constructor() {
         super()
         this.segmentedMedia = new SegmentedMedia()
         this.gameStatus = new GameStatus()
         this.quitButton = new Button(-50, 600, 100, 50, 10, 'Quit', 'blue')
 
+        console.log("Gamepage")
     }
 
     /**
@@ -73,5 +75,9 @@ class GamePage extends Page {
                 }
             }
         }
+    }
+
+    public exposeScore() {
+        return this.gameStatus.getSegmentScore()
     }
 }

@@ -70,6 +70,8 @@ class PlayerSettings {
             this.myName = this.myName
         } else if (key === 'Enter') {
             this.myName = this.myName
+        } else if (key === 'Alt') {
+            this.myName = this.myName
         } else {
             this.myName += key;
         }
@@ -83,6 +85,7 @@ class PlayerSettings {
     }
 
     public getMyName() {
+        this.getUserName()
         return this.myName
     }
 
