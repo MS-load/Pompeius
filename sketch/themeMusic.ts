@@ -1,7 +1,3 @@
-// let buttonPunk: p5.Element
-// let buttonMetal: p5.Element
-// let buttonPop: p5.Element
-// let buttonBlues: p5.Element
 
 type ExtendedElement = p5.Element & {
     option: (value: string) => void
