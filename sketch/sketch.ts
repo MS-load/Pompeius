@@ -14,6 +14,9 @@ let musicChoice: MusicChoice
 let soundEffects: SoundEffects
 let isGameRunning: boolean
 let gameSettings: GameSettings
+let redAvatar: p5.Image
+let greenAvatar: p5.Image
+let blueAvatar: p5.Image
 
 
 /**
@@ -32,6 +35,10 @@ function preload() {
     tadaa = (window as any).loadSound('./assets/sounds/tadaa.mp3')
     yaaayy = (window as any).loadSound('./assets/sounds/yaaayy.mp3')
 
+    redAvatar = loadImage('./assets/images/redAvatar.png')
+    greenAvatar = loadImage('./assets/images/greenAvatar.png')
+    blueAvatar = loadImage('./assets/images/blueAvatar.png')
+
 }
 
 /**
@@ -49,14 +56,11 @@ function setup() {
     gameSettings = new GameSettings()
     inputSettings = new InputSettings()
     musicChoice = new MusicChoice()
-
     inputSettings.getUserName()
 
     soundFormats('mp3')
     musicChoice.createSelector()
     soundEffects = new SoundEffects()
-    
-
 
 }
 

@@ -5,6 +5,9 @@ class GameSettings {
     private inputSettings: InputSettings
     private isGameRunning: boolean
     private gamePage: GamePage
+    private i: number;
+    private j: number;
+
 
     constructor() {
         this.inputSettings = new InputSettings()
@@ -12,6 +15,29 @@ class GameSettings {
         this.resetButton = new Button(10, 600, 100, 50, 10, 'Reset game', 'red')
         this.gamePage = new GamePage()
         this.isGameRunning = false
+        this.i = 0
+        this.j = 0
+    }
+
+    private drawAvatars() {
+
+
+        
+        if(this.j === 2) {
+            image(redAvatar, (windowWidth / 2), 250, 200, 200, this.i * 200, 0, 200, 200)
+            image(blueAvatar, 250, 250, 200, 200, this.i * 200, 0, 200, 200)
+            image(greenAvatar, 0, 250, 200, 200, this.i * 200, 0, 200, 200)
+            this.i++;
+            if (this.i === 6) {
+                this.i = 0
+            }
+
+        }
+        if(this.j > 2) {
+            this.j = 0
+        }
+        this.j++
+
     }
 
     private drawHomePage() {
@@ -23,6 +49,7 @@ class GameSettings {
         strokeWeight(0)
         textFont('Quintessential')
         text("Pompeius", (windowWidth / 2), 70)
+
 
         //Inputfield
         this.inputSettings.draw()
@@ -40,6 +67,8 @@ class GameSettings {
             this.gamePage.drawContent()
         } else {
             this.drawHomePage()
+            this.drawAvatars()
+
         }
     }
 
