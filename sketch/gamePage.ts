@@ -16,11 +16,17 @@ class GamePage {
         if (timeOut === true) {
             this.segmentedMedia.updateParameters(timeOut)
         }
+        fill('white')
+        textFont('arial')
+        textSize(20)
+        text('player: ' + playerSettings.getMyName(), (windowWidth / 1.2), (windowHeight / 7))
+
         this.segmentedMedia.draw()
     }
 
     public isGameOver(): boolean {
         return this.gameStatus.checkGameStatus()
+
     }
 
     /**
