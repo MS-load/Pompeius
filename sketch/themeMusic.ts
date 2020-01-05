@@ -29,7 +29,7 @@ class MusicChoice {
 
     private selectMusic() {
         if (sel.value() === 'punk') {
-            punk.play()
+            punk.loop()
             popp.stop()
             metal.stop()
             blues.stop()
@@ -39,12 +39,12 @@ class MusicChoice {
             metal.stop()
             blues.stop()
         } else if (sel.value() === 'metal') {
-            metal.play()
+            metal.loop()
             punk.stop()
             blues.stop()
             popp.stop()
         } else if (sel.value() === 'blues') {
-            blues.play()
+            blues.loop()
             popp.stop()
             punk.stop()
             metal.stop()
