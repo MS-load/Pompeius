@@ -34,8 +34,8 @@ class SegmentedMedia {
      * Sets the basic offsets used for the game
      */
     public getOffset() {
-        let topOffset = windowHeight / 4
-        let leftOffset = (windowWidth / 2) - (this.frameWidth / 2)
+        let topOffset = height / 4
+        let leftOffset = (width / 2) - (this.frameWidth / 2)
         return [topOffset, leftOffset]
     }
 
@@ -71,7 +71,6 @@ class SegmentedMedia {
         this.xPos += this.noOfSegments * 1.5
         if (this.xPos >= width) {
             this.xPos = 0
-            soundEffects.swooshSound()
         }
 
         for (let i = 0; i < this.noOfSegments; i++) {
@@ -93,7 +92,6 @@ class SegmentedMedia {
                 strokeWeight(10)
                 rect(this.segmentPosition[i], offsets[0] + (this.pieceHeight * i),
                     this.frameWidth, this.pieceHeight)
-                
             }
 
             //Renders the image 
@@ -122,7 +120,6 @@ class SegmentedMedia {
      * @param timeOut checks timer
      * @returns if level completed is true / false
      */
-
     public updateSegment(): Boolean {
         let levelComplete = false
         this.selectedSegment++

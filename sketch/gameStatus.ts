@@ -1,5 +1,6 @@
 class GameStatus {
     private segmentScore: number
+    private score: number
 
     private levelStartTime: Date
     private lapsedSeconds: number
@@ -15,6 +16,7 @@ class GameStatus {
 
     constructor() {
         this.segmentScore = 0
+        this.score = 0
         this.levelStartTime = new Date()
         this.lapsedSeconds = 0
         this.level = 1
@@ -22,10 +24,11 @@ class GameStatus {
         this.timerCount = 0
         this.levelComplete = false
         this.gameOver = false
+
     }
 
-    public checkGameStatus():boolean{
-       return this.gameOver
+    public checkGameStatus(): boolean {
+        return this.gameOver
     }
     /**
      * sets the gameScore
@@ -33,18 +36,22 @@ class GameStatus {
      * @param selectedSegmentPosition gets the position of the selected image
      */
     public setGameScore(offsets: number[], selectedSegmentPosition: number) {
-        let score = selectedSegmentPosition
-        if (score > offsets[1] - 5 && score < offsets[1] + 5) {
+        let stopDistance = abs(selectedSegmentPosition - offsets[1])
+
+        if (stopDistance < 5) {
             this.segmentScore += 1000
+            console.log(1000)
             soundEffects.tadaaSound()
         }
-        else if ((score > offsets[1] + 5 && score < offsets[1] + 30) || (score > offsets[1] - 30 && score < offsets[1] - 5)) {
+        else if (stopDistance > 5 && stopDistance < 30) {
             this.segmentScore += 500
+            console.log(500)
             soundEffects.yaaayySound()
         }
         else {
             this.segmentScore += 0
             soundEffects.booooSound()
+            console.log(0)
         }
     }
 
@@ -58,9 +65,8 @@ class GameStatus {
             const currentTime = new Date()
             this.lapsedSeconds = floor((currentTime.getTime() - this.levelStartTime.getTime()) / 1000)
 
-            const maxTime = 8
+            const maxTime = 15
             this.timerCount = maxTime - this.lapsedSeconds
-
         }
 
         if (this.timerCount <= 0) {
@@ -75,15 +81,19 @@ class GameStatus {
      * Draws the status on the page 
      */
     public drawStatus(): boolean {
-        textSize(32)
-        text((this.segmentScore).toString(), 100, 100)
-        text((this.timerCount + " sec").toString(), 350, 100)
-        text(("Level:" + this.level).toString(), 500, 100)
-        text(("Lives:" + this.lives).toString(), 800, 100)
-        fill('red')
+        textSize(20)
+        fill('white')
+
+        text(("Score:" + this.segmentScore).toString(), width * 0.4, height * 0.2)
+        text(("Level: " + this.level).toString(), width * 0.5, height * 0.2)
+        text(("Lives: " + this.lives).toString(), width * 0.6, height * 0.2)
+
         let timeOut = this.getTime()
         if (this.levelComplete === true) {
-            text(("Press Space to continue"), windowWidth * 0.5, windowHeight * 0.90)
+            text(("Press Space to continue"), windowWidth * 0.5, windowHeight * 0.85)
+        }
+        else {
+            text(("Time Remaining: " + this.timerCount + " sec").toString(), windowWidth * 0.5, windowHeight * 0.85)
         }
         return timeOut
     }
@@ -96,19 +106,25 @@ class GameStatus {
         this.levelStartTime = new Date()
         this.levelComplete = false
         if (lifeLost === true) {
-            if (this.lives > 0) {
+            if (this.lives > 1) {
                 this.lives--
-                let score = localStorage.getItem("score") as string
-                this.segmentScore = parseInt(score)
+                this.segmentScore = this.score
             }
             else {
                 this.gameOver = true
+                localStorage.setItem("finalScore", (this.score).toString())
+
             }
         }
         else {
-            localStorage.setItem("score", (this.segmentScore).toString())
-            if (this.level <= 20) { this.level++ }
-            else{ this.gameOver = true}
+            this.score = this.segmentScore
+            if (this.level < 15) {
+                this.level++
+            }
+            else {
+                this.gameOver = true
+                localStorage.setItem("finalScore", (this.score).toString())
+            }
         }
         console.log(this.gameOver)
     }
