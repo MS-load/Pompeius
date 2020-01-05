@@ -1,4 +1,4 @@
-let space: any
+// let space: any
 
 class SoundEffects {
 

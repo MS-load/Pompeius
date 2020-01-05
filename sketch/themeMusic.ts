@@ -1,8 +1,3 @@
-// let buttonPunk: p5.Element
-// let buttonMetal: p5.Element
-// let buttonPop: p5.Element
-// let buttonBlues: p5.Element
-
 type ExtendedElement = p5.Element & {
     option: (value: string) => void
     changed: (callback: () => void) => void
@@ -19,7 +14,6 @@ class MusicChoice {
         this.sel.position(10, 10)
         this.sel.size(150, 50)
         this.sel.style('font-size', '18px')
-
         this.sel.option('silence')
         this.sel.option('punk')
         this.sel.option('metal')
