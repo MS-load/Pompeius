@@ -6,13 +6,13 @@ class GameSettings {
     private quitButton: Button
     private pauseButton: Button
     private resumeButton: Button
-    private inputSettings: InputSettings
+    private playerSettings: PlayerSettings
     private isGameRunning: boolean
     private isGamePaused: boolean
     private gamePage: GamePage
 
     constructor() {
-        this.inputSettings = new InputSettings()
+        this.playerSettings = new PlayerSettings()
 
         this.startButton = new Button(-100, (height * 0.85), 100, 50, 10, 'Start game', 'green')
         this.resetButton = new Button(10, (height * 0.85), 100, 50, 10, 'Reset game', 'red')
@@ -27,12 +27,22 @@ class GameSettings {
 
     private drawHomePage() {
         //Inputfield
-        this.inputSettings.draw()
-        this.inputSettings.update()
+        this.playerSettings.draw()
+        this.playerSettings.update()
 
         //Start button and Reset button
         this.startButton.draw(width / 2)
         this.resetButton.draw(width / 2)
+
+        fill('white')
+        // if (localStorage.getItem('score') !== null) {
+        //     text('Your score: ' + localStorage.getItem('score'), (windowWidth / 2), (windowHeight / 2))
+        // }
+
+
+        text('Your score: ' + this.gamePage.exposeScore(), (windowWidth / 2), (windowHeight / 2))
+
+
         if (this.isGamePaused) {
             this.resumeButton.draw(width / 2)
         }
@@ -73,16 +83,28 @@ class GameSettings {
         }
     }
 
+    private checkGameOver() {
+        if (this.gamePage.isGameOver()) {
+            this.isGameRunning = false
+        }
+    }
+
     public pressironie() {
+        this.checkGameOver()
         //This if is for the start button
         console.log(this.isGameRunning)
         if (this.isThisPressed(this.startButton) && !this.isGameRunning) {
+
             this.isGameRunning = true
             this.gamePage = new GamePage()
+
             // This is for the reset button
         } else if (this.isThisPressed(this.resetButton) && !this.isGameRunning) {
             localStorage.removeItem("myName")
-            this.inputSettings.setMyName("")
+            this.playerSettings.setMyName("")
+            localStorage.removeItem('score')
+            // this.gameStatus.setUserScore("")
+            // window.location.reload(true)
 
             // This is for the quit button
         } else if (this.isThisPressed(this.quitButton) && this.isGameRunning) {
