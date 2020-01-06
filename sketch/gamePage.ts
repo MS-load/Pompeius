@@ -38,6 +38,11 @@ class GamePage {
         return  this.gameStatus.checkGameStatus()
     }
 
+    public resetParam(){
+        this.segmentedMedia.resetParameters()
+        this.gameStatus = new GameStatus()
+    }
+
     /**
      * Handles user interaction 
      */

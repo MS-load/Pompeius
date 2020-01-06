@@ -7,13 +7,12 @@ let blues: p5.SoundFile
 
 let musicChoice: MusicChoice
 let soundEffects: SoundEffects
-let isGameRunning: boolean
+let isImageLoaded: boolean
+
 let gameSettings: GameSettings
 let redAvatar: p5.Image
 let greenAvatar: p5.Image
 let blueAvatar: p5.Image
-
-let gameSettings: GameSettings
 
 /**
  * Built in preload function in P5
@@ -25,16 +24,13 @@ function preload() {
     punk = (window as any).loadSound('./assets/music/jonny 2.1.mp3')
     metal = (window as any).loadSound('./assets/music/ELFVES AND DWARFES solo.mp3')
     blues = (window as any).loadSound('./assets/music/blues.mp3')
-    spaceClick = (window as any).loadSound('./assets/sounds/Stapler-SoundBible.com-374581609.mp3')
-    swoosh = (window as any).loadSound('./assets/sounds/Swoosh 3-SoundBible.com-1573211927.mp3')
-    boooo = (window as any).loadSound('./assets/sounds/boooo.mp3')
-    tadaa = (window as any).loadSound('./assets/sounds/tadaa.mp3')
-    yaaayy = (window as any).loadSound('./assets/sounds/yaaayy.mp3')
 
     redAvatar = loadImage('./assets/images/redAvatar.png')
     greenAvatar = loadImage('./assets/images/greenAvatar.png')
     blueAvatar = loadImage('./assets/images/blueAvatar.png')
 
+    soundFormats('mp3')
+    soundEffects = new SoundEffects
 }
 
 /**
@@ -51,12 +47,7 @@ function setup() {
     gameSettings = new GameSettings()
     playerSettings = new PlayerSettings()
     musicChoice = new MusicChoice()
-    inputSettings.getUserName()
-
-    musicChoice = new MusicChoice()
     musicChoice.createSelector()
-    soundEffects = new SoundEffects()
-
 }
 
 /**
@@ -66,8 +57,6 @@ function setup() {
  */
 function draw() {
     gameSettings.draw()
-   
-
 }
 
 function keyPressed(): void {
