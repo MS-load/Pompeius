@@ -13,24 +13,24 @@ class SoundEffects {
                 this.yaaayy = (window as any).loadSound('./assets/sounds/yaaayy.mp3')
         }
 
-        spaceBarSound() {
+        public spaceBarSound() {
                 this.spaceClick.play()
         }
 
         //check if required (not working correctly)
-        swooshSound() {
+        public swooshSound() {
                 this.swoosh.play()
         }
 
-        booooSound() {
+        public booooSound() {
                 this.boooo.play()
         }
 
-        tadaaSound() {
+        public tadaaSound() {
                 this.tadaa.play()
         }
 
-        yaaayySound() {
+        public yaaayySound() {
                 this.yaaayy.play()
         }
 }

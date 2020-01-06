@@ -6,6 +6,8 @@ class GamePage {
     constructor() {
         this.segmentedMedia = new SegmentedMedia()
         this.gameStatus = new GameStatus()
+        this.menuButton = new Button(-50, (windowHeight * 0.90), 100, 50, 10, 'Quit', 'blue')
+        // this.red = this.redAvatarWasPressed()
     }
 
     /**
@@ -22,11 +24,23 @@ class GamePage {
         text('player: ' + playerSettings.getMyName(), (windowWidth / 1.2), (windowHeight / 7))
 
         this.segmentedMedia.draw()
+        
+        // if(this.red === true) {
+        //     image(redAvatar, (windowWidth / 1.2), 50, 150, 150, 0, 0, 200, 200)
+        // } else if (this.blue === true) {
+        //     image(blueAvatar, (windowWidth / 1.2), 50, 150, 150, 0, 0, 200, 200)
+        // } else if (this.green === true) {
+        //     image(greenAvatar, (windowWidth / 1.2), 50, 150, 150, 0, 0, 200, 200)
+        // }
+
+    }
+    public isGameOver():boolean {
+        return  this.gameStatus.checkGameStatus()
     }
 
-    public isGameOver(): boolean {
-        return this.gameStatus.checkGameStatus()
-
+    public resetParam(){
+        this.segmentedMedia.resetParameters()
+        this.gameStatus = new GameStatus()
     }
 
     /**
