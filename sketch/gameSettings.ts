@@ -10,6 +10,8 @@ class GameSettings {
     private isGameRunning: boolean
     private isGamePaused: boolean
     private gamePage: GamePage
+    private scoreTable: ScoreTable
+    private userScore: number
 
     constructor() {
         this.playerSettings = new PlayerSettings()
@@ -23,6 +25,9 @@ class GameSettings {
         this.gamePage = new GamePage()
         this.isGameRunning = false
         this.isGamePaused = false
+
+        this.scoreTable = new ScoreTable()
+        this.userScore = 0
     }
 
     private drawHomePage() {
@@ -35,17 +40,15 @@ class GameSettings {
         this.resetButton.draw(width / 2)
 
         fill('white')
-        // if (localStorage.getItem('score') !== null) {
-        //     text('Your score: ' + localStorage.getItem('score'), (windowWidth / 2), (windowHeight / 2))
-        // }
-
-
-        text('Your score: ' + this.gamePage.exposeScore(), (windowWidth / 2), (windowHeight / 2))
-
+        if (this.userScore > 0) {
+            text('Your score: ' + this.userScore, (windowWidth / 2), (windowHeight / 2))
+        }
 
         if (this.isGamePaused) {
             this.resumeButton.draw(width / 2)
         }
+
+        this.scoreTable.draw()
     }
 
     private drawGamePage() {
@@ -102,7 +105,8 @@ class GameSettings {
         } else if (this.isThisPressed(this.resetButton) && !this.isGameRunning) {
             localStorage.removeItem("myName")
             this.playerSettings.setMyName("")
-            localStorage.removeItem('score')
+            this.userScore = 0
+
             // this.gameStatus.setUserScore("")
             // window.location.reload(true)
 
@@ -110,6 +114,10 @@ class GameSettings {
         } else if (this.isThisPressed(this.quitButton) && this.isGameRunning) {
             this.isGameRunning = false
             this.isGamePaused = false
+            this.scoreTable.addPlayer(playerSettings.getMyName(), this.gamePage.exposeScore())
+            this.scoreTable.saveScoreTable()
+            this.userScore = this.gamePage.exposeScore()
+            this.scoreTable.playerTable()
         }
         // This is for the pause button
         else if (this.isThisPressed(this.pauseButton) && this.isGameRunning) {
