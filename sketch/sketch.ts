@@ -1,5 +1,4 @@
 let inputSettings: InputSettings
-let gameStats: GameStats
 
 let popp: p5.SoundFile
 let punk: p5.SoundFile
