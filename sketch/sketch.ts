@@ -53,8 +53,6 @@ function setup() {
  */
 function draw() {
     gameSettings.draw()
-   
-
 }
 
 function keyPressed(): void {
