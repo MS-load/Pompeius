@@ -1,4 +1,4 @@
-class GamePage{
+class GamePage {
 
     private segmentedMedia: SegmentedMedia
     private gameStatus: GameStatus
@@ -12,16 +12,21 @@ class GamePage{
      * Draws the content seen on the Page
      */
     public drawContent() {
-
         let timeOut = this.gameStatus.drawStatus()
         if (timeOut === true) {
             this.segmentedMedia.updateParameters(timeOut)
         }
+        fill('white')
+        textFont('arial')
+        textSize(20)
+        text('player: ' + playerSettings.getMyName(), (windowWidth / 1.2), (windowHeight / 7))
+
         this.segmentedMedia.draw()
     }
 
-    public isGameOver():boolean {
-        return  this.gameStatus.checkGameStatus()
+    public isGameOver(): boolean {
+        return this.gameStatus.checkGameStatus()
+
     }
 
     public resetParam(){
@@ -53,5 +58,9 @@ class GamePage{
                 }
             }
         }
+    }
+
+    public exposeScore() {
+        return this.gameStatus.getSegmentScore()
     }
 }

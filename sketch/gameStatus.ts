@@ -14,13 +14,14 @@ class GameStatus {
 
     private gameOver: boolean
 
+
     constructor() {
         this.segmentScore = 0
         this.score = 0
         this.levelStartTime = new Date()
         this.lapsedSeconds = 0
         this.level = 1
-        this.lives = 3
+        this.lives = 1 //TODO: byt till 3
         this.timerCount = 0
         this.levelComplete = false
         this.gameOver = false
@@ -126,4 +127,9 @@ class GameStatus {
         }
         console.log(this.gameOver)
     }
+
+    public getSegmentScore() {
+        return this.segmentScore
+    }
+
 }
