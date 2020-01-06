@@ -48,6 +48,8 @@ function setup() {
     playerSettings = new PlayerSettings()
     musicChoice = new MusicChoice()
     musicChoice.createSelector()
+    soundEffects = new SoundEffects()
+
 }
 
 /**
