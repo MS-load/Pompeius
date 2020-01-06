@@ -5,8 +5,9 @@ class GameSettings {
     private inputSettings: InputSettings
     private isGameRunning: boolean
     private gamePage: GamePage
-    private i: number;
-    private j: number;
+    private i: number
+    private j: number
+    private wait: number
 
 
     constructor() {
@@ -17,23 +18,29 @@ class GameSettings {
         this.isGameRunning = false
         this.i = 0
         this.j = 0
+        this.wait = 10
     }
 
     private drawAvatars() {
 
-
+        // console.log("i " + this.i + " j " + this.j)
         
-        if(this.j === 2) {
-            image(redAvatar, (windowWidth / 2), 250, 200, 200, this.i * 200, 0, 200, 200)
-            image(blueAvatar, 250, 250, 200, 200, this.i * 200, 0, 200, 200)
-            image(greenAvatar, 0, 250, 200, 200, this.i * 200, 0, 200, 200)
-            this.i++;
-            if (this.i === 6) {
-                this.i = 0
+        if(this.j <= this.wait) {
+            image(redAvatar, (windowWidth / 2 - 225), 250, 150, 150, this.i * 200, 0, 200, 200)
+            image(blueAvatar, (windowWidth / 2 - 75), 250, 150, 150, this.i * 200, 0, 200, 200)
+            image(greenAvatar, (windowWidth / 2 + 100), 250, 150, 150, this.i * 200, 0, 200, 200)
+
+            if (this.j == this.wait) {
+                this.i++;
+
+                if (this.i === 6) {
+                    this.i = 0
+                }              
             }
 
         }
-        if(this.j > 2) {
+
+        if(this.j == this.wait) {
             this.j = 0
         }
         this.j++
