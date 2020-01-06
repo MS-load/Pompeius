@@ -31,13 +31,11 @@ class PlayerSettings {
         }
     }
 
-
     public draw() {
-
         //Inputfield
         fill('white')
+        text('Name:', ((windowWidth - 200) / 2) - 40, 165)
         rect((windowWidth - 200) / 2, 150, 200, 30)
-
 
         //Nameinput
         textSize(20);
@@ -45,7 +43,6 @@ class PlayerSettings {
         textAlign(CENTER)
         textFont('Arial')
         text(this.myName, (windowWidth - 200) / 2, 155, 200, 30);
-
     }
 
     /**

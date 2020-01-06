@@ -2,23 +2,24 @@
 
 class SoundEffects {
 
-    spaceBarSound() {
-            spaceClick.play()
-    }
+        public spaceBarSound() {
+                this.spaceClick.play()
+        }
 
-    swooshSound() { 
-            swoosh.play()    
-    }
+        //check if required (not working correctly)
+        public swooshSound() {
+                this.swoosh.play()
+        }
 
-    booooSound() {
-            boooo.play()
-    }
+        public booooSound() {
+                this.boooo.play()
+        }
 
-    tadaaSound() {
-            tadaa.play()    
-    }
+        public tadaaSound() {
+                this.tadaa.play()
+        }
 
-    yaaayySound() {
-            yaaayy.play()
-    }
+        public yaaayySound() {
+                this.yaaayy.play()
+        }
 }
