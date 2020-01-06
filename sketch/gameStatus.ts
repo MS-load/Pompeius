@@ -76,7 +76,7 @@ class GameStatus {
         return timeOut
     }
 
-    public heart(x: number, y: number, size: number) {
+    private heart(x: number, y: number, size: number) {
         beginShape();
         vertex(x, y);
         bezierVertex(x - size / 2, y - size / 2, x - size, y + size / 3, x, y + size);
