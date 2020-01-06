@@ -21,7 +21,7 @@ class GameStatus {
         this.levelStartTime = new Date()
         this.lapsedSeconds = 0
         this.level = 1
-        this.lives = 1 //TODO: byt till 3
+        this.lives = 3
         this.timerCount = 0
         this.levelComplete = false
         this.gameOver = false
@@ -94,7 +94,7 @@ class GameStatus {
 
         text(("Score:" + this.segmentScore).toString(), width * 0.4, height * 0.2)
         text(("Level: " + this.level).toString(), width * 0.5, height * 0.2)
-        text(("Lives: ").toString(), width * 0.6, height * 0.2)
+        text(("Lives: "), width * 0.6, height * 0.2)
 
         switch (this.lives) {
             case 3:                

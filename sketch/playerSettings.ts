@@ -31,7 +31,6 @@ class PlayerSettings {
         }
     }
 
-
     public draw() {
         //Inputfield
         fill('white')

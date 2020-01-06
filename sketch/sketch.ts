@@ -35,15 +35,11 @@ function setup() {
     createCanvas(windowWidth, windowHeight)
     frameRate(60)
     fullscreen()
-
+    musicChoice = new MusicChoice()
     gameSettings = new GameSettings()
     playerSettings = new PlayerSettings()
-    musicChoice = new MusicChoice()
-
+    
     // playerSettings.getUserName()
-
-    musicChoice = new MusicChoice()
-    musicChoice.createSelector()
 }
 
 /**
