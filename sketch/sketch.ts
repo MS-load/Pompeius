@@ -39,6 +39,7 @@ function setup() {
     gameSettings = new GameSettings()
     playerSettings = new PlayerSettings()
     musicChoice = new MusicChoice()
+    musicChoice.createSelector()
 }
 
 /**
