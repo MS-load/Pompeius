@@ -1,4 +1,4 @@
-class InputSettings {
+class PlayerSettings {
 
     private myName: string = ''
     private prevKey?: string | null
@@ -7,10 +7,16 @@ class InputSettings {
         this.getUserName()
     }
 
+    /**
+     * Updates what the player writes in the inputfield
+     */
     public update() {
         this.handleUserInput()
     }
 
+    /**
+     * Get username from localstorage
+     */
     public getUserName() {
         let userName = localStorage.getItem('myName')
         if (userName !== null) {
@@ -24,6 +30,7 @@ class InputSettings {
 
         }
     }
+
 
     public draw() {
 
@@ -49,6 +56,9 @@ class InputSettings {
 
     }
 
+    /**
+     * 
+     */
     private handleUserInput() {
         if (this.prevKey === key && !keyIsDown(keyCode)) {
             this.addCharacterToText()
@@ -58,12 +68,17 @@ class InputSettings {
         }
     }
 
+    /**
+     * 
+     */
     private addCharacterToText() {
         if (key === 'Backspace') {
             this.myName = this.myName.substring(0, this.myName.length - 1)
         } else if (key === 'Shift') {
             this.myName = this.myName
         } else if (key === 'Enter') {
+            this.myName = this.myName
+        } else if (key === 'Alt') {
             this.myName = this.myName
         } else {
             this.myName += key;
@@ -75,6 +90,11 @@ class InputSettings {
 
     public setMyName(newName: string) {
         this.myName = newName
+    }
+
+    public getMyName() {
+        this.getUserName()
+        return this.myName
     }
 
 }
