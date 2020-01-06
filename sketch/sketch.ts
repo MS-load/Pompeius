@@ -7,6 +7,7 @@ let blues: p5.SoundFile
 
 let musicChoice: MusicChoice
 let soundEffects: SoundEffects
+let isImageLoaded: boolean
 
 let gameSettings: GameSettings
 

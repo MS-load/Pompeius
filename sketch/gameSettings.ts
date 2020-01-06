@@ -78,7 +78,7 @@ class GameSettings {
         console.log(this.isGameRunning)
         if (this.isThisPressed(this.startButton) && !this.isGameRunning) {
             this.isGameRunning = true
-            this.gamePage = new GamePage()
+            this.gamePage.resetParam()
             // This is for the reset button
         } else if (this.isThisPressed(this.resetButton) && !this.isGameRunning) {
             localStorage.removeItem("myName")

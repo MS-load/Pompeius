@@ -76,7 +76,6 @@ class GameStatus {
         return timeOut
     }
 
-
     /**
      * Draws the status on the page 
      */
@@ -113,7 +112,6 @@ class GameStatus {
             else {
                 this.gameOver = true
                 localStorage.setItem("finalScore", (this.score).toString())
-
             }
         }
         else {
