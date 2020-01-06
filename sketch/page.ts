@@ -24,6 +24,7 @@ class GamePage extends Page {
         this.segmentedMedia = new SegmentedMedia()
         this.gameStatus = new GameStatus()
         this.menuButton = new Button(-50, (windowHeight * 0.90), 100, 50, 10, 'Quit', 'blue')
+        // this.red = this.redAvatarWasPressed()
     }
 
     /**
@@ -43,8 +44,16 @@ class GamePage extends Page {
         this.menuButton.draw(width / 2)
 
         this.segmentedMedia.draw()
-    }
+        
+        // if(this.red === true) {
+        //     image(redAvatar, (windowWidth / 1.2), 50, 150, 150, 0, 0, 200, 200)
+        // } else if (this.blue === true) {
+        //     image(blueAvatar, (windowWidth / 1.2), 50, 150, 150, 0, 0, 200, 200)
+        // } else if (this.green === true) {
+        //     image(greenAvatar, (windowWidth / 1.2), 50, 150, 150, 0, 0, 200, 200)
+        // }
 
+    }
     public isGameOver():boolean {
         return  this.gameStatus.checkGameStatus()
     }

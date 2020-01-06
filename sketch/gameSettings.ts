@@ -8,7 +8,12 @@ class GameSettings {
     private i: number
     private j: number
     private wait: number
-
+    private redAvatarButton: Button
+    private blueAvatarButton: Button
+    private greenAvatarButton: Button
+    private red: boolean
+    private blue: boolean
+    private green: boolean
 
     constructor() {
         this.inputSettings = new InputSettings()
@@ -19,6 +24,12 @@ class GameSettings {
         this.i = 0
         this.j = 0
         this.wait = 10
+        this.redAvatarButton = new Button((windowWidth / 2 - 225), 250, 150, 150, 0, "", "")
+        this.blueAvatarButton = new Button((windowWidth / 2 - 75), 250, 150, 150, 0, "", "")
+        this.greenAvatarButton = new Button((windowWidth / 2 + 100), 250, 150, 150, 0, "", "")
+        this.red = false
+        this.blue = false
+        this.green = false
     }
 
     private drawAvatars() {
@@ -98,6 +109,16 @@ class GameSettings {
             // This is for the menu button
         } else if (this.isThisPressed(this.gamePage.menuButton) && this.isGameRunning) {
             this.isGameRunning = false
+            
+        } else if (this.isThisPressed(this.redAvatarButton)) {
+            this.red = true
+            console.log("red")
+        } else if (this.isThisPressed(this.blueAvatarButton)) {
+            this.blue = true
+            console.log("blue")
+        } else if (this.isThisPressed(this.greenAvatarButton)) {
+            this.green = true
+            console.log("green")
         }
 
     }
