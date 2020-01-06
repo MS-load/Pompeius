@@ -10,6 +10,9 @@ let soundEffects: SoundEffects
 let isImageLoaded: boolean
 
 let gameSettings: GameSettings
+let redAvatar: p5.Image
+let greenAvatar: p5.Image
+let blueAvatar: p5.Image
 
 /**
  * Built in preload function in P5
@@ -21,6 +24,11 @@ function preload() {
     punk = (window as any).loadSound('./assets/music/jonny 2.1.mp3')
     metal = (window as any).loadSound('./assets/music/ELFVES AND DWARFES solo.mp3')
     blues = (window as any).loadSound('./assets/music/blues.mp3')
+
+    redAvatar = loadImage('./assets/images/redAvatar.png')
+    greenAvatar = loadImage('./assets/images/greenAvatar.png')
+    blueAvatar = loadImage('./assets/images/blueAvatar.png')
+
     soundFormats('mp3')
     soundEffects = new SoundEffects
 }
