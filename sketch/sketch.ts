@@ -1,15 +1,10 @@
-let inputSettings: InputSettings
-
+let playerSettings: PlayerSettings
 
 let popp: p5.SoundFile
 let punk: p5.SoundFile
 let metal: p5.SoundFile
 let blues: p5.SoundFile
-let swoosh: p5.SoundFile
-let spaceClick: p5.SoundFile
-let boooo: p5.SoundFile
-let tadaa: p5.SoundFile
-let yaaayy: p5.SoundFile
+
 let musicChoice: MusicChoice
 let soundEffects: SoundEffects
 let isGameRunning: boolean
@@ -18,6 +13,7 @@ let redAvatar: p5.Image
 let greenAvatar: p5.Image
 let blueAvatar: p5.Image
 
+let gameSettings: GameSettings
 
 /**
  * Built in preload function in P5
@@ -50,15 +46,14 @@ function preload() {
 function setup() {
     createCanvas(windowWidth, windowHeight)
     frameRate(60)
-    //noCursor()
     fullscreen()
 
     gameSettings = new GameSettings()
-    inputSettings = new InputSettings()
+    playerSettings = new PlayerSettings()
     musicChoice = new MusicChoice()
     inputSettings.getUserName()
 
-    soundFormats('mp3')
+    musicChoice = new MusicChoice()
     musicChoice.createSelector()
     soundEffects = new SoundEffects()
 
@@ -71,11 +66,12 @@ function setup() {
  */
 function draw() {
     gameSettings.draw()
+   
+
 }
 
 function keyPressed(): void {
-        gameSettings.eventHandler()
-    soundEffects.spaceBarSound()
+    gameSettings.eventHandler()
 }
 
 /**
