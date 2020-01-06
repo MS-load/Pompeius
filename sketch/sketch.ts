@@ -35,11 +35,10 @@ function setup() {
     createCanvas(windowWidth, windowHeight)
     frameRate(60)
     fullscreen()
-    musicChoice = new MusicChoice()
+
     gameSettings = new GameSettings()
     playerSettings = new PlayerSettings()
-    
-    // playerSettings.getUserName()
+    musicChoice = new MusicChoice()
 }
 
 /**
@@ -49,6 +48,8 @@ function setup() {
  */
 function draw() {
     gameSettings.draw()
+   
+
 }
 
 function keyPressed(): void {
