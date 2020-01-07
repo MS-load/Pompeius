@@ -10,6 +10,7 @@ let soundEffects: SoundEffects
 let isImageLoaded: boolean
 
 let gameSettings: GameSettings
+let avatar: Avatar
 let redAvatar: p5.Image
 let greenAvatar: p5.Image
 let blueAvatar: p5.Image

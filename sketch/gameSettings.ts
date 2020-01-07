@@ -12,20 +12,7 @@ class GameSettings {
     private gamePage: GamePage
     private scoreTable: ScoreTable
     private userScore: number
-
-    private i: number
-    private j: number
-    private wait: number
-    private redAvatarButton: Button
-    private blueAvatarButton: Button
-    private greenAvatarButton: Button
-    private red: boolean
-    private blue: boolean
-    private green: boolean
-
-
-
-
+    private avatar: Avatar
 
     constructor() {
         this.playerSettings = new PlayerSettings()
@@ -40,45 +27,9 @@ class GameSettings {
         this.isGameRunning = false
         this.isGamePaused = false
 
+        this.avatar = new Avatar()
         this.scoreTable = new ScoreTable()
         this.userScore = 0
-
-        this.i = 0
-        this.j = 0
-        this.wait = 10
-        this.redAvatarButton = new Button((windowWidth / 2 - 225), 250, 150, 150, 0, "", "")
-        this.blueAvatarButton = new Button((windowWidth / 2 - 75), 250, 150, 150, 0, "", "")
-        this.greenAvatarButton = new Button((windowWidth / 2 + 100), 250, 150, 150, 0, "", "")
-        this.red = false
-        this.blue = false
-        this.green = false
-
-    }
-
-    private drawAvatars() {
-
-        // console.log("i " + this.i + " j " + this.j)
-        
-        if(this.j <= this.wait) {
-            image(redAvatar, (windowWidth / 2 - 225), 250, 150, 150, this.i * 200, 0, 200, 200)
-            image(blueAvatar, (windowWidth / 2 - 75), 250, 150, 150, this.i * 200, 0, 200, 200)
-            image(greenAvatar, (windowWidth / 2 + 100), 250, 150, 150, this.i * 200, 0, 200, 200)
-
-            if (this.j == this.wait) {
-                this.i++;
-
-                if (this.i === 6) {
-                    this.i = 0
-                }              
-            }
-
-        }
-
-        if(this.j == this.wait) {
-            this.j = 0
-        }
-        this.j++
-
     }
 
     private drawHomePage() {
@@ -89,8 +40,6 @@ class GameSettings {
         //Start button and Reset button
         this.startButton.draw(width / 2)
         this.resetButton.draw(width / 2)
-
-        this.drawAvatars()
 
         fill('white')
         if (this.userScore > 0) {
@@ -130,6 +79,7 @@ class GameSettings {
         } else {
             this.isGameRunning = false
             this.drawHomePage()
+            this.avatar.drawAvatars()
         }
     }
 
@@ -148,22 +98,21 @@ class GameSettings {
     public pressironie() {
         this.checkGameOver()
         //This if is for the start button
-        console.log(this.isGameRunning)
         if (this.isThisPressed(this.startButton) && !this.isGameRunning) {
-
             this.isGameRunning = true
             this.gamePage.resetParam()
-            // This is for the reset button
-        } else if (this.isThisPressed(this.resetButton) && !this.isGameRunning) {
+        }
+         // This is for the reset button
+        else if (this.isThisPressed(this.resetButton) && !this.isGameRunning) {
             localStorage.removeItem("myName")
             this.playerSettings.setMyName("")
             this.userScore = 0
 
             // this.gameStatus.setUserScore("")
             // window.location.reload(true)
-
-            // This is for the quit button
-        } else if (this.isThisPressed(this.quitButton) && this.isGameRunning) {
+        }
+         // This is for the quit button
+        else if (this.isThisPressed(this.quitButton) && this.isGameRunning) {
             this.isGameRunning = false
             this.isGamePaused = false
             this.scoreTable.addPlayer(playerSettings.getMyName(), this.gamePage.exposeScore())
@@ -176,11 +125,10 @@ class GameSettings {
             this.isGameRunning = false
             this.isGamePaused = true
         }
-        // This is for the pause button
+        // This is for the resume button
         else if (this.isThisPressed(this.resumeButton) && !this.isGameRunning) {
             this.isGameRunning = true
         }
-
     }
 
     private isThisPressed(btn: Button) {
