@@ -132,6 +132,7 @@ class GameStatus {
             this.score = this.segmentScore
             if (this.level < 15) {
                 this.level++
+                soundEffects.swooshSound()
             }
             else {
                 this.gameOver = true
