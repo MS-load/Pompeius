@@ -57,7 +57,7 @@ class GameStatus {
         if (this.levelComplete === false) {
             const currentTime = new Date()
             this.lapsedSeconds = floor((currentTime.getTime() - this.levelStartTime.getTime()) / 1000)
-            const maxTime = 2
+            const maxTime = 15
             this.timerCount = maxTime - this.lapsedSeconds
         }
         if (this.timerCount <= 0) {
