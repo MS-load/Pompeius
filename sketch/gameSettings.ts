@@ -1,5 +1,5 @@
 //maybe change class name
-class GameSettings {
+class GameManager {
 
     private startButton: Button
     private resetButton: Button
@@ -95,14 +95,14 @@ class GameSettings {
         }
     }
 
-    public pressironie() {
+    public buttonPressed() {
         this.checkGameOver()
         //This if is for the start button
         if (this.isThisPressed(this.startButton) && !this.isGameRunning) {
             this.isGameRunning = true
             this.gamePage.resetParam()
         }
-         // This is for the reset button
+        // This is for the reset button
         else if (this.isThisPressed(this.resetButton) && !this.isGameRunning) {
             localStorage.removeItem("myName")
             this.playerSettings.setMyName("")
@@ -111,7 +111,7 @@ class GameSettings {
             // this.gameStatus.setUserScore("")
             // window.location.reload(true)
         }
-         // This is for the quit button
+        // This is for the quit button
         else if (this.isThisPressed(this.quitButton) && this.isGameRunning) {
             this.isGameRunning = false
             this.isGamePaused = false

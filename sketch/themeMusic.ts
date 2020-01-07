@@ -7,7 +7,7 @@ let sel: ExtendedElement
 class MusicChoice {
 
     constructor() {
-       sel = createSelect() as ExtendedElement
+        sel = createSelect() as ExtendedElement
     }
 
     public createSelector() {
