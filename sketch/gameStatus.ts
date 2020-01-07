@@ -67,7 +67,7 @@ class GameStatus {
         return timeOut
     }
 
-     /**heart for the lives*/
+    /**heart for the lives*/
     private heart(x: number, y: number, size: number) {
         beginShape()
         vertex(x, y)
@@ -84,16 +84,16 @@ class GameStatus {
         text(("Level: " + this.level).toString(), width * 0.5, height * 0.2)
 
         switch (this.lives) {
-            case 3:                
-                for (var i = 0; i <3; i++) {
+            case 3:
+                for (var i = 0; i < 3; i++) {
                     fill('red')
-                    this.heart(width * 0.625 +i*20, height * 0.191, 15)
+                    this.heart(width * 0.625 + i * 20, height * 0.191, 15)
                 }
                 break;
             case 2:
-                for (var i = 0; i <2; i++) {
+                for (var i = 0; i < 2; i++) {
                     fill('red')
-                    this.heart(width * 0.625 +i*20, height * 0.191, 15)
+                    this.heart(width * 0.625 + i * 20, height * 0.191, 15)
                 }
                 break;
             case 1:

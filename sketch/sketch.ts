@@ -71,9 +71,5 @@ function windowResized() {
     resizeCanvas(windowWidth, windowHeight)
 }
 
-function mousePressed() {
-    gameManager.buttonPressed()
-}
-
 
 
