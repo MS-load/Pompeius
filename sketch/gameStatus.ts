@@ -57,7 +57,7 @@ class GameStatus {
         if (this.levelComplete === false) {
             const currentTime = new Date()
             this.lapsedSeconds = floor((currentTime.getTime() - this.levelStartTime.getTime()) / 1000)
-            const maxTime = 15
+            const maxTime = 2
             this.timerCount = maxTime - this.lapsedSeconds
         }
         if (this.timerCount <= 0) {
@@ -136,11 +136,23 @@ class GameStatus {
             }
             else {
                 this.gameOver = true
+                this.levelComplete = true
             }
         }
     }
 
     public getSegmentScore() {
         return this.segmentScore
+    }
+    public getLevel() {
+        return this.level
+    }
+
+    public getIfLevelComplete() {
+        return this.levelComplete
+    }
+
+    public getIfNoMoreLives() {
+        return this.lives
     }
 }
