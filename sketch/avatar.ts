@@ -3,7 +3,7 @@ class Avatar{
     private i: number
     private j: number
     private wait: number
-    private redAvatarButton: Button
+    public redAvatarButton: Button
     private blueAvatarButton: Button
     private greenAvatarButton: Button
     private red: boolean
@@ -26,11 +26,10 @@ class Avatar{
     public drawAvatars() {
 
         // console.log("i " + this.i + " j " + this.j)
-        
         if(this.j <= this.wait) {
-            image(redAvatar, (windowWidth / 2 - 225), 250, 150, 150, this.i * 200, 0, 200, 200)
-            image(blueAvatar, (windowWidth / 2 - 75), 250, 150, 150, this.i * 200, 0, 200, 200)
-            image(greenAvatar, (windowWidth / 2 + 100), 250, 150, 150, this.i * 200, 0, 200, 200)
+            image(redAvatar, (width / 2 - 225), (height*0.55), 150, 150, this.i * 200, 0, 200, 200)
+            image(blueAvatar, (width / 2 - 75), (height*0.55), 150, 150, this.i * 200, 0, 200, 200)
+            image(greenAvatar, (width / 2 + 100), (height*0.55), 150, 150, this.i * 200, 0, 200, 200)
 
             if (this.j == this.wait) {
                 this.i++;

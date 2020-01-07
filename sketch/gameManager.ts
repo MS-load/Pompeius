@@ -130,7 +130,11 @@ class GameManager {
         else if (this.isThisPressed(this.resumeButton) && !this.isGameRunning) {
             this.isGameRunning = true
         }
+ 
+        if (this.isThisPressed(this.avatar.redAvatarButton))
     }
+
+    
 
     private isThisPressed(btn: Button) {
         return mouseX >= btn.getX()
