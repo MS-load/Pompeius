@@ -3,51 +3,53 @@ type ExtendedElement = p5.Element & {
     changed: (callback: () => void) => void
     value: () => string
 }
-let sel: ExtendedElement
+
 class MusicChoice {
+    private sel: ExtendedElement
 
     constructor() {
-        sel = createSelect() as ExtendedElement
+        this.sel = createSelect() as ExtendedElement
+        console.log(this.sel)
     }
 
     public createSelector() {
-        sel.position((20), (40))
-        sel.size(100, 40)
-        sel.style('font-size', '18px')
-        sel.style('background-color', 'black')
-        sel.style('color', 'red')
-        sel.style('border', 'none')
+        this.sel.position((20), (40))
+        this.sel.size(100, 40)
+        this.sel.style('font-size', '18px')
+        this.sel.style('background-color', 'black')
+        this.sel.style('color', 'red')
+        this.sel.style('border', 'none')
 
-        sel.option('silence')
-        sel.option('punk')
-        sel.option('metal')
-        sel.option('pop')
-        sel.option('blues')
-        sel.changed(this.selectMusic)
+        this.sel.option('silence')
+        this.sel.option('punk')
+        this.sel.option('metal')
+        this.sel.option('pop')
+        this.sel.option('blues')
+        this.sel.changed(this.selectMusic.bind(this))
     }
 
     private selectMusic() {
-        if (sel.value() === 'punk') {
+        if (this.sel.value() === 'punk') {
             punk.loop()
             popp.stop()
             metal.stop()
             blues.stop()
-        } else if (sel.value() === 'pop') {
+        } else if (this.sel.value() === 'pop') {
             popp.loop()
             punk.stop()
             metal.stop()
             blues.stop()
-        } else if (sel.value() === 'metal') {
+        } else if (this.sel.value() === 'metal') {
             metal.loop()
             punk.stop()
             blues.stop()
             popp.stop()
-        } else if (sel.value() === 'blues') {
+        } else if (this.sel.value() === 'blues') {
             blues.loop()
             popp.stop()
             punk.stop()
             metal.stop()
-        } else if (sel.value() === 'silence') {
+        } else if (this.sel.value() === 'silence') {
             popp.stop()
             punk.stop()
             metal.stop()

@@ -19,6 +19,7 @@ class GamePage {
         textSize(20)
         text('player: ' + playerSettings.getMyName(), (windowWidth / 1.2), (windowHeight / 7))
 
+
         this.segmentedMedia.draw()
 
         // if(this.red === true) {
