@@ -9,7 +9,8 @@ let musicChoice: MusicChoice
 let soundEffects: SoundEffects
 let isImageLoaded: boolean
 
-let gameSettings: GameSettings
+let gameManager: GameManager
+let avatar: Avatar
 let redAvatar: p5.Image
 let greenAvatar: p5.Image
 let blueAvatar: p5.Image
@@ -20,9 +21,9 @@ let blueAvatar: p5.Image
  * sound files, images etc...
  */
 function preload() {
-    popp = (window as any).loadSound('./assets/music/poppen.mp3')
+    popp = (window as any).loadSound('./assets/music/thenewMess.mp3')
     punk = (window as any).loadSound('./assets/music/jonny 2.1.mp3')
-    metal = (window as any).loadSound('./assets/music/ELFVES AND DWARFES solo.mp3')
+    metal = (window as any).loadSound('./assets/music/snakestorm.mp3')
     blues = (window as any).loadSound('./assets/music/blues.mp3')
 
     redAvatar = loadImage('./assets/images/redAvatar.png')
@@ -44,7 +45,7 @@ function setup() {
     frameRate(60)
     fullscreen()
 
-    gameSettings = new GameSettings()
+    gameManager = new GameManager()
     playerSettings = new PlayerSettings()
     musicChoice = new MusicChoice()
     musicChoice.createSelector()
@@ -56,11 +57,11 @@ function setup() {
  * you created in the setup function above
  */
 function draw() {
-    gameSettings.draw()
+    gameManager.draw()
 }
 
 function keyPressed(): void {
-    gameSettings.eventHandler()
+    gameManager.eventHandler()
 }
 
 /**
@@ -71,7 +72,7 @@ function windowResized() {
 }
 
 function mousePressed() {
-    gameSettings.pressironie()
+    gameManager.buttonPressed()
 }
 
 

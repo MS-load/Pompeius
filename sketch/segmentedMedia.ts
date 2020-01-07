@@ -5,67 +5,44 @@ class SegmentedMedia {
     private img: p5.Image
     private urlRoot: string
     private imgTags: string
+
     private pieceHeight: number
     private xPos: number
-
     private noOfSegments: number
     private segmentPosition: number[]
-
     private selectedSegment: number
-
-
 
     constructor() {
         this.frameWidth = 350
-
         this.urlRoot = 'https://source.unsplash.com/'
         this.imgTags = 'trees'
-        this.img = loadImage(this.getImg(), this.imageLoaded)
-
+        this.img = loadImage(this.getImgUrl(), this.imageLoaded)
         this.pieceHeight = 0
         this.xPos = 0
-
         this.noOfSegments = 3
         this.segmentPosition = []
-
         this.selectedSegment = -1
     }
 
-    public resetParameters() {
-        this.pieceHeight = 0
-        this.xPos = 0
-
-        this.noOfSegments = 3
-        this.segmentPosition = []
-
-        this.selectedSegment = -1
-    }
-
-    /**
-     * Sets the basic offsets used for the game
-     */
+    /**Gets the basic offset for the media*/
     public getOffset() {
         let topOffset = height / 4
         let leftOffset = (width / 2) - (this.frameWidth / 2)
         return [topOffset, leftOffset]
     }
 
+    /**Gets the theme*/
     // private setTag(theme:string){
     //     this.imgTags = theme
     // }
 
-    /**
-     * Gets the image url
-     */
-    private getImg(): string {
+    /**Gets the imgUrl*/
+    private getImgUrl(): string {
         let imgUrl = this.urlRoot + this.frameWidth + "x" + this.frameWidth + "/?" + this.imgTags + "/sig=" + round(random(150))
-        console.log(imgUrl)
         return imgUrl
     }
 
-    /**
-     * The referenceFrame for the image
-     */
+    /**Gets the reference frame*/
     private referenceFrame() {
         noFill()
         stroke('red')
@@ -74,8 +51,11 @@ class SegmentedMedia {
         rect(offsets[1], offsets[0], this.frameWidth, this.frameWidth)
     }
 
+    /**
+     * A callback function used to check if the image is loaded
+     * @param _img teh image to be checked
+     */
     private imageLoaded(_img: p5.Image) {
-        console.log('Loaded')
         isImageLoaded = true
     }
 
@@ -84,7 +64,6 @@ class SegmentedMedia {
      * @param offsets the offsets set for the game
      */
     private drawMovingImage(offsets: number[]) {
-
         this.pieceHeight = (this.frameWidth / this.noOfSegments)
 
         //updates the x-position
@@ -94,23 +73,18 @@ class SegmentedMedia {
         }
 
         for (let i = 0; i < this.noOfSegments; i++) {
-
             //Updates array with the new position
             if (i > this.selectedSegment) {
                 this.segmentPosition[i] = this.xPos
-
                 //reverse direction for alternate images
                 if (i % 2 === 1) {
                     this.segmentPosition[i] = width - (this.xPos + this.frameWidth)
                 }
             }
-
             //Renders the image 
             image(this.img, this.segmentPosition[i], offsets[0] + (this.pieceHeight * i),
-                this.frameWidth, this.pieceHeight, 0,
-                this.pieceHeight * i, this.frameWidth, this.pieceHeight)
+                this.frameWidth, this.pieceHeight, 0, this.pieceHeight * i, this.frameWidth, this.pieceHeight)
 
-            console.log('isImageLoaded-' + isImageLoaded)
             if (isImageLoaded === true) {
                 //Draws a rectangle around the selected Image
                 if (i === (this.selectedSegment + 1)) {
@@ -120,7 +94,7 @@ class SegmentedMedia {
                         this.frameWidth, this.pieceHeight)
                 }
             }
-            else {
+            else {//Prints loading text
                 textSize(20)
                 fill('white')
                 stroke(1)
@@ -136,10 +110,9 @@ class SegmentedMedia {
     public updateParameters(timeOut: Boolean) {
         this.selectedSegment = -1
         this.xPos = 0
-
         if (timeOut === false) {
             isImageLoaded = false
-            this.img = loadImage(this.getImg(), this.imageLoaded)
+            this.img = loadImage(this.getImgUrl(), this.imageLoaded)
             this.noOfSegments++
         }
     }
@@ -158,16 +131,21 @@ class SegmentedMedia {
         return levelComplete
     }
 
-    /**
-     * gets position of the selected segment
-     */
+    /**Resets the Parameters*/
+    public resetParameters() {
+        this.pieceHeight = 0
+        this.xPos = 0
+        this.noOfSegments = 3
+        this.segmentPosition = []
+        this.selectedSegment = -1
+    }
+    
+    /**gets position of the selected segment*/
     public getSelectedSegmentPosition() {
         return this.segmentPosition[this.selectedSegment + 1]
     }
 
-    /**
-     * Draws the reference frame and the moving image
-     */
+    /**Draws the reference frame and the moving image*/
     public draw() {
         let offsets = this.getOffset()
         this.referenceFrame()

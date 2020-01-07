@@ -2,35 +2,33 @@ class GameStatus {
     private segmentScore: number
     private score: number
 
-    private levelStartTime: Date
-    private lapsedSeconds: number
-
     private level: number
     private lives: number
 
+    private levelStartTime: Date
+    private lapsedSeconds: number
     private timerCount: number
 
     public levelComplete: boolean
-
     private gameOver: boolean
-
 
     constructor() {
         this.segmentScore = 0
         this.score = 0
-        this.levelStartTime = new Date()
-        this.lapsedSeconds = 0
         this.level = 1
         this.lives = 3
+        this.levelStartTime = new Date()
+        this.lapsedSeconds = 0
         this.timerCount = 0
         this.levelComplete = false
         this.gameOver = false
-
     }
 
-    public checkGameStatus(): boolean {
+    /**Gets the game status */
+    public getGameStatus(): boolean {
         return this.gameOver
     }
+
     /**
      * sets the gameScore
      * @param offsets gets the offset from the page
@@ -41,35 +39,27 @@ class GameStatus {
 
         if (stopDistance < 5) {
             this.segmentScore += 1000
-            console.log(1000)
             soundEffects.tadaaSound()
         }
         else if (stopDistance > 5 && stopDistance < 30) {
             this.segmentScore += 500
-            console.log(500)
             soundEffects.yaaayySound()
         }
         else {
             this.segmentScore += 0
             soundEffects.booooSound()
-            console.log(0)
         }
     }
 
-    /**
-     * timer for the game
-     */
+    /**timer for the game*/
     private getTime(): boolean {
         let timeOut = false
         if (this.levelComplete === false) {
-
             const currentTime = new Date()
             this.lapsedSeconds = floor((currentTime.getTime() - this.levelStartTime.getTime()) / 1000)
-
             const maxTime = 15
             this.timerCount = maxTime - this.lapsedSeconds
         }
-
         if (this.timerCount <= 0) {
             timeOut = true
             this.updateStatus(timeOut)
@@ -77,40 +67,37 @@ class GameStatus {
         return timeOut
     }
 
+     /**heart for the lives*/
     private heart(x: number, y: number, size: number) {
-        beginShape();
-        vertex(x, y);
-        bezierVertex(x - size / 2, y - size / 2, x - size, y + size / 3, x, y + size);
-        bezierVertex(x + size, y + size / 3, x + size / 2, y - size / 2, x, y);
-        endShape(CLOSE);
+        beginShape()
+        vertex(x, y)
+        bezierVertex(x - size / 2, y - size / 2, x - size, y + size / 3, x, y + size)
+        bezierVertex(x + size, y + size / 3, x + size / 2, y - size / 2, x, y)
+        endShape(CLOSE)
     }
 
-    /**
-     * Draws the status on the page 
-     */
+    /** Draws the status on the page */
     public drawStatus(): boolean {
         textSize(20)
         fill('white')
-
         text(("Score:" + this.segmentScore).toString(), width * 0.4, height * 0.2)
         text(("Level: " + this.level).toString(), width * 0.5, height * 0.2)
-        text(("Lives: "), width * 0.6, height * 0.2)
 
         switch (this.lives) {
             case 3:                
                 for (var i = 0; i <3; i++) {
-                    fill('red');
+                    fill('red')
                     this.heart(width * 0.625 +i*20, height * 0.191, 15)
                 }
                 break;
             case 2:
                 for (var i = 0; i <2; i++) {
-                    fill('red');
+                    fill('red')
                     this.heart(width * 0.625 +i*20, height * 0.191, 15)
                 }
                 break;
             case 1:
-                fill('red');
+                fill('red')
                 this.heart(width * 0.625, height * 0.191, 15)
                 break;
         }
@@ -139,7 +126,6 @@ class GameStatus {
             }
             else {
                 this.gameOver = true
-                localStorage.setItem("finalScore", (this.score).toString())
             }
         }
         else {
@@ -149,14 +135,11 @@ class GameStatus {
             }
             else {
                 this.gameOver = true
-                localStorage.setItem("finalScore", (this.score).toString())
             }
         }
-        console.log(this.gameOver)
     }
 
     public getSegmentScore() {
         return this.segmentScore
     }
-
 }

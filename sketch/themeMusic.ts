@@ -1,4 +1,3 @@
-
 type ExtendedElement = p5.Element & {
     option: (value: string) => void
     changed: (callback: () => void) => void
@@ -8,7 +7,7 @@ let sel: ExtendedElement
 class MusicChoice {
 
     constructor() {
-       sel = createSelect() as ExtendedElement
+        sel = createSelect() as ExtendedElement
     }
 
     public createSelector() {
@@ -34,7 +33,7 @@ class MusicChoice {
             metal.stop()
             blues.stop()
         } else if (sel.value() === 'pop') {
-            popp.play()
+            popp.loop()
             punk.stop()
             metal.stop()
             blues.stop()
