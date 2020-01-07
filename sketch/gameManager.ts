@@ -1,4 +1,3 @@
-//maybe change class name
 class GameManager {
 
     private startButton: Button
@@ -17,11 +16,11 @@ class GameManager {
     constructor() {
         this.playerSettings = new PlayerSettings()
 
-        this.startButton = new Button(-100, (height * 0.85), 100, 50, 10, 'Start game', 'green')
-        this.resetButton = new Button(10, (height * 0.85), 100, 50, 10, 'Reset game', 'red')
-        this.resumeButton = new Button(120, (height * 0.85), 100, 50, 10, 'Resume game', 'purple')
-        this.quitButton = new Button(-100, (height * 0.9), 100, 25, 10, 'Quit', 'blue')
-        this.pauseButton = new Button(10, (height * 0.9), 100, 25, 10, 'Pause', 'purple')
+        this.startButton = new Button(-100, (height * 0.85), 100, 50, 10, 'Start game', 'green', this.startButtonPressed.bind(this))
+        this.resetButton = new Button(10, (height * 0.85), 100, 50, 10, 'Reset game', 'red', this.resetButtonPressed.bind(this))
+        this.resumeButton = new Button(120, (height * 0.85), 100, 50, 10, 'Resume game', 'purple', this.resumeButtonPressed.bind(this))
+        this.quitButton = new Button(-100, (height * 0.9), 100, 25, 10, 'Quit', 'blue', this.quitButtonPressed.bind(this))
+        this.pauseButton = new Button(10, (height * 0.9), 100, 25, 10, 'Pause', 'purple', this.pauseButtonPressed.bind(this))
 
         this.gamePage = new GamePage()
         this.isGameRunning = false
@@ -54,7 +53,6 @@ class GameManager {
     }
 
     private drawGamePage() {
-        //Quit button and Pause button
         this.quitButton.draw(width / 2)
         this.pauseButton.draw(width / 2)
         this.gamePage.drawContent()
@@ -76,6 +74,7 @@ class GameManager {
         let gameOver = this.gamePage.isGameOver()
         if (this.isGameRunning && !gameOver) {
             this.drawGamePage()
+            // this.avatar.drawSelectedAvatar()
         } else {
             this.isGameRunning = false
             this.drawHomePage()
@@ -89,53 +88,39 @@ class GameManager {
         }
     }
 
-    private checkGameOver() {
-        if (this.gamePage.isGameOver()) {
-            this.isGameRunning = false
-        }
-    }
 
-    public buttonPressed() {
-        this.checkGameOver()
-        //This if is for the start button
-        if (this.isThisPressed(this.startButton) && !this.isGameRunning) {
+    private startButtonPressed() {
+        if (!this.isGameRunning) {
             this.isGameRunning = true
             this.gamePage.resetParam()
-        }
-        // This is for the reset button
-        else if (this.isThisPressed(this.resetButton) && !this.isGameRunning) {
-            localStorage.removeItem("myName")
-            this.playerSettings.setMyName("")
-            this.userScore = 0
 
-            // this.gameStatus.setUserScore("")
-            // window.location.reload(true)
-        }
-        // This is for the quit button
-        else if (this.isThisPressed(this.quitButton) && this.isGameRunning) {
-            this.isGameRunning = false
-            this.isGamePaused = false
-            this.scoreTable.addPlayer(playerSettings.getMyName(), this.gamePage.exposeScore())
-            this.scoreTable.saveScoreTable()
-            this.userScore = this.gamePage.exposeScore()
-            this.scoreTable.playerTable()
-        }
-        // This is for the pause button
-        else if (this.isThisPressed(this.pauseButton) && this.isGameRunning) {
-            this.isGameRunning = false
-            this.isGamePaused = true
-        }
-        // This is for the resume button
-        else if (this.isThisPressed(this.resumeButton) && !this.isGameRunning) {
-            this.isGameRunning = true
         }
     }
 
-    private isThisPressed(btn: Button) {
-        return mouseX >= btn.getX()
-            && mouseX <= (btn.getX() + btn.getWidth())
-            && mouseY >= btn.getY()
-            && mouseY <= (btn.getY() + btn.getHeight())
+    private resetButtonPressed() {
+        localStorage.removeItem("myName")
+        this.playerSettings.setMyName("")
+        this.userScore = 0
     }
+
+    private quitButtonPressed() {
+        this.isGameRunning = false
+        this.isGamePaused = false
+        this.scoreTable.addPlayer(this.playerSettings.getMyName(), this.gamePage.exposeScore())
+        this.scoreTable.saveScoreTable()
+        this.userScore = this.gamePage.exposeScore()
+        this.scoreTable.playerTable()
+    }
+
+    private pauseButtonPressed() {
+        this.isGameRunning = false
+        this.isGamePaused = true
+    }
+
+    private resumeButtonPressed() {
+        this.isGameRunning = true
+
+    }
+
 
 }

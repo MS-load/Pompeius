@@ -7,8 +7,10 @@ class Button {
     private corners: number
     private text: string
     private fillColor: string
+    private prevMousePressed: boolean
+    private onClickCallback: Function
 
-    constructor(x: number, y: number, width: number, height: number, corners: number, text: string, fillColor: string) {
+    constructor(x: number, y: number, width: number, height: number, corners: number, text: string, fillColor: string, onClickCallback: Function) {
         this.x = x
         this.y = y
         this.width = width
@@ -17,9 +19,23 @@ class Button {
         this.text = text
         this.fillColor = fillColor
         this.originX = 0
+        this.prevMousePressed = false
+        this.onClickCallback = onClickCallback
+    }
+
+    private checkForPress() {
+        if (this.isMouseWithinButtonBorder()) {
+            if (mouseIsPressed && !this.prevMousePressed) {
+                this.onClickCallback()
+            }
+
+        }
+
+        this.prevMousePressed = mouseIsPressed
     }
 
     public draw(originX: number) {
+        this.checkForPress()
         this.originX = originX
         push()
         fill(this.fillColor)
@@ -29,21 +45,16 @@ class Button {
         pop()
     }
 
+    private isMouseWithinButtonBorder() {
+        return mouseX >= this.responsiveX
+            && mouseX <= this.responsiveX + this.width
+            && mouseY >= this.y
+            && mouseY <= this.y + this.height
+    }
 
     // Beroende på instans av knapp kommer dessa värden vara olika, beroende på vilka värden jag gett dem. 
-    public getX() {
+    private get responsiveX() {
         return this.x + this.originX
     }
 
-    public getY() {
-        return this.y
-    }
-
-    public getWidth() {
-        return this.width
-    }
-
-    public getHeight() {
-        return this.height
-    }
 }
