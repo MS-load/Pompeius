@@ -6,7 +6,6 @@ class GamePage {
     constructor() {
         this.segmentedMedia = new SegmentedMedia()
         this.gameStatus = new GameStatus()
-        this.menuButton = new Button(-50, (windowHeight * 0.90), 100, 50, 10, 'Quit', 'blue')
         // this.red = this.redAvatarWasPressed()
     }
 
