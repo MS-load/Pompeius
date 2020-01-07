@@ -9,7 +9,7 @@ let musicChoice: MusicChoice
 let soundEffects: SoundEffects
 let isImageLoaded: boolean
 
-let gameSettings: GameSettings
+let gameManager: GameManager
 let avatar: Avatar
 let redAvatar: p5.Image
 let greenAvatar: p5.Image
@@ -45,7 +45,7 @@ function setup() {
     frameRate(60)
     fullscreen()
 
-    gameSettings = new GameSettings()
+    gameManager = new GameManager()
     playerSettings = new PlayerSettings()
     musicChoice = new MusicChoice()
     musicChoice.createSelector()
@@ -57,11 +57,11 @@ function setup() {
  * you created in the setup function above
  */
 function draw() {
-    gameSettings.draw()
+    gameManager.draw()
 }
 
 function keyPressed(): void {
-    gameSettings.eventHandler()
+    gameManager.eventHandler()
 }
 
 /**
@@ -72,7 +72,7 @@ function windowResized() {
 }
 
 function mousePressed() {
-    gameSettings.pressironie()
+    gameManager.buttonPressed()
 }
 
 
