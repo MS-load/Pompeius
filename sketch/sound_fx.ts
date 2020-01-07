@@ -17,7 +17,6 @@ class SoundEffects {
                 this.spaceClick.play()
         }
 
-        //check if required (not working correctly)
         public swooshSound() {
                 this.swoosh.play()
         }

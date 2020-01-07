@@ -101,6 +101,7 @@ class GameManager {
         if (this.isThisPressed(this.startButton) && !this.isGameRunning) {
             this.isGameRunning = true
             this.gamePage.resetParam()
+            soundEffects.swooshSound()
         }
         // This is for the reset button
         else if (this.isThisPressed(this.resetButton) && !this.isGameRunning) {
