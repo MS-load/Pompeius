@@ -57,7 +57,7 @@ class GameStatus {
         if (this.levelComplete === false) {
             const currentTime = new Date()
             this.lapsedSeconds = floor((currentTime.getTime() - this.levelStartTime.getTime()) / 1000)
-            const maxTime = 15
+            const maxTime = 30
             this.timerCount = maxTime - this.lapsedSeconds
         }
         if (this.timerCount <= 0) {
@@ -82,7 +82,7 @@ class GameStatus {
         fill('white')
         text(("Score:" + this.segmentScore).toString(), width * 0.4, height * 0.2)
         text(("Level: " + this.level).toString(), width * 0.5, height * 0.2)
-        text(("Lives: ").toString(), width * 0.59, height * 0.2)
+        text(("Lives: "), width * 0.59, height * 0.2)
 
         switch (this.lives) {
             case 3:
@@ -157,7 +157,7 @@ class GameStatus {
         return this.levelComplete
     }
 
-    /*** Exposes the players lifez to gamePage*/
+    /*** Exposes the players lifes to gamePage*/
     public getIfNoMoreLives() {
         return this.lives
     }

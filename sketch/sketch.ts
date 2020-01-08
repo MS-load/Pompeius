@@ -10,9 +10,7 @@ let soundEffects: SoundEffects
 let isImageLoaded: boolean
 
 let gameManager: GameManager
-let redAvatar: p5.Image
-let greenAvatar: p5.Image
-let blueAvatar: p5.Image
+let avatar : Avatar
 
 /**
  * Built in preload function in P5
@@ -25,12 +23,9 @@ function preload() {
     metal = (window as any).loadSound('./assets/music/snakestorm.mp3')
     blues = (window as any).loadSound('./assets/music/blues.mp3')
 
-    redAvatar = loadImage('./assets/images/redAvatar.png')
-    greenAvatar = loadImage('./assets/images/greenAvatar.png')
-    blueAvatar = loadImage('./assets/images/blueAvatar.png')
-
     soundFormats('mp3')
-    soundEffects = new SoundEffects
+    soundEffects = new SoundEffects()
+    avatar = new Avatar()
 }
 
 /**

@@ -15,7 +15,7 @@ class SegmentedMedia {
     constructor() {
         this.frameWidth = 350
         this.urlRoot = 'https://source.unsplash.com/'
-        this.imgTags = 'trees'
+        this.imgTags = 'cartoons'
         this.img = loadImage(this.getImgUrl(), this.imageLoaded)
         this.pieceHeight = 0
         this.xPos = 0
@@ -32,13 +32,13 @@ class SegmentedMedia {
     }
 
     /**Gets the theme*/
-    // private setTag(theme:string){
-    //     this.imgTags = theme
-    // }
+    public setTag(theme:string){
+        this.imgTags = theme
+    }
 
     /**Gets the imgUrl*/
     private getImgUrl(): string {
-        let imgUrl = this.urlRoot + this.frameWidth + "x" + this.frameWidth + "/?" + this.imgTags + "/sig=" + round(random(150))
+        let imgUrl = this.urlRoot + this.frameWidth + "x" + this.frameWidth + "/?" + this.imgTags + "/sig=" + round(random(100))
         return imgUrl
     }
 
@@ -86,6 +86,7 @@ class SegmentedMedia {
                 this.frameWidth, this.pieceHeight, 0, this.pieceHeight * i, this.frameWidth, this.pieceHeight)
 
             if (isImageLoaded === true) {
+                
                 //Draws a rectangle around the selected Image
                 if (i === (this.selectedSegment + 1)) {
                     stroke('hsla(160, 100%, 50%, 0.5)')

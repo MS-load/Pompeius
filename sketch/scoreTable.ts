@@ -13,6 +13,9 @@ class ScoreTable {
         this.playerTable()
     }
 
+    /**
+     * Draws the score table
+     */
     public draw() {
 
         fill('white')
