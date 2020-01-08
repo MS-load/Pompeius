@@ -24,20 +24,32 @@ class ScoreTable {
         }
     }
 
+    /**
+     * Adds the player to the score table. 
+     * @param {string} name players name
+     * @param {number} score players score
+     */
     public addPlayer(name: string, score: number) {
         let player = new Player(name, score)
         this.scoreTable.push(player)
     }
 
+    /**
+     * Saves the score table.
+     */
     public saveScoreTable() {
         localStorage.setItem('scoretable', JSON.stringify(this.scoreTable))
     }
 
+    /**
+     * Sorts the score table, from highest score to lowest. 
+     */
     public playerTable() {
         const sortedListOfPlayers = this.scoreTable.sort((player1: Player, player2: Player) => {
             return player2.playerScore - player1.playerScore
         });
 
+        // The 5 players with the highest score is shown in the table. 
         this.listItemInPlayerTable = ''
         let placeInList = 1
         for (let player of sortedListOfPlayers) {

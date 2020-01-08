@@ -30,13 +30,14 @@ class GameManager {
         this.scoreTable = new ScoreTable()
         this.userScore = 0
     }
-
+    /**
+     * Draws the homepage and what message it will say on the page.
+     */
     private drawHomePage() {
         //Inputfield
         this.playerSettings.draw()
         this.playerSettings.update()
 
-        //Start button and Reset button
         this.startButton.draw(width / 2)
         this.resetButton.draw(width / 2)
 
@@ -53,6 +54,7 @@ class GameManager {
         if (this.gamePage.checkIfGameIsComplete() && (this.gamePage.checkLevel() === 15)) {
             text('Congratulation! You finished all the levels!! Good Job!', (windowWidth / 2), (windowHeight * 0.7))
         }
+
         if ((this.gamePage.isGameOver()) && this.gamePage.checkLifes() === 1) {
             text('GAME OVER!!', (windowWidth / 2), (windowHeight * 0.7))
         }
@@ -60,9 +62,11 @@ class GameManager {
         if (this.isGamePaused) {
             this.resumeButton.draw(width / 2)
         }
-
     }
 
+    /**
+     * Draws the gamepage.
+     */
     private drawGamePage() {
         this.quitButton.draw(width / 2)
         this.pauseButton.draw(width / 2)
@@ -93,6 +97,10 @@ class GameManager {
         }
     }
 
+    /**
+     * Does a check if it should run the evenHandler function in the gamepage. Also adds the players name to the scoretable 
+     * if the player finished all levels. 
+     */
     public eventHandler() {
         if (this.isGameRunning) {
             const isDone = this.gamePage.eventHandler()
@@ -104,21 +112,29 @@ class GameManager {
         }
     }
 
-
+    /**
+     * Handles what should happen when start button is pressed. 
+     */
     private startButtonPressed() {
         if (!this.isGameRunning) {
             this.isGameRunning = true
             this.gamePage.resetParam()
-
+            soundEffects.swooshSound()
         }
     }
 
+    /**
+     * Handles what should happen when reset button is pressed. 
+     */
     private resetButtonPressed() {
         localStorage.removeItem("myName")
         this.playerSettings.setMyName("")
         this.userScore = 0
     }
 
+    /**
+     * Handles what should happen when quit button is pressed. 
+     */
     private quitButtonPressed() {
         this.isGameRunning = false
         this.isGamePaused = false
@@ -128,15 +144,18 @@ class GameManager {
         this.scoreTable.playerTable()
     }
 
+    /**
+     * Handles what should happen when pause button is pressed. 
+     */
     private pauseButtonPressed() {
         this.isGameRunning = false
         this.isGamePaused = true
     }
 
+    /**
+     * Handles what should happen when resume button is pressed. 
+     */
     private resumeButtonPressed() {
         this.isGameRunning = true
-
     }
-
-
 }

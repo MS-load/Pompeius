@@ -141,17 +141,22 @@ class GameStatus {
         }
     }
 
+    /*** Exposes the segment score to gamePage*/
     public getSegmentScore() {
         return this.segmentScore
     }
+
+    /*** Exposes the level to gamePage*/
     public getLevel() {
         return this.level
     }
 
+    /*** Exposes if the level/game to gamePage*/
     public getIfLevelComplete() {
         return this.levelComplete
     }
 
+    /*** Exposes the players lifez to gamePage*/
     public getIfNoMoreLives() {
         return this.lives
     }
