@@ -9,7 +9,6 @@ class MusicChoice {
 
     constructor() {
         this.sel = createSelect() as ExtendedElement
-        console.log(this.sel)
     }
 
     public createSelector() {

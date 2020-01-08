@@ -6,7 +6,6 @@ class GamePage {
     constructor() {
         this.segmentedMedia = new SegmentedMedia()
         this.gameStatus = new GameStatus()
-        // this.red = this.redAvatarWasPressed()
     }
 
     public drawContent() {
@@ -21,15 +20,6 @@ class GamePage {
 
 
         this.segmentedMedia.draw()
-
-        // if(this.red === true) {
-        //     image(redAvatar, (windowWidth / 1.2), 50, 150, 150, 0, 0, 200, 200)
-        // } else if (this.blue === true) {
-        //     image(blueAvatar, (windowWidth / 1.2), 50, 150, 150, 0, 0, 200, 200)
-        // } else if (this.green === true) {
-        //     image(greenAvatar, (windowWidth / 1.2), 50, 150, 150, 0, 0, 200, 200)
-        // }
-
     }
 
     /**
