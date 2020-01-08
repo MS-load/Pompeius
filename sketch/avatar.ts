@@ -15,8 +15,6 @@ class Avatar {
         this.wait = 10
     }
 
-
-
     public drawAvatar(avatar:p5.Image){
         let originX = width/2
         if (this.j <= this.wait) {
@@ -33,7 +31,6 @@ class Avatar {
             this.j = 0
         }
         this.j++
-        //image(avatar, originX + 150, 30, 50, 50, 0 * 200, 0, 200, 200)
     }
 
 }

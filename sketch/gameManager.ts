@@ -18,8 +18,6 @@ class GameManager {
 
     private selectedAvatar : p5.Image
 
-    private avatar: Avatar
-
     constructor() {
         this.playerSettings = new PlayerSettings()
 
@@ -33,13 +31,13 @@ class GameManager {
         this.blueAvatarButton = new Button(-50,210, 150, 150, 0, " ", "", this.blueAvatarPressed.bind(this))
         this.greenAvatarButton = new Button(150,210, 150, 150, 0, " ", "", this.greenAvatarPressed.bind(this))
 
-        this.avatar = new Avatar()
+        
 
-        this.selectedAvatar = this.avatar.redAvatar
+        this.selectedAvatar = avatar.redAvatar
 
-        this.redAvatarButton.setAvatar(this.avatar.redAvatar)
-        this.blueAvatarButton.setAvatar(this.avatar.blueAvatar)
-        this.greenAvatarButton.setAvatar(this.avatar.greenAvatar)
+        this.redAvatarButton.setAvatar(avatar.redAvatar)
+        this.blueAvatarButton.setAvatar(avatar.blueAvatar)
+        this.greenAvatarButton.setAvatar(avatar.greenAvatar)
         this.gamePage = new GamePage()
         this.isGameRunning = false
         this.isGamePaused = false
@@ -103,7 +101,7 @@ class GameManager {
         let gameOver = this.gamePage.isGameOver()
         if (this.isGameRunning && !gameOver) {
             this.drawGamePage()
-            this.avatar.drawAvatar(this.selectedAvatar)
+            avatar.drawAvatar(this.selectedAvatar)
             
         } else {
             this.isGameRunning = false
@@ -160,15 +158,15 @@ class GameManager {
 
     private redAvatarPressed() {
         console.log("red")
-        this.selectedAvatar = redAvatar; 
+        this.selectedAvatar = avatar.redAvatar; 
 
     }
     private blueAvatarPressed() {
-        this.selectedAvatar = blueAvatar
+        this.selectedAvatar = avatar.blueAvatar
         console.log("blue")
     }
     private greenAvatarPressed() {
         console.log("green")
-        this.selectedAvatar = greenAvatar
+        this.selectedAvatar = avatar.greenAvatar
     }
 }
