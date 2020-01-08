@@ -82,7 +82,7 @@ class GameStatus {
         fill('white')
         text(("Score:" + this.segmentScore).toString(), width * 0.4, height * 0.2)
         text(("Level: " + this.level).toString(), width * 0.5, height * 0.2)
-        text(("Lives: ").toString(), width * 0.59, height * 0.2)
+        text(("Lives: "), width * 0.59, height * 0.2)
 
         switch (this.lives) {
             case 3:

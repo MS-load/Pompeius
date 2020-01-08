@@ -82,9 +82,7 @@ class Button {
             fill('white')
             text(this.text, originX + this.x, this.y, this.width, this.height)
         }
-
         pop()
-
     }
 
     private isMouseWithinButtonBorder() {
