@@ -115,10 +115,10 @@ class GameManager {
         } else {
             this.isGameRunning = false
             this.drawHomePage()
-
         }
     }
 
+    /** Runs the eventHandler in gamePage if the game is running. Also adds player to score table if the player finishes all levels. */
     public eventHandler() {
         if (this.isGameRunning) {
             const isDone = this.gamePage.eventHandler()
@@ -130,7 +130,7 @@ class GameManager {
         }
     }
 
-
+    /** Runs when start button is pressed. */
     private startButtonPressed() {
         if (!this.isGameRunning) {
             this.isGameRunning = true
@@ -138,12 +138,14 @@ class GameManager {
         }
     }
 
+    /** Runs when reset button is pressed. Clears players name and score.*/
     private resetButtonPressed() {
         localStorage.removeItem("myName")
         this.playerSettings.setMyName("")
         this.userScore = 0
     }
 
+    /** Runs when quit button is pressed. Adds players to score table. */
     private quitButtonPressed() {
         this.isGameRunning = false
         this.isGamePaused = false
@@ -153,15 +155,18 @@ class GameManager {
         this.scoreTable.playerTable()
     }
 
+    /** Runs when start button is pressed. */
     private pauseButtonPressed() {
         this.isGameRunning = false
         this.isGamePaused = true
     }
 
+    /** Runs when resume button is pressed. */
     private resumeButtonPressed() {
         this.isGameRunning = true
     }
 
+    /** Runs when red avatar is pressed. */
     private redAvatarPressed() {
         this.gamePage.setTheme('cartoons')
         this.arrayIndex = 0
@@ -174,6 +179,8 @@ class GameManager {
         this.selectedAvatar = avatar.blueAvatar
 
     }
+
+    /** Runs when green avatar is pressed. */
     private greenAvatarPressed() {
         this.gamePage.setTheme('trees')
         console.log("green")

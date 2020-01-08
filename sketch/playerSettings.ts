@@ -46,7 +46,7 @@ class PlayerSettings {
     }
 
     /**
-     * 
+     * Stops characters from keep drawing in the inputfield. 
      */
     private handleUserInput() {
         if (this.prevKey === key && !keyIsDown(keyCode)) {
@@ -58,7 +58,7 @@ class PlayerSettings {
     }
 
     /**
-     * 
+     * Adds characters to player inputfield.
      */
     private addCharacterToText() {
         if (key === 'Backspace') {
@@ -74,17 +74,22 @@ class PlayerSettings {
         }
         localStorage.setItem('myName', this.myName)
         this.getUserName()
-
     }
 
+    /**
+     * Setter for players name
+     * @param {string} newName Players name
+     */
     public setMyName(newName: string) {
         this.myName = newName
     }
 
+    /**
+     * Getter for players name.
+     */
     public getMyName() {
         this.getUserName()
         return this.myName
     }
-
 }
 

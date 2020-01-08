@@ -1,4 +1,5 @@
 class Button {
+
     private originX: number
     private x: number
     private y: number
@@ -37,7 +38,7 @@ class Button {
         this.isAvatar = true
     }
 
-    public setSize(w:number,h:number){
+    public setSize(w: number, h: number) {
         this.width = w
         this.height = h
     }
@@ -48,6 +49,9 @@ class Button {
     }
 
 
+    /**
+     * Check if mouse is pressed. If mouse is pressed, runs the callback function.
+     */
     private checkForPress() {
         if (this.isMouseWithinButtonBorder()) {
             if (mouseIsPressed && !this.prevMousePressed) {
@@ -84,7 +88,9 @@ class Button {
         }
         pop()
     }
-
+    /**
+     * Checks if mouse is pressed within the area of the button.
+     */
     private isMouseWithinButtonBorder() {
         return mouseX >= this.responsiveX
             && mouseX <= this.responsiveX + this.width
@@ -92,7 +98,9 @@ class Button {
             && mouseY <= this.y + this.height
     }
 
-    // Beroende på instans av knapp kommer dessa värden vara olika, beroende på vilka värden jag gett dem. 
+    /**
+     * Helps making the buttons responsive. 
+     */
     private get responsiveX() {
         return this.x + this.originX
     }
