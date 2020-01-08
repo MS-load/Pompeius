@@ -136,11 +136,23 @@ class GameStatus {
             }
             else {
                 this.gameOver = true
+                this.levelComplete = true
             }
         }
     }
 
     public getSegmentScore() {
         return this.segmentScore
+    }
+    public getLevel() {
+        return this.level
+    }
+
+    public getIfLevelComplete() {
+        return this.levelComplete
+    }
+
+    public getIfNoMoreLives() {
+        return this.lives
     }
 }

@@ -61,16 +61,27 @@ class GameManager {
         this.startButton.draw(width / 2)
         this.resetButton.draw(width / 2)
 
+        this.scoreTable.draw()
+
         fill('white')
         if (this.userScore > 0) {
-            text('Your score: ' + this.userScore, (windowWidth / 2), (windowHeight / 2))
+            text('Your score: ' + this.userScore, (windowWidth / 2), (windowHeight * 0.7))
+        }
+
+        textSize(30)
+        fill('green')
+        textFont('Quintessential')
+        if (this.gamePage.checkIfGameIsComplete() && (this.gamePage.checkLevel() === 15)) {
+            text('Congratulation! You finished all the levels!! Good Job!', (windowWidth / 2), (windowHeight * 0.7))
+        }
+        if ((this.gamePage.isGameOver()) && this.gamePage.checkLifes() === 1) {
+            text('GAME OVER!!', (windowWidth / 2), (windowHeight * 0.7))
         }
 
         if (this.isGamePaused) {
             this.resumeButton.draw(width / 2)
         }
 
-        this.scoreTable.draw()
     }
 
     private drawGamePage() {
@@ -128,7 +139,12 @@ class GameManager {
 
     public eventHandler() {
         if (this.isGameRunning) {
-            this.gamePage.eventHandler()
+            const isDone = this.gamePage.eventHandler()
+            if (isDone && this.gamePage.checkLevel() === 15 && this.gamePage.isGameOver()) {
+                this.scoreTable.addPlayer(this.playerSettings.getMyName(), this.gamePage.exposeScore())
+                this.scoreTable.saveScoreTable()
+                this.scoreTable.playerTable()
+            }
         }
     }
 

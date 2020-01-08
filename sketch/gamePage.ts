@@ -40,6 +40,7 @@ class GamePage {
             if (this.gameStatus.levelComplete === true) {
                 this.gameStatus.updateStatus(false)
                 this.segmentedMedia.updateParameters(false)
+                return true
             }
             else {
                 const offset = this.segmentedMedia.getOffset()
@@ -48,12 +49,28 @@ class GamePage {
                 this.gameStatus.setGameScore(offset, selectedSegmentPosition)
                 if (segmentsCovered === true) {
                     this.gameStatus.levelComplete = true
+                    return true
                 }
+                return false
             }
         }
+        return false
     }
 
     public exposeScore() {
         return this.gameStatus.getSegmentScore()
     }
+
+    public checkIfGameIsComplete() {
+        return this.gameStatus.levelComplete
+    }
+
+    public checkLevel() {
+        return this.gameStatus.getLevel()
+    }
+
+    public checkLifes() {
+        return this.gameStatus.getIfNoMoreLives()
+    }
+
 }
