@@ -5,6 +5,10 @@ class GameManager {
     private quitButton: Button
     private pauseButton: Button
     private resumeButton: Button
+    private redAvatarButton: Button
+    private blueAvatarButton: Button
+    private greenAvatarButton: Button
+
     private playerSettings: PlayerSettings
     private isGameRunning: boolean
     private isGamePaused: boolean
@@ -12,28 +16,26 @@ class GameManager {
     private scoreTable: ScoreTable
     private userScore: number
 
-    private redAvatarButton: Button
-    private blueAvatarButton: Button
-    private greenAvatarButton: Button
-
-    private selectedAvatar : p5.Image
+    private selectedAvatar: p5.Image
+    private selectedItemBox: string[]
+    private arrayIndex: number
 
     constructor() {
         this.playerSettings = new PlayerSettings()
 
         this.startButton = new Button(-100, (height * 0.85), 100, 50, 10, 'Start game', 'green', this.startButtonPressed.bind(this))
-        this.resetButton = new Button(10, (height * 0.85), 100, 50, 10, 'Reset game', 'red', this.resetButtonPressed.bind(this))
+        this.resetButton = new Button(10, (height * 0.85), 100, 50, 10, 'Reset name', 'red', this.resetButtonPressed.bind(this))
         this.resumeButton = new Button(120, (height * 0.85), 100, 50, 10, 'Resume game', 'purple', this.resumeButtonPressed.bind(this))
         this.quitButton = new Button(-100, (height * 0.9), 100, 25, 10, 'Quit', 'blue', this.quitButtonPressed.bind(this))
         this.pauseButton = new Button(10, (height * 0.9), 100, 25, 10, 'Pause', 'purple', this.pauseButtonPressed.bind(this))
- 
-        this.redAvatarButton = new Button(-250,210, 150, 150, 0, " ", "", this.redAvatarPressed.bind(this))
-        this.blueAvatarButton = new Button(-50,210, 150, 150, 0, " ", "", this.blueAvatarPressed.bind(this))
-        this.greenAvatarButton = new Button(150,210, 150, 150, 0, " ", "", this.greenAvatarPressed.bind(this))
 
-        
+        this.redAvatarButton = new Button(-250, 210, 150, 150, 0, " ", "", this.redAvatarPressed.bind(this))
+        this.blueAvatarButton = new Button(-50, 210, 150, 150, 0, " ", "", this.blueAvatarPressed.bind(this))
+        this.greenAvatarButton = new Button(150, 210, 150, 150, 0, " ", "", this.greenAvatarPressed.bind(this))
 
+        this.arrayIndex = 0
         this.selectedAvatar = avatar.redAvatar
+        this.selectedItemBox = ['Selected Red theme','Selected Blue theme','Selected Green theme']
 
         this.redAvatarButton.setAvatar(avatar.redAvatar)
         this.blueAvatarButton.setAvatar(avatar.blueAvatar)
@@ -50,16 +52,21 @@ class GameManager {
         //Inputfield
         this.playerSettings.draw()
         this.playerSettings.update()
-
+        
         //Start button and Reset button
         this.startButton.draw(width / 2)
         this.resetButton.draw(width / 2)
 
-        this.scoreTable.draw()
+        this.redAvatarButton.draw(width / 2)
+        this.blueAvatarButton.draw(width / 2)
+        this.greenAvatarButton.draw(width / 2)
 
+        this.scoreTable.draw()
         fill('white')
+        text((this.selectedItemBox[this.arrayIndex].toString()), (windowWidth / 2), (windowHeight * 0.65))
+
         if (this.userScore > 0) {
-            text('Your score: ' + this.userScore, (windowWidth / 2), (windowHeight * 0.7))
+            text('Your score: ' + this.userScore, (windowWidth / 2), (windowHeight * 0.75))
         }
 
         textSize(30)
@@ -84,7 +91,7 @@ class GameManager {
         this.gamePage.drawContent()
     }
 
-    
+
     public draw() {
 
         background(0)
@@ -102,13 +109,11 @@ class GameManager {
         if (this.isGameRunning && !gameOver) {
             this.drawGamePage()
             avatar.drawAvatar(this.selectedAvatar)
-            
+
         } else {
             this.isGameRunning = false
             this.drawHomePage()
-            this.redAvatarButton.draw(width/2)
-            this.blueAvatarButton.draw(width/2)
-            this.greenAvatarButton.draw(width/2)
+
         }
     }
 
@@ -151,20 +156,27 @@ class GameManager {
         this.isGamePaused = true
     }
 
-    private resumeButtonPressed() { 
+    private resumeButtonPressed() {
         this.isGameRunning = true
+    }
+    private drawRec(value: number) {
+        
     }
 
     private redAvatarPressed() {
-        this.selectedAvatar = avatar.redAvatar; 
+        console.log(this.arrayIndex)
+        this.arrayIndex = 0
+        this.selectedAvatar = avatar.redAvatar
     }
 
     private blueAvatarPressed() {
+        this.arrayIndex = 1
         this.selectedAvatar = avatar.blueAvatar
 
     }
     private greenAvatarPressed() {
         console.log("green")
+        this.arrayIndex = 2
         this.selectedAvatar = avatar.greenAvatar
     }
 }
