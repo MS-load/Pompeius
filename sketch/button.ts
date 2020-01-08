@@ -76,8 +76,6 @@ class Button {
                 this.j = 0
             }
             this.j++
-            //image(redAvatar, (windowWidth / 2 - 225), 250, 150, 150, 0, 0, 200, 200)
-            //image(this.avatar, originX + this.x, this.y, this.width, this.height, 0, 0, 200, 200)
         } else {
             fill(this.fillColor)
             rect(originX + this.x, this.y, this.width, this.height, this.corners)
