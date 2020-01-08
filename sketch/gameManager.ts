@@ -11,7 +11,16 @@ class GameManager {
     private gamePage: GamePage
     private scoreTable: ScoreTable
     private userScore: number
-    private avatar: Avatar
+
+    private redAvatar: Button
+    private blueAvatar: Button
+    private greenAvatar: Button
+
+    private selectedAvatar : p5.Image
+
+    private i: number
+    private j: number
+    private wait: number
 
     constructor() {
         this.playerSettings = new PlayerSettings()
@@ -21,14 +30,26 @@ class GameManager {
         this.resumeButton = new Button(120, (height * 0.85), 100, 50, 10, 'Resume game', 'purple', this.resumeButtonPressed.bind(this))
         this.quitButton = new Button(-100, (height * 0.9), 100, 25, 10, 'Quit', 'blue', this.quitButtonPressed.bind(this))
         this.pauseButton = new Button(10, (height * 0.9), 100, 25, 10, 'Pause', 'purple', this.pauseButtonPressed.bind(this))
+ 
+        this.redAvatar = new Button(-250,210, 150, 150, 0, " ", "", this.redAvatarPressed.bind(this))
+        this.blueAvatar = new Button(-50,210, 150, 150, 0, " ", "", this.blueAvatarPressed.bind(this))
+        this.greenAvatar = new Button(150,210, 150, 150, 0, " ", "", this.greenAvatarPressed.bind(this))
 
+        this.selectedAvatar = redAvatar
+
+        this.redAvatar.setAvatar(redAvatar)
+        this.blueAvatar.setAvatar(blueAvatar)
+        this.greenAvatar.setAvatar(greenAvatar)
         this.gamePage = new GamePage()
         this.isGameRunning = false
         this.isGamePaused = false
 
-        this.avatar = new Avatar()
+        
         this.scoreTable = new ScoreTable()
         this.userScore = 0
+        this.i = 0
+        this.j = 0
+        this.wait = 10
     }
 
     private drawHomePage() {
@@ -69,6 +90,24 @@ class GameManager {
         this.gamePage.drawContent()
     }
 
+    private drawAvatar(avatar:p5.Image){
+        let originX = width/2
+        if (this.j <= this.wait) {
+            image(avatar, originX + 150, 30, 50, 50, this.i * 200, 0, 200, 200)
+            if (this.j == this.wait) {
+                this.i++;
+
+                if (this.i === 6) {
+                    this.i = 0
+                }
+            }
+        }
+        if (this.j == this.wait) {
+            this.j = 0
+        }
+        this.j++
+        //image(avatar, originX + 150, 30, 50, 50, 0 * 200, 0, 200, 200)
+    }
     public draw() {
 
         background(0)
@@ -85,11 +124,16 @@ class GameManager {
         let gameOver = this.gamePage.isGameOver()
         if (this.isGameRunning && !gameOver) {
             this.drawGamePage()
-            // this.avatar.drawSelectedAvatar()
+            this.drawAvatar(this.selectedAvatar)
+            
         } else {
             this.isGameRunning = false
             this.drawHomePage()
-            this.avatar.drawAvatars()
+            this.redAvatar.draw(width/2)
+            this.blueAvatar.draw(width/2)
+            this.greenAvatar.draw(width/2)
+            // this.avatar.drawAvatars()
+            // this.avatar.redAvatarButton.draw(width/2)
         }
     }
 
@@ -109,7 +153,6 @@ class GameManager {
         if (!this.isGameRunning) {
             this.isGameRunning = true
             this.gamePage.resetParam()
-
         }
     }
 
@@ -138,5 +181,17 @@ class GameManager {
 
     }
 
+    private redAvatarPressed() {
+        console.log("red")
+        this.selectedAvatar = redAvatar; 
 
+    }
+    private blueAvatarPressed() {
+        this.selectedAvatar = blueAvatar
+        console.log("blue")
+    }
+    private greenAvatarPressed() {
+        console.log("green")
+        this.selectedAvatar = greenAvatar
+    }
 }
