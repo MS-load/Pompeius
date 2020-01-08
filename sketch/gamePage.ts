@@ -22,6 +22,9 @@ class GamePage {
         this.segmentedMedia.draw()
     }
 
+    /**
+     * Checks if game is over.
+     */
     public isGameOver(): boolean {
         return this.gameStatus.getGameStatus()
     }
@@ -57,20 +60,31 @@ class GamePage {
         return false
     }
 
+    /**
+     * Exposes the segment score to gameManager
+     */
     public exposeScore() {
         return this.gameStatus.getSegmentScore()
     }
 
+    /**
+     * Exposes if level/game is complete to gameManager
+     */
     public checkIfGameIsComplete() {
         return this.gameStatus.levelComplete
     }
 
+    /**
+     * Exposes the level to gameManager
+     */
     public checkLevel() {
         return this.gameStatus.getLevel()
     }
 
+    /**
+     * Exposes the players lifes to gameManager
+     */
     public checkLifes() {
         return this.gameStatus.getIfNoMoreLives()
     }
-
 }
