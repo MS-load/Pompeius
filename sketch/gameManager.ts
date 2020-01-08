@@ -63,11 +63,13 @@ class GameManager {
 
         this.scoreTable.draw()
         fill('white')
-        text((this.selectedItemBox[this.arrayIndex].toString()), (windowWidth / 2), (windowHeight * 0.65))
 
         if (this.userScore > 0) {
             text('Your score: ' + this.userScore, (windowWidth / 2), (windowHeight * 0.75))
         }
+
+        textSize(20)
+        text((this.selectedItemBox[this.arrayIndex].toString()), (windowWidth / 2), (windowHeight * 0.65))
 
         textSize(30)
         fill('green')
