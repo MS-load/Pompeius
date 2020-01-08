@@ -188,4 +188,6 @@ class GameManager {
         this.arrayIndex = 2
         this.selectedAvatar = avatar.greenAvatar
     }
+
+
 }

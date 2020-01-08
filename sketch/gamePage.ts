@@ -26,9 +26,8 @@ class GamePage {
         textFont('arial')
         textSize(20)
         text('player: ' + playerSettings.getMyName(), (windowWidth / 1.2), (windowHeight / 7))
-
-
-        this.segmentedMedia.draw()
+        text('Press Space to score',width*0.75, height * 0.08 , 300, 150)
+      this.segmentedMedia.draw()
     }
 
     /** Checks if game is over */
