@@ -33,25 +33,36 @@ class Button {
         this.wait = 10
     }
 
+   /**
+    * Set that an avatar has been clicked
+    * @param avatar sets which avatar is clicked
+    */
     public setAvatar(avatar: p5.Image) {
         this.avatar = avatar as p5.Image
         this.isAvatar = true
     }
 
+    /**
+     * sets the size for the avatar
+     * @param w width of the avatar
+     * @param h height of the avatar
+     */
     public setSize(w: number, h: number) {
         this.width = w
         this.height = h
     }
 
+    /**
+     * sets the coordinates
+     * @param x sets the x coordinate
+     * @param y sets the y coordinate
+     */
     public setCoordinates(x: number, y: number) {
         this.x = x
         this.y = y
     }
 
-
-    /**
-     * Check if mouse is pressed. If mouse is pressed, runs the callback function.
-     */
+    /** Check if mouse is pressed. If mouse is pressed, runs the callback function */
     private checkForPress() {
         if (this.isMouseWithinButtonBorder()) {
             if (mouseIsPressed && !this.prevMousePressed) {
@@ -61,6 +72,10 @@ class Button {
         this.prevMousePressed = mouseIsPressed
     }
 
+    /**
+     * Draws the Avatar / Button as required
+     * @param originX determines form the new origin from which the button  is drawn
+     */
     public draw(originX: number) {
         this.checkForPress()
         this.originX = originX
@@ -80,7 +95,8 @@ class Button {
                 this.j = 0
             }
             this.j++
-        } else {
+        } 
+        else {
             fill(this.fillColor)
             rect(originX + this.x, this.y, this.width, this.height, this.corners)
             fill('white')
@@ -88,9 +104,8 @@ class Button {
         }
         pop()
     }
-    /**
-     * Checks if mouse is pressed within the area of the button.
-     */
+
+    /** Checks if mouse is pressed within the area of the button */
     private isMouseWithinButtonBorder() {
         return mouseX >= this.responsiveX
             && mouseX <= this.responsiveX + this.width
@@ -98,11 +113,8 @@ class Button {
             && mouseY <= this.y + this.height
     }
 
-    /**
-     * Helps making the buttons responsive. 
-     */
+    /** Helps making the buttons responsive */
     private get responsiveX() {
         return this.x + this.originX
     }
-
 }

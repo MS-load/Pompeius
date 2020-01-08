@@ -157,7 +157,7 @@ class GameStatus {
         return this.levelComplete
     }
 
-    /*** Exposes the players lifez to gamePage*/
+    /*** Exposes the players lifes to gamePage*/
     public getIfNoMoreLives() {
         return this.lives
     }

@@ -15,7 +15,10 @@ class Avatar {
         this.frameCount = 0
         this.wait = 10
     }
-
+/**
+ * draws the required avatar
+ * @param avatar image loaded in the constructor
+ */
     public drawAvatar(avatar:p5.Image){
         let originX = width/2
         if (this.frameCount <= this.wait) {

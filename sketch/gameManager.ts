@@ -28,14 +28,13 @@ class GameManager {
         this.resumeButton = new Button(120, (height * 0.85), 100, 50, 10, 'Resume game', 'purple', this.resumeButtonPressed.bind(this))
         this.quitButton = new Button(-100, (height * 0.9), 100, 25, 10, 'Quit', 'blue', this.quitButtonPressed.bind(this))
         this.pauseButton = new Button(10, (height * 0.9), 100, 25, 10, 'Pause', 'purple', this.pauseButtonPressed.bind(this))
-
         this.redAvatarButton = new Button(-250, 210, 150, 150, 0, " ", "", this.redAvatarPressed.bind(this))
         this.blueAvatarButton = new Button(-50, 210, 150, 150, 0, " ", "", this.blueAvatarPressed.bind(this))
         this.greenAvatarButton = new Button(150, 210, 150, 150, 0, " ", "", this.greenAvatarPressed.bind(this))
 
         this.arrayIndex = 0
         this.selectedAvatar = avatar.redAvatar
-        this.selectedItemBox = ['Selected Red theme','Selected Blue theme','Selected Green theme']
+        this.selectedItemBox = ['Selected Red theme', 'Selected Blue theme', 'Selected Green theme']
 
         this.redAvatarButton.setAvatar(avatar.redAvatar)
         this.blueAvatarButton.setAvatar(avatar.blueAvatar)
@@ -48,19 +47,20 @@ class GameManager {
         this.userScore = 0
     }
 
+    /**Draws the HomePage */
     private drawHomePage() {
         //Inputfield
         this.playerSettings.draw()
         this.playerSettings.update()
-        
-        //Start button and Reset button
+
+        //Start buttons and avatars
         this.startButton.draw(width / 2)
         this.resetButton.draw(width / 2)
-
         this.redAvatarButton.draw(width / 2)
         this.blueAvatarButton.draw(width / 2)
         this.greenAvatarButton.draw(width / 2)
 
+        //draws the score table
         this.scoreTable.draw()
         fill('white')
 
@@ -68,9 +68,11 @@ class GameManager {
             text('Your score: ' + this.userScore, (windowWidth / 2), (windowHeight * 0.75))
         }
 
+        //draws text for selected theme
         textSize(20)
         text((this.selectedItemBox[this.arrayIndex].toString()), (windowWidth / 2), (windowHeight * 0.65))
 
+        //draws the text at end of game
         textSize(30)
         fill('green')
         textFont('Quintessential')
@@ -81,19 +83,21 @@ class GameManager {
             text('GAME OVER!!', (windowWidth / 2), (windowHeight * 0.7))
         }
 
+        //draws resume button in case game is paused
         if (this.isGamePaused) {
             this.resumeButton.draw(width / 2)
         }
-
     }
 
+    /**draws the game page*/
     private drawGamePage() {
         this.quitButton.draw(width / 2)
         this.pauseButton.draw(width / 2)
         this.gamePage.drawContent()
+        avatar.drawAvatar(this.selectedAvatar)
     }
 
-
+    /**Draws the main page structure and determines which page is to be drawn*/
     public draw() {
 
         background(0)
@@ -110,8 +114,6 @@ class GameManager {
         let gameOver = this.gamePage.isGameOver()
         if (this.isGameRunning && !gameOver) {
             this.drawGamePage()
-            avatar.drawAvatar(this.selectedAvatar)
-
         } else {
             this.isGameRunning = false
             this.drawHomePage()
@@ -173,17 +175,16 @@ class GameManager {
         this.selectedAvatar = avatar.redAvatar
     }
 
+    /** Runs when blue avatar is pressed. */
     private blueAvatarPressed() {
         this.gamePage.setTheme('water')
         this.arrayIndex = 1
         this.selectedAvatar = avatar.blueAvatar
-
     }
 
     /** Runs when green avatar is pressed. */
     private greenAvatarPressed() {
         this.gamePage.setTheme('trees')
-        console.log("green")
         this.arrayIndex = 2
         this.selectedAvatar = avatar.greenAvatar
     }

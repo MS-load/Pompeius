@@ -30,7 +30,10 @@ class PlayerSettings {
 
         }
     }
-
+    
+    /**
+     * Input related items are drawn
+     */
     public draw() {
         //Inputfield
         fill('white')

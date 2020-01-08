@@ -8,9 +8,15 @@ class GamePage {
         this.gameStatus = new GameStatus()
     }
 
+    /**
+     * Sets the game theme based on the avatar chosen
+     * @param theme a string value based on the avatar chosen
+     */
     public setTheme(theme:string){
         this.segmentedMedia.setTag(theme)
     }
+
+    /**draws the content of the Game */
     public drawContent() {
         let timeOut = this.gameStatus.drawStatus()
         if (timeOut === true) {
@@ -25,21 +31,18 @@ class GamePage {
         this.segmentedMedia.draw()
     }
 
-    /**
-     * Checks if game is over.
-     */
+    /** Checks if game is over */
     public isGameOver(): boolean {
         return this.gameStatus.getGameStatus()
     }
 
+    /**Resets game parameters */
     public resetParam() {
         this.segmentedMedia.resetParameters()
         this.gameStatus = new GameStatus()
     }
 
-    /**
-     * Handles user interaction 
-     */
+    /** Handles user interaction*/
     public eventHandler() {
         if (keyCode === 32) {
             soundEffects.spaceBarSound()
@@ -63,30 +66,22 @@ class GamePage {
         return false
     }
 
-    /**
-     * Exposes the segment score to gameManager
-     */
+    /** Exposes the segment score to gameManager*/
     public exposeScore() {
         return this.gameStatus.getSegmentScore()
     }
 
-    /**
-     * Exposes if level/game is complete to gameManager
-     */
+    /** Exposes if level/game is complete to gameManager*/
     public checkIfGameIsComplete() {
         return this.gameStatus.levelComplete
     }
 
-    /**
-     * Exposes the level to gameManager
-     */
+    /** Exposes the level to gameManager */
     public checkLevel() {
         return this.gameStatus.getLevel()
     }
 
-    /**
-     * Exposes the players lifes to gameManager
-     */
+    /** Exposes the players lifes to gameManager */
     public checkLifes() {
         return this.gameStatus.getIfNoMoreLives()
     }

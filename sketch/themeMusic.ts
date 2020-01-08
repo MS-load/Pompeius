@@ -11,6 +11,9 @@ class MusicChoice {
         this.sel = createSelect() as ExtendedElement
     }
 
+    /**
+     * styles and creates options for the Music Selection
+     */
     public createSelector() {
         this.sel.position((20), (40))
         this.sel.size(100, 40)
@@ -27,6 +30,9 @@ class MusicChoice {
         this.sel.changed(this.selectMusic.bind(this))
     }
 
+    /**
+     * Determines which music is selected
+     */
     private selectMusic() {
         if (this.sel.value() === 'punk') {
             punk.loop()
