@@ -8,6 +8,9 @@ class GamePage {
         this.gameStatus = new GameStatus()
     }
 
+    public setTheme(theme:string){
+        this.segmentedMedia.setTag(theme)
+    }
     public drawContent() {
         let timeOut = this.gameStatus.drawStatus()
         if (timeOut === true) {

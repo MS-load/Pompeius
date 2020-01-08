@@ -159,22 +159,21 @@ class GameManager {
     private resumeButtonPressed() {
         this.isGameRunning = true
     }
-    private drawRec(value: number) {
-        
-    }
 
     private redAvatarPressed() {
-        console.log(this.arrayIndex)
+        this.gamePage.setTheme('cartoons')
         this.arrayIndex = 0
         this.selectedAvatar = avatar.redAvatar
     }
 
     private blueAvatarPressed() {
+        this.gamePage.setTheme('water')
         this.arrayIndex = 1
         this.selectedAvatar = avatar.blueAvatar
 
     }
     private greenAvatarPressed() {
+        this.gamePage.setTheme('trees')
         console.log("green")
         this.arrayIndex = 2
         this.selectedAvatar = avatar.greenAvatar
