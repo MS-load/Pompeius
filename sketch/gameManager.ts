@@ -151,19 +151,17 @@ class GameManager {
         this.isGamePaused = true
     }
 
-    private resumeButtonPressed() {
+    private resumeButtonPressed() { 
         this.isGameRunning = true
-
     }
 
     private redAvatarPressed() {
-        console.log("red")
         this.selectedAvatar = avatar.redAvatar; 
-
     }
+
     private blueAvatarPressed() {
         this.selectedAvatar = avatar.blueAvatar
-        console.log("blue")
+
     }
     private greenAvatarPressed() {
         console.log("green")
