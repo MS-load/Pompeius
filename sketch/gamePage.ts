@@ -12,7 +12,7 @@ class GamePage {
      * Sets the game theme based on the avatar chosen
      * @param theme a string value based on the avatar chosen
      */
-    public setTheme(theme:string){
+    public setTheme(theme: string) {
         this.segmentedMedia.setTag(theme)
     }
 
@@ -26,8 +26,8 @@ class GamePage {
         textFont('arial')
         textSize(20)
         text('player: ' + playerSettings.getMyName(), (windowWidth / 1.2), (windowHeight / 7))
-        text('Press Space to score',width*0.75, height * 0.08 , 300, 150)
-      this.segmentedMedia.draw()
+        text('Press Space to score', width * 0.75, height * 0.08, 300, 150)
+        this.segmentedMedia.draw()
     }
 
     /** Checks if game is over */
@@ -80,8 +80,8 @@ class GamePage {
         return this.gameStatus.getLevel()
     }
 
-    /** Exposes the players lifes to gameManager */
-    public checkLifes() {
+    /** Exposes the players lives to gameManager */
+    public checkLives() {
         return this.gameStatus.getIfNoMoreLives()
     }
 }

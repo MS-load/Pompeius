@@ -84,7 +84,7 @@ class GameManager {
         if (this.gamePage.checkIfGameIsComplete() && (this.gamePage.checkLevel() === 15)) {
             text('Congratulation! You finished all the levels!! Good Job!', (windowWidth / 2), (windowHeight * 0.7))
         }
-        if ((this.gamePage.isGameOver()) && this.gamePage.checkLifes() === 1) {
+        if ((this.gamePage.isGameOver()) && this.gamePage.checkLives() === 1) {
             text('GAME OVER!!', (windowWidth / 2), (windowHeight * 0.7))
         }
 

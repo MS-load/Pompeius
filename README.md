@@ -11,10 +11,6 @@ A Puzzle game we made, as a schoolproject, using typescript and the p5 library. 
 
 ***
 
-## Link to the game
-
-[Game Demo](https://ms-load.github.io/Pompeius/)
-
 ## Link to the repository on Github
 
 [Repository](https://github.com/MS-load/Pompeius)
