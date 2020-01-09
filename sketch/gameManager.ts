@@ -60,6 +60,11 @@ class GameManager {
         this.blueAvatarButton.draw(width / 2)
         this.greenAvatarButton.draw(width / 2)
 
+        //draws resume button in case game is paused
+        if (this.isGamePaused) {
+            this.resumeButton.draw(width / 2)
+        }
+
         //draws the score table
         this.scoreTable.draw()
         fill('white')
@@ -83,10 +88,7 @@ class GameManager {
             text('GAME OVER!!', (windowWidth / 2), (windowHeight * 0.7))
         }
 
-        //draws resume button in case game is paused
-        if (this.isGamePaused) {
-            this.resumeButton.draw(width / 2)
-        }
+
     }
 
     /**draws the game page*/
